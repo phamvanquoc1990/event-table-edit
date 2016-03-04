@@ -1,2 +1,2 @@
-# event-table-edit
+# Event Table Edit
 Event Table Edit is a free table plugin for Joomla 2.5 and above (original author: Manuel Kaspar, continuation: Theophilix). With the plugin, you can create a responsive, editable table with CSV import and export function. It also has a full rights management. You can  turn the table into an appointment booking system with confirmation emails for users and the admin, including iCal-calendar-files attached. Based on a CSS-template, the layout of Event Table Edit can be changed easily. The responsive function is based on the great tablesaw script (https://github.com/filamentgroup/tablesaw).
