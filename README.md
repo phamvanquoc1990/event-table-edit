@@ -5,7 +5,7 @@ You can  transform the table into an appointment booking system with confirmatio
 ##Latest version: 4.0
 
 
-Features:
+##Features:
 
 - Editable table (insert pictures, BBCode...)
 - Appointment booking function with confirmation email and ICAL-attachment (Version 4.1 and newer)
@@ -15,15 +15,15 @@ Features:
   and import settings (separator, values in quotes or not)
 - CSV Export
 
-Frontend view options:
+##Frontend view options:
 - Sort
 - Filter
 - Pagination
 - Print view
 
-Backend options:
+##Backend options:
 
-a) General
+###a) General
 - Normal or appointment booking function
 - Options for appointment booking function:
   + ICAL / .ics-File options (place, subject, name of file)
@@ -35,7 +35,7 @@ a) General
 - Use Metadata
 - Enhanced SEO
 
-b) Layout / Style
+###b) Layout / Style
 
 Choose or select:
 - Date format
