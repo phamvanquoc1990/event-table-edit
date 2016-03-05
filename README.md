@@ -10,7 +10,7 @@ You can  transform the table into an appointment booking system with confirmatio
 - Editable table (insert pictures, BBCode...)
 - Appointment booking function with confirmation email and ICAL-attachment (Version 4.1 and newer)
 - Complete rights management (Joomla ACL)
-- Multilingual (DE, EN)
+- Multilingual (currently available: DE, EN)
 - CSV and TXT-Import with different formats (text, date, time, integer, float, boolean, link, mail) 
   and import settings (separator, values in quotes or not)
 - CSV Export
