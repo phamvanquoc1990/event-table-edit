@@ -14,6 +14,7 @@ You can  transform the table into an appointment booking system with confirmatio
 - CSV and TXT-Import with different formats (text, date, time, integer, float, boolean, link, mail) 
   and import settings (separator, values in quotes or not)
 - CSV Export
+- Own CSS based template
 
 Frontend view options:
 - Sort
