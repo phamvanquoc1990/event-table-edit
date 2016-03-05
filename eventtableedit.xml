@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+	<name>com_eventtableedit</name>
+	<creationDate>02-02-2016</creationDate>
+	<author>Manuel Kaspar</author>
+	<license>GNU/GPL</license>
+	<copyright>2007 - 2011 Manuel Kaspar</copyright>
+	<authorEmail>kaspar.manuel@gmx.de</authorEmail>
+	<authorUrl>http://www.event-table-edit.com</authorUrl>
+	<version>4.0.0 RC1</version>
+	<description>COM_EVENTTABLEEDIT_DESCRIPTION</description>
+
+	<scriptfile>script.php</scriptfile>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>eventtableedit.php</filename>
+		<filename>controller.php</filename>
+		<filename>router.php</filename>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>template</folder>
+		<folder>views</folder>
+	</files>
+
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB/en-GB.com_eventtableedit.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.com_eventtableedit.ini</language>
+	</languages>
+
+	<administration>
+		<menu img="components/com_eventtableedit/template/images/menu/eventtableedit.png">COM_EVENTTABLEEDIT_MENU</menu>
+		<submenu>
+			<menu view="etetables" img="components/com_eventtableedit/template/images/menu/etetables.png">COM_EVENTTABLEEDIT_TABLES</menu>
+			<menu view="dropdowns" img="components/com_eventtableedit/template/images/menu/dropdowns.png">COM_EVENTTABLEEDIT_DROPDOWNS</menu>
+			<menu view="csvimport" img="components/com_eventtableedit/template/images/menu/import.png">COM_EVENTTABLEEDIT_CSV_IMPORT</menu>
+			<menu view="csvexport" img="components/com_eventtableedit/template/images/menu/export.png">COM_EVENTTABLEEDIT_CSV_EXPORT</menu>
+		</submenu>
+
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>config.xml</filename>
+			<filename>access.xml</filename>
+			<filename>script.php</filename>
+			<filename>eventtableedit.php</filename>
+			<filename>controller.php</filename>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>template</folder>
+		</files>
+
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_eventtableedit.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_eventtableedit.sys.ini</language>
+			<language tag="de-DE">language/de-DE/de-DE.com_eventtableedit.ini</language>
+			<language tag="de-DE">language/de-DE/de-DE.com_eventtableedit.sys.ini</language>
+		</languages>
+	</administration>
+	
+	
+</extension>

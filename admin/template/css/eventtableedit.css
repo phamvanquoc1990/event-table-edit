@@ -1,0 +1,141 @@
+/**
+ * $Id:$
+ * @copyright (C) 2007 - 2010 Manuel Kaspar
+ * @license GNU/GPL, see LICENSE.php in the installation package
+ * This file is part of Event Table Edit
+ *
+ * Event Table Edit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * Event Table Edit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Event Table Edit. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* The Main images */
+.icon-48-etetables {
+	background: url(../images/title/eventtableedit.png) top left no-repeat;
+	padding-left: 175px !important;
+}
+
+.icon-48-etetable {
+	background: url(../images/title/etetable.png) top left no-repeat;
+}
+
+.icon-48-dropdowns {
+	background: url(../images/title/dropdowns.png) top left no-repeat;
+}
+
+.icon-48-dropdown {
+	background: url(../images/title/dropdown.png) top left no-repeat;
+}
+
+.icon-48-import {
+	background: url(../images/title/import.png) top left no-repeat;
+}
+
+.icon-48-export {
+	background: url(../images/title/export.png) top left no-repeat;
+}
+ 
+/* The Dropdowns */
+#dropdowns-name {
+	cursor: pointer;
+}
+
+#dropdowns-name img {
+	margin-top: -3px;
+}
+
+#addNew {
+		background: url(../images/add.png) top left no-repeat;
+		width: 32px;
+		height: 32px;
+		cursor:pointer;
+		margin-left: 4px;
+		margin-top: 7px;
+}
+
+#dropdown-ordering {
+    background-repeat: no-repeat;
+    float: left;
+    height: 13px;
+    text-align: center;
+    width: 20px;
+    cursor: pointer;
+}
+
+span.downarrow {
+    background-image: url("../images/downarrow.png");
+}
+
+span.uparrow {
+    background-image: url("../images/uparrow.png");
+}
+
+#dropdown-deleteIcon {
+	cursor: pointer;
+}
+
+/* CSV Import */
+#tables {
+	display: none;
+}
+
+.etetable-import-actions, .etetable-import-actions li {
+	float: left;
+	clear: both;
+}
+
+.etetable-import-actions li {
+	margin-left: 20px !important;
+}
+
+.etetable-import-actions input {
+	margin-top: -1px;	
+}
+
+#colText {
+	width: 190px;	
+}
+
+#tableName {
+	margin-left: 60px;	
+}
+
+#datatypeTable {
+	margin-left: 3px;
+}
+
+#datatypeTable select {
+	width: 165px;
+}
+
+#summaryHead {
+	color: green;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 5px;	
+}
+
+#summaryHeadFailed {
+	color: red;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 5px;	
+}
+
+#gotoTable {
+	font-weight: bold;
+}
+	            
+/* CSV Export */
+#export-text {
+	width: 100% !important;
+}
