@@ -28,6 +28,7 @@ a) General
   + ICAL / .ics-File options (place, subject, name of file)
   + Admin email and email display name
   + Confirmation email settings (subject, text with appointment-date and -time-variables)
+  + CSV Import and Export
 - Show or hide table title
 - Usertext before and after table
 - Use Metadata
