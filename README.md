@@ -34,6 +34,7 @@ a) General
 - Enhanced SEO
 
 b) Layout / Style
+
 Choose or select:
 - Date format
 - Time format
