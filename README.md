@@ -21,6 +21,7 @@ Frontend view options:
 - Print view
 
 Backend options:
+
 a) General
 - Normal or appointment booking function
 - Options for appointment booking function:
@@ -33,14 +34,15 @@ a) General
 - Enhanced SEO
 
 b) Layout / Style
+Choose or select:
 - Date format
 - Time format
 - Float separator ("," or ".")
 - Cell spacing
 - Cell padding
 - Colors of alternating rows
-- Set a maximum length of cell content
-- Choose if you want to display table in the same, or a new window
+- Maximum length of cell content
+- Display table in the same, or a new window
 
 Please post all feature requests in the issues tab.
 
