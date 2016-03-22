@@ -27,7 +27,7 @@ Backend options:
 a) General
 - Normal or appointment booking function
 - Options for appointment booking function:
-  + ICAL / .ics-File options (place, subject, name of file)
+  + ICAL / .ics-File options (location, subject, name of file)
   + Set admin email address and email display name
   + Confirmation email settings (chose subject and message text with appointment-date and -time-variables)
   + CSV Import and Export
