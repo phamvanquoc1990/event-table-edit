@@ -235,7 +235,9 @@ class EventtableeditModelDropdown extends JModelAdmin {
 	private function saveSingleDropdowns() {
 		// Initialise variables;
 		$db = $this->getDbo();
-		$name = JRequest::getVar('dropdownName', array(), 'post', 'array');
+		$input  =  JFactory::getApplication()->input;
+		$postget = $input->getArray($_REQUEST);
+		$name = $postget['dropdownName'];
 		$dropdown_id = (int) $this->getState($this->getName().'.id');
 		
 		// Delete old dropdowns

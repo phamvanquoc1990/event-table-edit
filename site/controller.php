@@ -36,9 +36,10 @@ class EventtableeditController extends JControllerLegacy {
 		$document = JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getWord('view', '');
-		JRequest::setVar('view', $vName);
-		
+		$main  = JFactory::getApplication()->input;
+		$vName = 	$main->get('view', '');
+		$main->get('view', $vName);
+
 		$user = JFactory::getUser();
 
 		$safeurlparams = array('id'=>'INT','cid'=>'ARRAY','limit'=>'INT','limitstart'=>'INT',

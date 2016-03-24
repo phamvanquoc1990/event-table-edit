@@ -32,21 +32,24 @@ class EventtableeditControllerChangetable extends JControllerLegacy
 		
 		
 		// Get Variables
-		$id = (int) JRequest::getVar('id', -1);
-		$cid = JRequest::getVar('cid', array(), 'post', 'array');
-		$name = JRequest::getVar('name', array(), 'post', 'array');
-		$datatype = JRequest::getVar('datatype', array(), 'post', 'array');
-		$defaultSorting = JRequest::getVar('defaultSorting', array(), 'post', 'array');
-		
+		$main  				= JFactory::getApplication()->input;
+		$id 				= $main->getInt('id', '');
+		$postget 			= $main->getArray($_POST);
+		$cid 				= $postget['cid'];		
+		$name 				= $postget['name'];		
+		$datatype 			= $postget['datatype'];		
+		$defaultSorting 	= $postget['defaultSorting'];		
+				
 		$model = $this->getModel('changetable');
 		$model->save($cid, $name, $datatype, $defaultSorting);
 		
-		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id=' . $id), JText::_('COM_EVENTTABLEEDIT_SETTINGS_SAVED'));
+		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id=' . $id,false), JText::_('COM_EVENTTABLEEDIT_SETTINGS_SAVED'));
 	}
 	
 	private function aclCheck() {
-		$user = JFactory::getUser();
-		$id = (int) JRequest::getVar('id', '-1');
+		$user   = JFactory::getUser();
+		$main  	= JFactory::getApplication()->input;
+		$id 	= $main->getInt('id', '-1');
 		$asset	= 'com_eventtableedit.etetable.'.$id;
 		
 		if (!$user->authorise('core.create_admin', $asset)) {

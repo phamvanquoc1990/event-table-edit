@@ -24,8 +24,6 @@ defined( '_JEXEC' ) or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers');
 
-$main  = JFactory::getApplication()->input;
-$Itemid = 	$main->getInt('Itemid', '');
 
 ?>
 
@@ -52,6 +50,7 @@ $Itemid = 	$main->getInt('Itemid', '');
 	</li>
 	<?php endif; ?>
 </ul>
+
 
 <?php 
 if($this->item->addtitle == 1){ ?>
@@ -88,9 +87,8 @@ if($this->item->addtitle == 1){ ?>
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->state->get('list.direction') ?>" />
 	<input type="hidden" name="filterstring" value="<?php echo $this->params->get('filterstring') ?>" />
 	<input type="hidden" name="option" value="com_eventtableedit" />
-	<input type="hidden" name="view" value="etetable" />
+	<input type="hidden" name="view" value="appointments" />
 	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="Itemid" value="<?php echo $Itemid; ?>" />
 	<input type="hidden" name="id" value="<?php echo $this->item->id; ?>" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
@@ -101,8 +99,8 @@ if($this->item->addtitle == 1){ ?>
  */
 ?>
 <?php if($this->params->get('access-add') && $this->heads) : ?>
-	<div id="etetable-add" title="<?php echo JText::_('COM_EVENTTABLEEDIT_NEW_ROW'); ?>"></div>
-
+	<!--<div id="etetable-add" title="<?php echo JText::_('COM_EVENTTABLEEDIT_NEW_ROW'); ?>"></div>
+-->
 <?php endif; ?>
 
 <?php if($this->item->aftertext != '') :?>

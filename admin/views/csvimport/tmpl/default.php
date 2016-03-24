@@ -60,17 +60,20 @@ defined( '_JEXEC' ) or die;
 					<li>
 						<input type="radio" name="importaction" id="overwriteTable" value="overwriteTable"
 							   onclick="showSelect();" /> <?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_OVERWRITE_TABLE'); ?>
+							<p id="tables">
+								<label><?php echo JText::_("COM_EVENTTABLEEDIT_IMPORT_TABLES_DESC"); ?>: </label><?php echo $this->tables; ?>
+							</p>
 					</li>
 					<li>
 						<input type="radio" name="importaction" id="appendTable" value="appendTable"
-							   onclick="showSelect();" /> <?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_APPEND_TABLE'); ?>
+							   onclick="showSelect1();" /> <?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_APPEND_TABLE'); ?>
+							   <p id="tables1">
+								<label><?php echo JText::_("COM_EVENTTABLEEDIT_IMPORT_TABLES_DESC"); ?>: </label><?php echo $this->tables1; ?>
+							</p>
 					</li>
 				</ul>
 			</li>
-			<li id="tables">
-				<label><?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_TABLES_DESC'); ?>: </label>
-				<?php echo $this->tables; ?>
-			</li>
+			
 		</ul>
 	</fieldset>
 	</div>
@@ -79,14 +82,23 @@ defined( '_JEXEC' ) or die;
 	<input type="hidden" name="boxchecked" value="1" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
-
+<style>#tables1{display: none;}</style>
 <script type="text/javascript">
 <!--
 	function showSelect() {
 		document.getElementById('tables').style.display = 'inline';
+		document.getElementById('tables1').style.display = 'none';
+
 	}
 	function hideSelect() {
 		document.getElementById('tables').style.display = 'none';
+		document.getElementById('tables1').style.display = 'none';
+
+	}
+		function showSelect1() {
+		document.getElementById('tables1').style.display = 'inline';
+		document.getElementById('tables').style.display = 'none';
+
 	}
 -->
 </script>

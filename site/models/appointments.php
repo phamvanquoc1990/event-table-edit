@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modellist');
 require_once JPATH_SITE.'/components/com_eventtableedit/helpers/etetable.php';
 
-class EventtableeditModelEtetable extends JModelList
+class EventtableeditModelappointments extends JModelList
 {
 	protected $_context = 'com_eventtableedit.etetable';
 	protected $params;
@@ -33,9 +33,8 @@ class EventtableeditModelEtetable extends JModelList
 		
 		$this->setState('params', $params);
 		$this->params = $params;
-		$main  		 = $app->input;
-		$this->id    = $main->getInt('id', '');
-
+		$main         = $app->input;
+		$this->id     = $main->getInt('id', '');
 		$this->filter = '';
 		
 		$this->setState('is_module', 0);
@@ -46,21 +45,20 @@ class EventtableeditModelEtetable extends JModelList
 	protected function populateState()
 	{
 		// Load state from the request.
-
-		$app   = JFactory::getApplication('site');
-		$main  = $app->input;
-		$pk    = $main->getInt('id', '');
-
+		$app 		= JFactory::getApplication('site');
+		$main       = $app->input;
+		$pk         = $main->getInt('tablenumber', '');
+		
 		if ($pk == '') {
 			$pk = $this->id;
 		}
-		$this->setState('etetable.id', $pk);
+		$this->setState('appointments.id', $pk);
 		
 		// filter.order
 		$this->setState('list.ordering', $app->getUserStateFromRequest($pk . '.filter_order', 'filter_order', 'a.ordering', 'string'));
 		$this->setState('list.direction', $app->getUserStateFromRequest($pk . '.filter_order_Dir',	'filter_order_Dir', 'asc', 'cmd'));
 
-		$this->setState('list.start',$main->getInt('limitstart', '0'));
+		$this->setState('list.start', $main->getInt('limitstart', '0'));
 	}
 	
 	/**
@@ -73,9 +71,9 @@ class EventtableeditModelEtetable extends JModelList
 	{
 		$app	= JFactory::getApplication('site');
 		$params	= $this->state->params;
-		$itemid	= $this->getState('etetable.id');
-		$filter_order = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $itemid . '.filter_order', 'filter_order', '', 'string');
-		$filter_order_Dir = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $itemid . '.filter_order_Dir', 'filter_order_Dir', '', 'cmd');
+		$itemid	= $this->getState('appointments.id');
+		$filter_order = $app->getUserStateFromRequest('com_eventtableedit.appointments.list.' . $itemid . '.filter_order', 'filter_order', '', 'string');
+		$filter_order_Dir = $app->getUserStateFromRequest('com_eventtableedit.appointments.list.' . $itemid . '.filter_order_Dir', 'filter_order_Dir', '', 'cmd');
 		$orderby = ' ';
 
 		if ($filter_order && $filter_order_Dir) {
@@ -133,7 +131,7 @@ class EventtableeditModelEtetable extends JModelList
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication('site');
-		$pk = (!empty($pk)) ? $pk : (int) $this->getState('etetable.id');
+		$pk = (!empty($pk)) ? $pk : (int) $this->getState('appointments.id');
 
 		if (@$this->_item === null) {
 			$this->_item = array();
@@ -179,7 +177,7 @@ class EventtableeditModelEtetable extends JModelList
 				$limit = 100;
 			}
 			
-			$limit = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $pk . '.limit', 'limit', $limit);
+			$limit = $app->getUserStateFromRequest('com_eventtableedit.appointments.list.' . $pk . '.limit', 'limit', $limit);
 			$this->setState('list.limit', $limit);
 			
 			$this->getACL($data);
@@ -245,7 +243,7 @@ class EventtableeditModelEtetable extends JModelList
 		
 				$query->select($this->getState('item.select', 'a.*, CONCAT(\'head_\', a.id) AS head'));
 				$query->from('#__eventtableedit_heads AS a');
-				$query->where('a.table_id = ' . (int) $this->state->get('etetable.id'));
+				$query->where('a.table_id = ' . $this->state->get('appointments.id'));
 				$query->order('a.ordering asc');
 				
 				$this->db->setQuery($query);
@@ -367,7 +365,7 @@ class EventtableeditModelEtetable extends JModelList
 	 	// Add the list ordering clause.
 		  $orderCol	= $this->state->get('list.ordering');
 	 	$orderDirn	= $this->state->get('list.direction');	
- 		 $tid = (int) $this->state->get('etetable.id');
+ 		 $tid = $this->state->get('appointments.id');
  		
 		$query = $this->db->getQuery(true);
 		$query->select($this->getState('item.select', 'a.*'));
@@ -385,7 +383,6 @@ class EventtableeditModelEtetable extends JModelList
 		if ($filter != false) {
 			$query->where($filter);
 		}
-	
 		return $query;
 	 }
 	 
@@ -394,10 +391,9 @@ class EventtableeditModelEtetable extends JModelList
 	  * Thanks to unimx who mostly coded the filter
 	  */
 	 private function filterRows() {
-	 	$main  = JFactory::getApplication()->input;
-		$this->filter = 	$main->get('filterstring');
-	
-
+	 	$main  		  = JFactory::getApplication()->input;
+		$this->filter = $main->get('filterstring');
+		
 		if ($this->filter == '') {
 			return false;
 		}

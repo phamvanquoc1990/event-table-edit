@@ -41,11 +41,10 @@ class EventtableeditModelChangetable extends JModelList
 		
 		$this->setState('params', $params);
 		$this->params = $params;
-		$this->id = (int) JRequest::getVar('id', -1);
+		$main     = $app->input;
+		$this->id = $main->getInt('id', '');
 		
-		if ($this->id == -1) {
-			$this->id = $params->get('tablenumber');
-		}
+		
 	
 		$this->db = $this->getDbo();
 	}
@@ -99,6 +98,8 @@ class EventtableeditModelChangetable extends JModelList
 	 */
 	public function save($cid, $name, $datatype, $defaultSorting) {
 		// Update rows table
+
+
 		$this->createRowsTable();
 		$deleteColIds = $this->deleteNotUsedCols($cid);
 		

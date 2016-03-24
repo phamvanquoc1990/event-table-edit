@@ -6,15 +6,16 @@
     </message>
   </layout>
   
-  <fields name="params">
+  <fields name="request">
   	<fieldset name="request"
 			addfieldpath="/administrator/components/com_eventtableedit/models/fields"
 	>
 		<field
-            name="tablenumber"
+            name="id"
             type="tablenumber"
            	label="COM_EVENTTABLEEDIT_TABLE_NUMBER_LABEL"
 			description="COM_EVENTTABLEEDIT_TABLE_NUMBER_DESC"
+      required="true"
         />
 	</fieldset>
   </fields>

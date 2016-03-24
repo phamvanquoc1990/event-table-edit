@@ -38,12 +38,17 @@ class EventtableeditControllerCsvexport extends JControllerLegacy {
 		
 		// Initialize Variables
 		$this->model =& $this->getModel('csvexport');
-		$this->id = JRequest::getVar('tableList', NULL, 'post');
-		$this->separator = JRequest::getVar('separator', ';', 'post');
-		$this->doubleqt = JRequest::getVar('doubleqt', 1, 'post');
 
-		JRequest::setVar('com_eventtableedit.layout', 'summary');
-		JRequest::setVar('view', 'csvexport');
+		$input  =  JFactory::getApplication()->input;
+		$postget = $input->getArray($_POST);
+		
+		$this->id 		 = $postget['tableList'];
+		$this->separator = $postget['separator'];
+		$this->doubleqt  = $postget['doubleqt'];
+
+		$input->set('com_eventtableedit.layout','summary');
+		$input->set('view','csvexport');
+
 		
 		$this->model->setVariables($this->id, $this->separator, $this->doubleqt);
 		$this->model->export(); 

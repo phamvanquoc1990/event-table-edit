@@ -24,7 +24,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 $app = JFactory::getApplication();
 
 $params = $app->getParams();
- $tablenumber = $params->get('tablenumber');
+$main  = JFactory::getApplication()->input;
+		$tablenumber = 	$main->getInt('id', '');
 
 ?>
 

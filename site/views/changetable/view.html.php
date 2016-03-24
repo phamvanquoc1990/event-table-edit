@@ -51,7 +51,8 @@ class EventtableeditViewChangetable extends JViewLegacy {
 		
 		// Get the parameters of the active menu item
 		$this->params	= $app->getParams();
-		
+		$main  			= $app->input;
+		$id				= $main->getInt('id');
 		
 
 		$additional = array();
@@ -65,7 +66,7 @@ class EventtableeditViewChangetable extends JViewLegacy {
 		$this->assignRef('info', $this->tableInfo);
 		$this->assignRef('params', $this->params);
 		$this->assignRef('additional', $additional);
-		$this->assignRef('id', JRequest::getVar('id', -1));
+		$this->assignRef('id', $id);
 		
 		$this->_prepareDocument();
 		

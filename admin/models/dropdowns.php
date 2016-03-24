@@ -37,9 +37,9 @@ class EventtableeditModelDropdowns extends JModelList {
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
-
+		$input  =  $app->input;
 		// Adjust the context to support modal layouts.
-		if ($layout = JRequest::getVar('view')) {
+		if ($layout =  $input->get('view')) {
 			$this->context .= '.'.$layout;
 		}
 
@@ -98,8 +98,8 @@ class EventtableeditModelDropdowns extends JModelList {
 
 		// Filter by search in name.
 		//$search = $this->getState('filter.search');
-		
-		 $search = JRequest::getVar('filter_search','','','string');
+		$input  =  JFactory::getApplication()->input;
+		$search = $input->get('filter_search');
 		/*if (!empty($search)) {
 			if (stripos($search, 'id:') === 0) {
 				$query->where('a.id = '.(int) substr($search, 3));

@@ -79,6 +79,52 @@
 			<option
 				value="0">JHIDE</option>
 		</field>
+			<field name="location"
+			type="text"
+			label="COM_EVENTTABLEEDIT_FIELD_LOCATION_LABEL"
+			description="COM_EVENTTABLEEDIT_FIELD_LOCATION_DESC"
+			class="inputbox"
+			size="30"
+			
+		 />
+		<field name="displayname" type="text" label="COM_EVENTTABLEEDIT_FIELD_DISPLAYNAME_LABEL" description="COM_EVENTTABLEEDIT_FIELD_DISPLAYNAME_DESC" class="inputbox" size="30" 	 />
+		 <field name="icsfilename" type="text" label="COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_LABEL" description="COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_DESC" class="inputbox" size="30"  	 />
+
+		 <field name="summary" type="text" default="" label="COM_EVENTTABLEEDIT_FIELD_SUMMARY_LABEL" description="COM_EVENTTABLEEDIT_FIELD_SUMMARY_DESC" rows="10" cols="5" />
+		 <field name="email" type="email" label="COM_EVENTTABLEEDIT_FIELD_EMAIL_LABEL" description="COM_EVENTTABLEEDIT_FIELD_EMAIL_DESC" class="inputbox" size="30"  validate="email"	 />
+		 
+		<field name="adminemailsubject" type="text" label="COM_EVENTTABLEEDIT_FIELD_ADMINEMAIL_LABEL" description="COM_EVENTTABLEEDIT_FIELD_ADMINEMAIL_DESC" class="inputbox" size="30"  />
+
+		<field name="useremailsubject" type="text" label="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_SUBJECT_LABEL" description="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_SUBJECT_DESC" class="inputbox" size="30"   />
+
+		
+<field name="useremailtext" width="400px"
+			type="editor"
+			default=""
+			label="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_TEXT"
+			description="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_TEXT"
+			class="inputbox"
+			filter="safehtml"
+			buttons="true"
+			hide="readmore,pagebreak">
+		</field>
+		<field name="normalorappointment" type="radio" class="inputbox" default="0" label="COM_EVENTTABLEEDIT_FIELD_FUNCTION_LABEL" description="COM_EVENTTABLEEDIT_FIELD_FUNCTION_DESC">
+			<option value="0" onclick="checkics(this.value);" checked="checked">COM_EVENTTABLEEDIT_FIELD_FUNCTION_NORMAL</option>
+			<option value="1" onclick="checkics(this.value);">COM_EVENTTABLEEDIT_FIELD_FUNCTION_APPOINTMENT</option>
+			
+		</field>
+
+		<field name="addtitle"
+			type="radio"
+			class="inputbox"
+			default="0"
+			label="COM_EVENTTABLEEDIT_FIELD_TABLE_TITLE_LABEL"
+			description="COM_EVENTTABLEEDIT_FIELD_TABLE_TITLE_DESC">
+			<option
+				value="1">JSHOW</option>
+			<option
+				value="0">JHIDE</option>
+		</field>
 		
 		<field name="show_print_view"
 			type="radio"

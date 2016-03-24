@@ -33,8 +33,9 @@ class EventtableeditViewEtetable extends JViewLegacy {
 	}
 	
 	protected function addToolbar()	{
-		JRequest::setVar('hidemainmenu', true);
-
+		$input  =  JFactory::getApplication()->input;
+		$input->set('hidemainmenu',true);
+		
 		$user		= JFactory::getUser();
 		$userId		= $user->get('id');
 		$isNew		= ($this->item->id == 0);

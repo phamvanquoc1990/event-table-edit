@@ -29,7 +29,9 @@ class EventtableeditController extends JControllerLegacy {
 		require_once JPATH_COMPONENT.'/helpers/ete.php';
 		
 		// Override standard view
-		$view	= JRequest::getWord('view', 'etetables');
+
+		$input  =  JFactory::getApplication()->input;
+		$view	= $input->get('view','etetables');
 		if ($view == 'eventtableedit') {
 			$view = 'etetables';
 		}
@@ -37,8 +39,8 @@ class EventtableeditController extends JControllerLegacy {
 		// Load the submenu.
 		eteHelper::addSubmenu($view);
 		
-		$layout = JRequest::getWord('layout', 'default');
-		$id		= JRequest::getInt('id');
+		$layout = $input->get('layout');
+		$id		= $input->get('id');
 		
 		// Check for edit form.
 		if ($view == 'etetable' && $layout == 'edit' && !$this->checkEditId('com_eventtableedit.edit.etetable', $id)) {

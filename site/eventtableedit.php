@@ -27,8 +27,9 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Pragma: no-cache");
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 jimport('joomla.application.component.controller');
+$input = JFactory::getApplication()->input;
 
 $controller = JControllerLegacy::getInstance('eventtableedit');
-$controller->execute(JRequest::getVar('task'));
+$controller->execute($input->get('task'));
 $controller->redirect();
 ?>

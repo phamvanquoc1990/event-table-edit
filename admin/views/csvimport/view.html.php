@@ -37,9 +37,9 @@ class EventtableeditViewCsvimport extends JViewLegacy {
 			JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 			return false;
 		}
-		
+		$input  =  JFactory::getApplication()->input;
+		$layout = $input->get('com_eventtableedit.layout');
 		// Switch the differnet datatypes
-		$layout = JRequest::getVar('com_eventtableedit.layout');
 		switch ($layout) {
 			case 'newTable':
 				$headLine = $this->get('HeadLine');
@@ -77,7 +77,10 @@ class EventtableeditViewCsvimport extends JViewLegacy {
 				$upload_mb = min($max_upload, $max_post, $memory_limit);
 
 				$tableList = EventtableeditViewCsvimport::createTableSelectList();
+				$tableList1 = EventtableeditViewCsvimport::createTableSelectList1();
+
 				$this->assignRef('tables', $tableList);
+				$this->assignRef('tables1', $tableList1);
 				$this->assignRef('maxFileSize', $upload_mb);
 				
 				$this->addDefaultToolbar();
@@ -105,6 +108,19 @@ class EventtableeditViewCsvimport extends JViewLegacy {
 			$elem[] = JHTML::_('select.option', $table->id, $table->id . ' ' . $table->name);
 		}
 		return JHTML::_('select.genericlist', $elem, 'tableList', '', 'value', 'text', 0);
+	}
+	public function createTableSelectList1() {
+		$tables = EventtableeditModelCsvimport::getTables();
+		
+		if (count($tables) == 0) return null;
+		
+		$elem = array();
+		$elem[] = JHTML::_('select.option', '', '');
+		
+		foreach($tables as $table) {
+			$elem[] = JHTML::_('select.option', $table->id, $table->id . ' ' . $table->name);
+		}
+		return JHTML::_('select.genericlist', $elem, 'tableList1', '', 'value', 'text', 0);
 	}
 	
 	protected function addDefaultToolbar()	{

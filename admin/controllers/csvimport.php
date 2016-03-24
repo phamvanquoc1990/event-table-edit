@@ -36,20 +36,29 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 			$this->setRedirect(JRoute('index.php?option=com_eventtableedit'));
 			return false;
 		}
-		
+		$input  =  JFactory::getApplication()->input;
+		$postget = $input->getArray($_REQUEST);
+			
 		// Initialize Variables
 		$this->model =& $this->getModel('csvimport');
-		$this->file = JRequest::getVar('fupload', NULL, 'files');
-		$this->separator = JRequest::getVar('separator', ';', 'post');
-		$this->doubleqt = JRequest::getVar('doubleqt', 1, 'post');
-		$this->importaction = JRequest::getVar('importaction', 'newTable', 'post');
-		JRequest::setVar('view', 'csvimport');
+		$this->file = $input->files->get('fupload');
 		
-		if ($this->importaction != 'newTable') {
-			$this->id = JRequest::getVar('tableList', NULL, 'post');
+		$this->separator    = $postget['separator']; 
+		$this->doubleqt     = $postget['doubleqt'];  
+		$this->importaction = $postget['importaction']; 
+		
+		$input->set('view','csvimport');
+		
+
+		if ($this->importaction == 'overwriteTable') {
+			$this->id = $input->get('tableList');
+
+		}else if ($this->importaction == 'appendTable') {
+			$this->id = $input->get('tableList1');
 		} else {
 			$this->id = 0;
 		}
+	
 		
 		$this->checkForErrors();
 		$this->moveFile();
@@ -64,22 +73,23 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 	public function newTable() {
 		// ACL Check
 		$user = JFactory::getUser();
+		$input  =  JFactory::getApplication()->input;
+		
 		if (!$user->authorise('core.csv', 'com_eventtableedit')) {
 			JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 			$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit'));
 			return false;
 		}
-		
+		$postget = $input->getArray($_REQUEST);
 		// Get Variables
-		$name = JRequest::getVar('tableName', 'Eventtableedit' , 'post');
-		$datatype = JRequest::getVar('datatypesList', array(), 'post', 'array');
+		$name = $postget['tableName']; 
+		$datatype = $postget['datatypesList']; 
 		
 		$this->model =& $this->getModel('csvimportnewtable');
 		$detailsModel =& $this->getModel('etetable');
 		$this->model->importCsvNew($detailsModel, $name, $datatype);
-		
-		JRequest::setVar('view', 'csvimport');
-		JRequest::setVar('com_eventtableedit.layout', 'summary');
+		$input->set('view','csvimport');
+		$input->set('com_eventtableedit.layout','summary');
 		parent::display();
 	}
 	
@@ -133,18 +143,19 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 	private function switchUploadTypes() {
 		// Save vars to session
 		$this->storeVarsInSession();
-		
+		$input  =  JFactory::getApplication()->input;
 		switch ($this->importaction) {
 			case 'overwriteTable':
 				$this->model->importCsvOverwrite();
-				JRequest::setVar('com_eventtableedit.layout', 'summary');
+				$input->set('com_eventtableedit.layout','summary');
 				break;
 			case 'appendTable':
 				$this->model->importCsvAppend();
-				JRequest::setVar('com_eventtableedit.layout', 'summary');
+				$input->set('com_eventtableedit.layout','summary');
 				break;
 			case 'newTable':
-				JRequest::setVar('com_eventtableedit.layout', 'newTable');
+
+				$input->set('com_eventtableedit.layout','newTable');
 				break;
 		}
 	}

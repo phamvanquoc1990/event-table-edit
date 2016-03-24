@@ -29,8 +29,9 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_eventtableedit')) {
 
 // Include dependancies
 jimport('joomla.application.component.controller');
-
+$input  =  JFactory::getApplication()->input;
+		
 $controller	= JControllerLegacy::getInstance('eventtableedit');
-$controller->execute(JRequest::getCmd('task'));
+$controller->execute($input->get('task'));
 $controller->redirect();
 ?>

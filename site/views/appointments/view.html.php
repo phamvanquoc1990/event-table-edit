@@ -22,9 +22,9 @@
 // no direct access
 defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.view');
-require_once JPATH_COMPONENT.'/models/etetable.php';
+require_once JPATH_COMPONENT.'/models/appointments.php';
 
-class EventtableeditViewEtetable extends JViewLegacy
+class EventtableeditViewappointments extends JViewLegacy
 {
 	protected $state;
 	protected $item;
@@ -50,8 +50,8 @@ class EventtableeditViewEtetable extends JViewLegacy
 		$this->rows			= $this->get('Rows');
 		$this->pagination	= $this->get('Pagination');
 		$main  				= $app->input;
-		$this->print 		= $main->get('print');
-		$filterstring 		= $main->get('filterstring');
+		$this->print 		= 	$main->get('print');
+		$filterstring 		= 	$main->get('filterstring');
 		
 		// Check for errors.
 		if (!$this->checkError()) return false;
@@ -179,7 +179,7 @@ class EventtableeditViewEtetable extends JViewLegacy
 			
 			
 			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/tableAjax.js');
-			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js');
+			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js');
 		//	$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/jquery.js');
 		
 		}

@@ -6,16 +6,14 @@
     </message>
   </layout>
   
-  <fields name="params">
-  	<fieldset name="request"
-			addfieldpath="/administrator/components/com_eventtableedit/models/fields"
-	>
-		<field
-            name="tablenumber"
-            type="tablenumber"
-           	label="COM_EVENTTABLEEDIT_TABLE_NUMBER_LABEL"
-			description="COM_EVENTTABLEEDIT_TABLE_NUMBER_DESC"
-        />
+  <fields name="request">
+  	<fieldset name="request">
+		 <field name="id" type="sql" default="10" label="Select Table" query="SELECT id, name FROM #__eventtableedit_details WHERE published = 1 ORDER BY name ASC" key_field="id" value_field="name"
+
+        required="true"
+         >
+         <option value="">Select table</option>
+       </field>
 	</fieldset>
   </fields>
 </metadata>

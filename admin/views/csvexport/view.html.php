@@ -34,9 +34,10 @@ class EventtableeditViewCsvexport extends JViewLegacy {
 			JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 			return false;
 		}
-		
+		$input  =  JFactory::getApplication()->input;
+		$layout = $input->get('com_eventtableedit.layout');
 		// Switch the differnet datatypes
-		$layout = JRequest::getVar('com_eventtableedit.layout');
+		
 		switch ($layout) {
 			case 'summary':
 				// Check for errors.
@@ -44,8 +45,9 @@ class EventtableeditViewCsvexport extends JViewLegacy {
 					JError::raiseError(500, implode("\n", $errors));
 					return false;
 				}
-
-				$this->assignRef('csvFile', JRequest::getVar('csvFile'));
+				$postget = $input->getArray($_REQUEST);
+				
+				$this->assignRef('csvFile',$postget['csvFile']);
 				
 				$this->addSummaryToolbar();
 				break;

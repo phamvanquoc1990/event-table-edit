@@ -32,20 +32,36 @@ function EventTableEditBuildRoute(&$query)
 	} else {
 		$menuItem = $menu->getItem($query['Itemid']);
 	}
-	
+
 	if (isset($query['view']))
 	{
 		if ($query['view'] != 'etetable' || !isset($menuItem)) {
 			$segments[] = $query['view'];
 		}
-		unset($query['view']);
+		//
 	}
 
 	if (isset($query['id'])) {
 		if (!isset($menuItem)) {
 			$segments[] = $query['id'];
+		}else if($query['view'] == 'appointmentform'){
+			$segments[] = $query['id'];
+			
 		}
+		unset($query['view']);
+		
 		unset($query['id']);
+	}
+	if(isset($query['row'])){
+		
+		$segments[] = $query['row'];
+		unset($query['row']);
+		
+	}
+	if(isset($query['col'])){
+		$segments[] = $query['col'];
+		unset($query['col']);
+		
 	}
 
 	return $segments;
@@ -59,7 +75,7 @@ function EventTableEditParseRoute($segments)
 	$app	= JFactory::getApplication();
 	$menu	= $app->getMenu();
 	$item	= $menu->getActive();
- 
+
 	//Handle View and Identifier
 	switch($segments[0])
 	{
@@ -79,7 +95,16 @@ function EventTableEditParseRoute($segments)
 		{
 			$vars['view'] = 'etetable';
 		} break;
+		case 'appointmentform':
+		{
+			$vars['view'] = 'appointmentform';
+			$vars['id']  = $segments[1];
+			$vars['row']  = $segments[2];
+			$vars['col']  = $segments[3];
+		} break;
 	}
 
 	return $vars;
 }
+
+

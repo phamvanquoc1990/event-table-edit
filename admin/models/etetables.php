@@ -36,9 +36,9 @@ class EventtableeditModelEtetables extends JModelList {
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
-
+		$input  =  $app->input;
 		// Adjust the context to support modal layouts.
-		if ($layout = JRequest::getVar('view')) {
+		if ($layout = $input->get('view')) {
 			$this->context .= '.'.$layout;
 		}
 
@@ -103,7 +103,7 @@ class EventtableeditModelEtetables extends JModelList {
 		// Create a new query object.
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-
+		$input  =  JFactory::getApplication()->input;
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
@@ -151,7 +151,7 @@ class EventtableeditModelEtetables extends JModelList {
 				$query->where('(a.name LIKE '.$search.' OR a.alias LIKE '.$search.')');
 			}
 		}*/
-		 $search = JRequest::getVar('filter_search','','','string');
+		 $search = $input->get('filter_search');
 			if($search!=''){
 				$query->where('(a.name LIKE "%'.$search.'%")');
 		}

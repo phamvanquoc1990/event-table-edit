@@ -346,7 +346,11 @@ Thead.prototype.editName = function() {
 	setTimeout("doFocus()", 100);
 	
 }
-
+jQuery( "#etetable-inputfield-active" ).live( "keypress", function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+});
 function doFocus() {
 	$('etetable-inputfield-active').focus();
 }

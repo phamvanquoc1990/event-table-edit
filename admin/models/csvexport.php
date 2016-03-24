@@ -80,8 +80,10 @@ class EventtableeditModelCsvexport extends JModelLegacy {
 		$this->csvData = $csvData;
 		$data = Csv::generateCsv($this->separator, $this->doubleqt, $this->csvData);
 		
+
+		$input  =  JFactory::getApplication()->input;
+		$input->set('csvFile',$data);
 	
-		JRequest::setVar('csvFile', $data);
 	}
 	
 	/**

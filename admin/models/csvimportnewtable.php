@@ -53,7 +53,7 @@ class EventtableeditModelCsvimportnewtable extends EventtableeditModelCsvimport 
 		$data = array();
 		$data['id'] = 0;
 		$data['name'] = $this->tableName;
-		
+		$data['published'] = 1;
 		if (!$this->detailsModel->save($data)) {
 			JError::raiseError( 500, JText::_('COM_EVENTTABLEEDIT_SAME_NAME'));
 			return false;

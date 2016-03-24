@@ -10,8 +10,9 @@
 defined('_JEXEC') or die;
 
 $fieldSets = $this->form->getFieldsets('metadata');
+
 foreach ($fieldSets as $name => $fieldSet) :
-	echo JHtml::_('sliders.panel',JText::_($fieldSet->label), $name.'-options');
+//	echo JHtml::_('sliders.panel',JText::_($fieldSet->label), $name.'-options');
 	if (isset($fieldSet->description) && trim($fieldSet->description)) :
 		echo '<p class="tip">'.$this->escape(JText::_($fieldSet->description)).'</p>';
 	endif;
@@ -25,8 +26,8 @@ foreach ($fieldSets as $name => $fieldSet) :
 				<li><?php echo $this->form->getLabel('metakey'); ?>
 				<?php echo $this->form->getInput('metakey'); ?></li>
 
-				<li><?php echo $this->form->getLabel('xreference'); ?>
-				<?php echo $this->form->getInput('xreference'); ?></li>
+				<!--li><?php echo $this->form->getLabel('xreference'); ?>
+				<?php echo $this->form->getInput('xreference'); ?></li>-->
 			<?php endif; ?>
 			<?php foreach ($this->form->getFieldset($name) as $field) : ?>
 				<li><?php echo $field->label; ?>

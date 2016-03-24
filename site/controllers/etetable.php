@@ -16,12 +16,15 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 	 * Get cellcontent
 	 */
 	function ajaxGetCell() {
-		$rowId = (int) JRequest::getVar('rowId', -1);
+
+		$main  = JFactory::getApplication()->input;
+		$rowId = 	$main->getInt('rowId', '-1');
 		if (!$this->aclCheck('edit') && !$this->checkAclOwnRow($rowId)) {
 			return false;
 		}
+		$postget = $main->getArray($_POST);
 		
-		$cell = (int) JRequest::getVar('cell', -1);
+		$cell    = $postget['cell'];
 		
 		//Get Model and perform action
 		$model =& $this->getModel('etetable');
@@ -35,14 +38,15 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 	 * Saves a cellcontent
 	 */
 	function ajaxSaveCell() {
-		$rowId = (int) JRequest::getVar('rowId', -1);
+		$main  = JFactory::getApplication()->input;
+		$rowId = 	$main->getInt('rowId', '-1');
 		if (!$this->aclCheck('edit') && !$this->checkAclOwnRow($rowId)) {
 			return false;
 		}
+		$postget = $main->getArray($_POST);
 		
-		$rowId = (int) JRequest::getVar('rowId', -1, 'post');
-		$cell = (int) JRequest::getVar('cell', -1, 'post');
-		$content = JRequest::getVar('content', '', 'post');
+		$cell    = $postget['cell'];
+		$content = $postget['content'];
 		
 		//Get Model and perform action
 		$model =& $this->getModel('etetable');
@@ -72,12 +76,13 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 	 * Delete a row through an ajax request
 	 */
 	function ajaxDeleteRow() {
-		$rowId = (int) JRequest::getVar('rowId', -1);
+		$main  = JFactory::getApplication()->input;
+		$rowId = 	$main->getInt('rowId', '-1');
+
 		if (!$this->aclCheck('delete') && !$this->checkAclOwnRow($rowId)) {
 			return false;
 		}
 		
-		$rowId = (int) JRequest::getVar('rowId', -1, 'get');
 		
 		//Get Model and perform action
 		$model =& $this->getModel('etetable');
@@ -90,20 +95,25 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		if (!$this->aclCheck('reorder')) {
 			return false;
 		}
-		
-		$rowIds = JRequest::getVar('rowId', array(), 'post', 'array');
-		$order = JRequest::getVar('order', array(), 'post', 'array');
+		$main    = JFactory::getApplication()->input;
+		$postget = $main->getArray($_POST);
+		$rowIds  = $postget['rowId'];
+		$order   = $postget['order'];
+		$Itemid  = $postget['Itemid'];
+		$id      = $postget['id'];
 		
 		$model =& $this->getModel('etetable');
 		$model->saveOrder($rowIds, $order);
-		
-		$this->setRedirect(JRoute::_('index.php'), 
+
+		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id='.$id.'&Itemid='.$Itemid,false), 
 						   JText::_('COM_EVENTTABLEEDIT_SUCCESSFUL_REORDER'));
 	}
 	
 	private function aclCheck($object) {
 		$user = JFactory::getUser();
-		$id = (int) JRequest::getVar('id', '-1');
+
+		$main  = JFactory::getApplication()->input;
+		$id = 	$main->getInt('id', '-1');
 		$asset	= 'com_eventtableedit.etetable.'.$id;
 		
 		if (!$user->authorise('core.' . $object, $asset)) {
