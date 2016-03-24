@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension type="component" version="1.6.0" method="upgrade">
+<extension type="component" version="4.1" method="upgrade">
 	<name>com_eventtableedit</name>
 	<creationDate>24-03-2016</creationDate>
 	<author>Manuel Kaspar and Matthias Gruhn</author>
