@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="component" version="1.6.0" method="upgrade">
 	<name>com_eventtableedit</name>
-	<creationDate>02-02-2016</creationDate>
-	<author>Manuel Kaspar</author>
+	<creationDate>24-03-2016</creationDate>
+	<author>Manuel Kaspar and Matthias Gruhn</author>
 	<license>GNU/GPL</license>
-	<copyright>2007 - 2011 Manuel Kaspar</copyright>
-	<authorEmail>kaspar.manuel@gmx.de</authorEmail>
-	<authorUrl>http://www.event-table-edit.com</authorUrl>
+	<copyright>2007 - 2016 Manuel Kaspar and m</copyright>
+	<authorEmail>webmaster@eventtableedit.com</authorEmail>
+	<authorUrl>http://www.eventtableedit.com</authorUrl>
 	<version>4.1</version>
 	<description>COM_EVENTTABLEEDIT_DESCRIPTION</description>
 
