@@ -4,12 +4,12 @@ You can  transform the table into an appointment booking system with confirmatio
 
 Download latest version 4.1 (since 24.03.2016): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
-Demo site for backend and frontend: demo.eventtableedit.com 
+Demo site for backend and frontend (inludes appointment-table): demo.eventtableedit.com 
 
 ##Features:
 
 - Editable table (insert pictures, BBCode...)
-- Appointment booking function with confirmation email and ICAL-attachment (Version 4.1 and newer)
+- Appointment booking function with confirmation email and ICAL-attachment
 - Complete rights management (Joomla ACL)
 - Multilingual (currently available: DE, EN)
 - CSV and TXT-Import with different formats (text, date, time, integer, float, boolean, link, mail) 
