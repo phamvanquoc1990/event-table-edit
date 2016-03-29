@@ -4,7 +4,7 @@ You can  transform the table into an appointment booking system with confirmatio
 
 Download latest version 4.1 (since 24.03.2016): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
-Demo site for backend and frontend (inludes appointment-table): http://demo.eventtableedit.com 
+Demo site for backend and frontend (includes appointment-table): http://demo.eventtableedit.com 
 
 ##Features:
 
