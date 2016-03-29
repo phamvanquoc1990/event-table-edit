@@ -44,7 +44,7 @@ function EventTableEditBuildRoute(&$query)
 	if (isset($query['id'])) {
 		if (!isset($menuItem)) {
 			$segments[] = $query['id'];
-		}else if($query['view'] == 'appointmentform'){
+		}else if($query['view'] == 'appointmentform' || $query['view'] == 'changetable'){
 			$segments[] = $query['id'];
 			
 		}
