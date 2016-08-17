@@ -6,7 +6,7 @@ Download latest version 4.2 (since 17.08.2016): https://github.com/Theophilix/ev
 
 Demo site for backend and frontend (includes appointment-table): http://demo.eventtableedit.com 
 
-#Version history
+# I Version history
 
 For version 4.2:
 
@@ -22,7 +22,7 @@ For version 4.2:
 - "Add weekdays to header" -option added
 - Layout improvements in frontend and backend
 
-##Features:
+## II Features:
 
 - Editable table (insert pictures, BBCode...)
 - Sorting options
