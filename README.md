@@ -14,7 +14,7 @@ For version 4.2:
 - Column sorting (via header click or selection menu) option added (unfortunately, natural sorting is still not working)
 - Table administrate view bug is fixed
 - Choice of layout mode (stack, toggle, swipe)-option added
-- Backend overview added
+- Backend overview improved
 
 [2] Appointment mode
 - Selection of multiple appointments added. Users have to click a button after selecting dates/times.
