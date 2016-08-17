@@ -20,8 +20,6 @@ For version 4.2:
 - Selection of multiple appointments added. Users have to click a button after selecting dates/times.
 - Time limit option (cells are marked as "blocked") added
 - "Add weekdays to header" -option added
-- Input form in backend for admin email message added
-- Variable "comment" in backend added
 - Layout improvements in frontend and backend
 
 ##Features:
