@@ -13,6 +13,7 @@ Demo site for backend and frontend (includes appointment-table): http://demo.eve
 - Table administrate view bug is fixed
 - Choice of layout mode (stack, toggle, swipe)-option added
 - Backend overview added
+
 [2] Appointment mode
 - Selection of multiple appointments added. Users have to click a button after selecting dates/times.
 - Time limit option (cells are marked as "blocked") added
