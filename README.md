@@ -13,7 +13,7 @@ For version 4.2:
 [1] Normal mode
 - Column sorting (via header click or selection menu) option added (unfortunately, natural sorting is still not working)
 - Table administrate view bug is fixed
-- Choice of layout mode (stack, toggle, swipe)-option added
+- Choice of layout mode (stack, swipe, toggle)-option added
 - Backend overview improved
 
 [2] Appointment mode
@@ -28,7 +28,7 @@ For version 4.2:
 
 - Editable table (insert pictures, BBCode...)
 - Sorting options
-- Choice of layout mode (stack,swipe, toggle) for enhanced responsiveness
+- Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
 - Multiple appointment booking function with confirmation email and ICAL-attachment
 - Complete rights management (Joomla ACL)
 - Multilingual (currently available: DE, EN)
