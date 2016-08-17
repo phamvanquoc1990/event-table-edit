@@ -6,8 +6,8 @@ Download latest version 4.2 (since 17.08.2016): https://github.com/Theophilix/ev
 
 Demo site for backend and frontend (includes appointment-table): http://demo.eventtableedit.com 
 
-##Version history
-# 4.2
+#Version history
+4.2
 [1] Normal mode
 - Column sorting (via header click or selection menu) option added (unfortunately, natural sorting is still not working)
 - Table administrate view bug is fixed
