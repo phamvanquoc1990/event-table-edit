@@ -79,7 +79,8 @@ function Language() {
 	this.err_no_float	= '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_ERROR_NO_FLOAT'); ?>';
 	this.err_no_time	= '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_ERROR_NO_TIME'); ?>';
 	this.err_no_mail	= '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_ERROR_NO_MAIL'); ?>';
-	
+	this.err_no_Link	= '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_ERROR_NO_LINK'); ?>';
+
 	// Others
 	this.really_delete		  = '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_REALLY_DELETE'); ?>';
 	this.err_dropdown_deleted = '<?php echo JTEXT::_('COM_EVENTTABLEEDIT_ERROR_DROPDOWN_DELETED'); ?>';

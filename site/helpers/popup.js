@@ -48,13 +48,14 @@ BuildPopupWindow.prototype.constructBoolean = function(status, cell, editedCell)
 	
 	// Decide what value the field has
 	if (status == 1) {
-		status = -1;
-	} else if (typeof(status) == "undefined" || status == null || status == "") {
+		//status = -1;
+		status = 0;
+	} /*else if (typeof(status) == "undefined" || status == null || status == "") {
 		status = 0;	   
 	} else if (status == -1 || status == 0) {
 		status++;
-	} else {
-		status = -1;
+	} */else {
+		status = 1;
 	}
 	   
 	this.inputValue = status;
@@ -325,6 +326,8 @@ BuildPopupWindow.prototype.addToolTip = function() {
 		'class': 'tip tool-tip',
 		'style': 'visibility: hidden;' +
 				 'right: -378px;'  +
+				 'background: #E8E8E8;'  +
+				 'padding: 10px;'  +
 				 'top: 21px'
 	});
 	var innerDiv = new Element ('div');
@@ -453,6 +456,8 @@ BuildPopupWindow.prototype.checkData = function() {
 			return this.checkTime();
 		case 'mail':
 			return this.checkMail();
+		case 'link':
+			return this.checkLink();
 	}
 	
 	return true;
@@ -462,7 +467,7 @@ BuildPopupWindow.prototype.checkData = function() {
  * Check single datatypes
  */
 BuildPopupWindow.prototype.checkInt = function() {
-	var parsed = parseInt(this.inputValue);
+	var parsed = this.inputValue;
 	
 	if (isNaN(parsed)) {
 		$('etetable-inputfield').value = lang.err_no_int;
@@ -493,7 +498,7 @@ BuildPopupWindow.prototype.checkTime = function() {
 	}
 	for (g = 0; g < parr.length; g++) {
 		var pcheck = parseInt(parr[g]);
-		if (isNaN(pcheck)) {
+		if (isNaN(pcheck) || (g==0 && parr[g] > 24)) {
 			isTime = false;
 		} else if (g > 0) {
 			if (parr[g] < 0 || parr[g] > 60) {
@@ -511,14 +516,40 @@ BuildPopupWindow.prototype.checkTime = function() {
 
 BuildPopupWindow.prototype.checkMail = function() {
 	var email = this.inputValue;
-	var filter  = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-
+	//var filter  = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+	var filter = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
 	if (!filter.test(email)) {
 		$('etetable-inputfield').value = lang.err_no_mail;
 		return false;
 	}
 	return true;
 }
+
+
+
+BuildPopupWindow.prototype.checkLink = function() {
+	var parsed = this.inputValue;
+	var validurl = isURL(parsed);
+	if (!validurl) {
+		$('etetable-inputfield').value = lang.err_no_Link;
+		return false;
+	}
+	this.inputValue = parsed;
+	return true;
+}
+
+
+
+function isURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return pattern.test(str);
+}
+
 
 /**
  * Send the new content to the database
@@ -547,6 +578,8 @@ BuildPopupWindow.prototype.sendData = function() {
 		addAnchorEvent(null, self.editedCell);
 		self.removePopup();
 		removeLoad();
+		jQuery('.tablesaw-modeswitch select').trigger('change');
+
 	}
 	}).send();
 }

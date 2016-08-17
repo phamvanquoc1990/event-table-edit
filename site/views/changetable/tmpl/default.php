@@ -67,9 +67,9 @@ $main  = JFactory::getApplication()->input;
 				<th width="9%">
 					<?php echo JText::_('COM_EVENTTABLEEDIT_ORDERING'); ?>
 				</th>
-				<th width="15%">
-					<?php echo JText::_('COM_EVENTTABLEEDIT_AUTOSORT'); ?>
-				</th>
+				<!--<th width="15%">
+					<?php //echo JText::_('COM_EVENTTABLEEDIT_AUTOSORT'); ?>
+				</th>-->
 				<th width="5%">
 					<?php echo JText::_('COM_EVENTTABLEEDIT_DELETE'); ?>
 				</th>

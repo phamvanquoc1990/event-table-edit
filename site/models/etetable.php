@@ -557,6 +557,14 @@ class EventtableeditModelEtetable extends JModelList
 		//echo $query;
 		$this->db->setQuery($query);
 		$this->db->query();
+
+		$selectallrecords = "SELECT COUNT(id) AS row FROM #__eventtableedit_rows_" . $this->id;
+		$this->db->setQuery($selectallrecords);
+		$rwo = $this->db->loadResult();
+		
+		$updatecol = "UPDATE `#__eventtableedit_details` SET row='".$rwo."' WHERE id='".$this->id."'";
+		$this->db->setQuery($updatecol);
+		$this->db->query();
 				
 		return $this->db->insertid() . '|' . $newOrdering;
 	}
@@ -643,6 +651,14 @@ class EventtableeditModelEtetable extends JModelList
 		$query = 'DELETE FROM #__eventtableedit_rows_' . $this->id .
 				 ' WHERE id = ' . $rowId;
 		$this->db->setQuery($query);
+		$this->db->query();
+
+		$selectallrecords = "SELECT COUNT(id) AS row FROM #__eventtableedit_rows_" . $this->id;
+		$this->db->setQuery($selectallrecords);
+		$rwo = $this->db->loadResult();
+		
+		$updatecol = "UPDATE `#__eventtableedit_details` SET row='".$rwo."' WHERE id='".$this->id."'";
+		$this->db->setQuery($updatecol);
 		$this->db->query();
 		
 		return true;

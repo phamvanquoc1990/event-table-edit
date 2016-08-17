@@ -75,6 +75,15 @@ $listDirn	= $this->state->get('list.direction');
 				<th>
 					<?php echo JHtml::_('grid.sort',  'JGLOBAL_TITLE', 'a.name', $listDirn, $listOrder); ?>
 				</th>
+					<th>
+					<?php echo JHtml::_('grid.sort',  'COM_EVENTTABLEEDIT_FIELD_FUNCTION_LABEL', 'a.normalorappointment', $listDirn, $listOrder); ?>
+				</th>
+				<th>
+					<?php echo JHtml::_('grid.sort',  'COM_EVENTTABLEEDIT_FIELD_ROW', 'a.row', $listDirn, $listOrder); ?>
+				</th>
+				<th>
+					<?php echo JHtml::_('grid.sort',  'COM_EVENTTABLEEDIT_FIELD_COL', 'a.col', $listDirn, $listOrder); ?>
+				</th>
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.published', $listDirn, $listOrder); ?>
 				</th>
@@ -99,6 +108,7 @@ $listDirn	= $this->state->get('list.direction');
 		<tbody>
 		<?php
 		$n = count($this->items);
+		
 		foreach ($this->items as $i => $item) :
 			$canCreate	= $user->authorise('core.create',		'com_eventtableedit');
 			$canEdit	= $user->authorise('core.edit',			'com_eventtableedit');
@@ -123,6 +133,20 @@ $listDirn	= $this->state->get('list.direction');
 					<p class="smallsub">
 						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?></p>
 				</td>
+				<td align="center">
+					<?php  if($item->normalorappointment == 0){
+								echo JText::_('COM_EVENTTABLEEDIT_FIELD_FUNCTION_NORMAL');
+							}else{
+							 	echo JText::_('COM_EVENTTABLEEDIT_FIELD_FUNCTION_APPOINTMENT');
+							} ?>
+				</td>
+				<td align="center">
+					<?php if($item->row > 0){echo $item->row;}; ?>
+				</td>
+				<td align="center">
+						<?php if($item->col > 0){echo $item->col;} ?>
+				</td>
+
 				<td align="center">
 					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'etetables.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 				</td>

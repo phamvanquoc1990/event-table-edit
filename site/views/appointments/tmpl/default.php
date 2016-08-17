@@ -26,7 +26,16 @@ JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers');
 
 
 ?>
-
+<style type="text/css">
+	
+table#etetable-table tr td.highlighted {
+  background-color:#c4c1c1;
+  border: 1px solid #dddddd;
+}
+td.tdblue{
+	cursor: pointer;
+}
+</style>
 <div class="eventtableedit<?php echo $this->params->get('pageclass_sfx')?>">
 
 <ul class="actions">
@@ -72,13 +81,15 @@ if($this->item->addtitle == 1){ ?>
 <?php endif;  //etetable-tform ?>
 <div style="clear:both"></div>
 <!-- etetable-tform -->
-<form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" name="adminForm" id="adminForm" method="post">
+<form action="<?php //echo JRoute::_('index.php?option=com_eventtableedit'); ?>" name="adminForm" id="adminForm" method="post">
 	<?php // echo '<pre>';print_r($this->item);
 
 	//If there is already a table set up
 	if ($this->heads) :?>
-  
+  		<input type="button" name="appointments" value="<?php echo JText::_('COM_EVENTTABLEEDIT_BOOK_BUTTON') ?>" style="float:right;" onclick="subappointments();" class="btn btn-primary" />
 		<div class="etetable-outtable">
+
+
 			<?php echo $this->loadTemplate('table'); ?>
 		</div>
 	<?php endif; ?>
@@ -87,9 +98,10 @@ if($this->item->addtitle == 1){ ?>
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $this->state->get('list.direction') ?>" />
 	<input type="hidden" name="filterstring" value="<?php echo $this->params->get('filterstring') ?>" />
 	<input type="hidden" name="option" value="com_eventtableedit" />
-	<input type="hidden" name="view" value="appointments" />
+	<input type="hidden" name="view" value="appointmentform" />
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="id" value="<?php echo $this->item->id; ?>" />
+	<input type="hidden" name="rowcolmix" id="rowcolmix" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
 
@@ -111,3 +123,43 @@ if($this->item->addtitle == 1){ ?>
 
 </div>
 <div style="clear:both"></div>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    
+  	var isMouseDown = false,
+    isHighlighted;
+    var array = [];
+  	jQuery(document).on('mousedown', '#etetable-table td.tdblue', function() {
+      isMouseDown = true;
+      jQuery(this).toggleClass("highlighted");
+      isHighlighted =jQuery(this).hasClass("highlighted");
+      return false; // prevent text selection
+    })
+  	.on('mouseover', '#etetable-table td.tdblue', function () {
+      if (isMouseDown) {
+        jQuery(this).toggleClass("highlighted", isHighlighted);
+      }
+    })
+  	.bind("selectstart", function () {
+      return false;
+    })
+	jQuery(document)
+    .mouseup(function () {
+      isMouseDown = false;
+    });
+    
+});
+function subappointments(){
+	var array = [];
+	jQuery('.highlighted').each(function(){
+	  	var rowcolmixs = jQuery(this).attr('id').split('row_');
+	  	array.push(rowcolmixs[1]);
+	  	
+	});
+	jQuery('#rowcolmix').val(array.toString());
+	if(jQuery('#rowcolmix').val() !=''){
+		document.adminForm.submit();
+	}
+}
+</script>

@@ -110,7 +110,10 @@ class EventtableeditModelChangetable extends JModelList
 			$this->db->setQuery($query);
 			$this->db->query();
 		}
-				
+		$db = JFactory::getDBO();
+		$updatecol = "UPDATE `#__eventtableedit_details` SET col='".count($name)."' WHERE id='".$this->id."'";
+		$db->setQuery($updatecol);
+		$db->query();		
 		// Add the new table heads
 		for ($a = 0; $a < count($name); $a++) {
 			$table = JTable::getInstance('Heads', 'EventtableeditTable');
@@ -198,11 +201,21 @@ class EventtableeditModelChangetable extends JModelList
 		// If it's a existing column
 		if ($cid != 0) {
 			$query .= 'CHANGE head_' . $newId . ' head_' . $newId . ' ' . Datatypes::mapDatatypes($datatype);
+			$this->db->setQuery($query);
+			$this->db->query();
 		} else {
+			$detailquery = "SELECT normalorappointment FROM #__eventtableedit_details WHERE id ='".$this->id."'";
+			$this->db->setQuery($detailquery);
+			$appointment = $this->db->loadResult();
 			$query .= 'ADD head_' . $newId . ' ' . Datatypes::mapDatatypes($datatype);
+			$this->db->setQuery($query);
+			$this->db->query();
+			if($appointment == 1){
+				$update = "UPDATE `#__eventtableedit_rows_". $this->id . "` SET `head_" . $newId."`='free'";
+				$this->db->setQuery($update);
+				$this->db->query();
+			}
 		}
 		
-		$this->db->setQuery($query);
-		$this->db->query();
 	}
 }

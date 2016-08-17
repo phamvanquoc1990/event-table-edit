@@ -374,7 +374,7 @@ margin-bottom:0;
 
  #etetable-orderingLink {
 
- 	font-size: 10px;
+ 	font-size: 8px;
 
  	float: left;
 
@@ -1288,21 +1288,21 @@ span.uparrow {
 
 
 
-	.redclass {
+	.orangeclass {
 
-    background: red none repeat scroll 0 0;
+    background: orangered none repeat scroll 0 0;
 
     border-radius: 5px;
 
     color: #fff;
 
-    padding: 5px;
+    padding: 6px 10px;
+    display: inline-block !important;
+    
 
 
 
 }
-
-
 
 .redclass {
 
@@ -1311,10 +1311,14 @@ span.uparrow {
     border-radius: 5px;
 
     color: #fff;
-text-decoration: none;
-    padding: 3px 10px;
+    display: inline-block !important;
+    padding: 5px;
+
+
 
 }
+
+
 
 .etetable-outtable a {
 	text-decoration: none;
@@ -1325,9 +1329,44 @@ text-decoration: none;
 background: #028fd6 none repeat scroll 0 0;
 
     border-radius: 5px;
-
+  display: inline-block !important;
     color: #fff;
 text-decoration: none;
-    padding: 3px 10px;	
+    padding: 6px 10px;	
+
+}
+.btn.goback{
+	margin-top:10px;
+}
+.appintments_list{
+	list-style: none
+}
+#etetable-table tbody td{
+	font-size: 9pt !important;
+}
+@media only screen and (min-width : 300px) and (max-width : 640px) {
+	.orangeclass {
+
+    background: orangered none repeat scroll 0 0;
+
+    border-radius: 5px;
+
+    color: #fff;
+
+    padding: 3px 10px;
+   
+
+
+}
+.tdred .orangeclass br{
+	display: none;
+}
+.redclass {
+	  padding: 3px 10px;
+}
+
+.buleclass{
+	padding: 3px 10px;
+}
 
 }

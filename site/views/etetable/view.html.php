@@ -241,8 +241,11 @@ class EventtableeditViewEtetable extends JViewLegacy
 	private function getVariableStyles($cellspacing, $cellpadding, $linecolor0, $linecolor1) {
 		$style = array();
 		$style[] = "#etetable-table td {padding: " . $cellpadding . "px;}";
-		$style[] = ".etetable-linecolor0 {background-color: #" . $linecolor0 . ";}";
-		$style[] = ".etetable-linecolor1 {background-color: #" . $linecolor1 . ";}";
+	//	$style[] = ".etetable-linecolor0 {background-color: #" . $linecolor0 . ";}";
+	//	$style[] = ".etetable-linecolor1 {background-color: #" . $linecolor1 . ";}";
+		$style[] = ".tablesaw tbody tr:nth-child(odd) {background-color: #" . $linecolor0 . ";}";
+		$style[] = ".tablesaw tbody tr:nth-child(even) {background-color: #" . $linecolor1 . ";}";
+
 
 		if ((int) $cellspacing != 0) {
 			$style[] = "#etetable-table {border-collapse: separate !important;}";

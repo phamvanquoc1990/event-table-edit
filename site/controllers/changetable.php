@@ -34,11 +34,10 @@ class EventtableeditControllerChangetable extends JControllerLegacy
 		// Get Variables
 		$main  				= JFactory::getApplication()->input;
 		$id 				= $main->getInt('id', '');
-		$postget 			= $main->getArray($_POST);
-		$cid 				= $postget['cid'];		
-		$name 				= $postget['name'];		
-		$datatype 			= $postget['datatype'];		
-		$defaultSorting 	= $postget['defaultSorting'];		
+		$cid 				= $main->post->get('cid', array(), 'array');		
+		$name 				= $main->post->get('name', array(), 'array');		
+		$datatype 			= $main->post->get('datatype', array(), 'array');		
+		$defaultSorting 	= $main->post->get('defaultSorting', array(), 'array');		
 				
 		$model = $this->getModel('changetable');
 		$model->save($cid, $name, $datatype, $defaultSorting);

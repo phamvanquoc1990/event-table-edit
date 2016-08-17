@@ -348,15 +348,15 @@ class EventtableeditViewappointmentform extends JViewLegacy
 
 			$doc = JFactory::getDocument();
 
-			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/tablesaw.js');
+			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/tablesaw.js');
 
-			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/tablesaw-init.js');
-
-			
+			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/tablesaw-init.js');
 
 			
 
-			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/tableAjax.js');
+			
+
+			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/tableAjax.js');
 
 			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js');
 

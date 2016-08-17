@@ -21,6 +21,9 @@ defined('_JEXEC') or die;
 $main   = JFactory::getApplication()->input;
 $id 	= $main->getInt('id');
 $Itemid = $main->getInt('Itemid');
+
+
+
 /**
 
  * Optional first row
@@ -40,21 +43,41 @@ if ($this->item->show_first_row) :?>
 
 
 <?php
+$hoursitem = $this->item->hours;
+/*
 
+$bookdats     = date('Y-m-d H:i:s',strtotime($post['dateappointment']));
+
+$effectiveDate = strtotime("-$hoursitem hours", strtotime($bookdats));
+$currenttimestemp = strtotime('now');
+
+if($currenttimestemp > $effectiveDate){
+	//$mssg = JText::sprintf('COM_EVENTEDITTABLE_APPOINTMENT_DO_NOT_BOOK_THIS_TIME', $hoursitem);
+	//$app->redirect(JRoute::_('index.php?option=com_eventtableedit&view=appointments&id='.$tableeditpost.'&Itemid='.$Itemid,false),$mssg);
+}
+*/
 for($colCount = 0; $colCount < count($this->rows[0]) - 1; $colCount++) { 
 
-	if($colCount == 0){
+if($colCount == 0){
+	$mydyanmiclass = 'title';
+}else{
+	$colCount1 = $colCount + 1;
+	$mydyanmiclass = 'tablesaw-priority-'.$colCount;	
+}
 
-		$mydyanmiclass = 'title';
+$bookdats         = str_replace('.','-',$this->heads[$colCount]->name).' '.$this->rows[$this->rowCount][0].':00';
+$currenttimestemp = strtotime('now');
+$effectiveDate    = strtotime("-$hoursitem hours", strtotime($bookdats));
 
+
+	if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'reserved'){
+		$temptd= 'tdblue';
 	}else{
-
-		$colCount1 = $colCount + 1;
-
-		$mydyanmiclass = 'tablesaw-priority-'.$colCount;	
-
+		$temptd= 'tdred';
 	}
-
+	if($currenttimestemp > $effectiveDate){
+		$temptd= 'tdred';
+	}
 
 
 	/**
@@ -63,27 +86,41 @@ for($colCount = 0; $colCount < count($this->rows[0]) - 1; $colCount++) {
 
 	 */ ?>
 
-	<td class="etetable-row_<?php echo $this->rowCount . '_' . $colCount.' '.$mydyanmiclass ; ?>" 
+	<td class="etetable-row_<?php echo $this->rowCount . '_' . $colCount.' '.$mydyanmiclass.' '.$temptd ; ?>" 
 
 		id="etetable-row_<?php echo $this->rowCount . '_' . $colCount; ?>">
 
-		<?php if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'reserved'){ 
+		<?php 
 
-			$links = 'index.php?option=com_eventtableedit&view=appointmentform&id='.$id.'&row='.$this->rowCount.'&col='.$colCount.'&Itemid='.$Itemid;
+		//$effectiveDate = strtotime("-$hoursitem hours", strtotime($bookdats));
+
+
+		if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'reserved'){ 
+
+
+				//echo date('Y-m-d H:i:s',$currenttimestemp);
+			//	echo '<br>';
+			// $this->heads[$colCount]->name date
+			// $this->rows[$this->rowCount][0] time
+			//echo $this->heads[$colCount]->name.' '.$this->rows[$this->rowCount][0].':00';
+		//echo $bookdats1    = date('Y-m-d H:i:s',strtotime($bookdats));
+			//echo '<br>';
+
+			if($currenttimestemp > $effectiveDate){  // sprintf  $hoursitem ?>
+					<span class="orangeclass"><?php echo JText::_('COM_EVENTEDITTABLE_BLOCK_APPINTMENT'); ?></span>
+			<?php }else{ ?>
+				<span class="buleclass"><?php $bulefree 	 = trim($this->rows[$this->rowCount][$colCount]);  
+							echo JText::_(strtoupper($bulefree));
+					?></span>
+			<?php }
 
 			?>
 
-				<a href="<?php echo JRoute::_($links,false); ?>">
-
-					<span class="buleclass"><?php $bulefree = trim($this->rows[$this->rowCount][$colCount]);  
-							echo JText::_(strtoupper($bulefree));
-					?></span>
-
-				</a>
-
+					
+					
 		<?php }else if($colCount != 0){ ?>
 
-				 	<span class="redclass"><?php $redreserved = trim($this->rows[$this->rowCount][$colCount]); 
+				 	<span class="redclass"><?php  $redreserved = trim($this->rows[$this->rowCount][$colCount]);
 				 		echo JText::_(strtoupper($redreserved));
 				 	?></span> 
 

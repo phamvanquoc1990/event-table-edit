@@ -19,12 +19,77 @@ defined('_JEXEC') or die;
     border: medium none;
     color: #000;
 }
- </style>
 
-<!--<table data-tablesaw-mode-switch="" data-tablesaw-minimap="" data-tablesaw-sortable-switch="" data-tablesaw-sortable=""
- data-tablesaw-mode="swipe" class="tablesaw tablesaw-swipe tablesaw-sortable" id="etetable-table" style="">
--->
-<table class="tablesaw" data-tablesaw-mode="columntoggle" data-tablesaw-minimap  id="etetable-table">
+.tablesaw-sortable th.tablesaw-sortable-head button {
+    font-weight: bold;
+    padding-bottom: 0.7em !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    padding-top: 0.9em !important;
+    text-align: center;
+}
+
+/* Customized Demo CSS for our Demo Tables */
+.tablesaw-columntoggle td.title a,
+.tablesaw-swipe td.title a {
+	display: inline;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 10em;
+}
+.tablesaw-swipe td a,.tablesaw-columntoggle td a {
+		display: inline;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 10em;
+		max-width: 10em;
+	}
+
+.tablesaw-stack td a{
+		display: inline;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 10em;
+		max-width: 10em;
+
+}
+
+
+.tablesaw-stack td{padding:0.3em 0.5em !important;}
+
+td.tablesaw-priority-50 a {
+    color: #888;
+    text-decoration: none;
+}
+@media (min-width: 40em) {
+	td.title {
+		max-width: 12em;
+	}
+	.tablesaw-stack td a {
+		display: inline;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 10em;
+		max-width: 10em;
+	}
+}
+ </style>
+<?php
+$sorting_enable = 'data-tablesaw-minimap ';
+$switcher_enable = 'columntoggle';
+if($this->item->sorting == 1){
+	$sorting_enable .= 'data-tablesaw-sortable data-tablesaw-sortable-switch ';
+}
+if($this->item->switcher == 1){
+	//$switcher_enable = 'columntoggle';
+	$sorting_enable .= 'data-tablesaw-mode-switch';
+}
+?>
+<table class="tablesaw" id="etetable-table" data-tablesaw-mode="<?php echo $switcher_enable; ?>"  <?php echo $sorting_enable; ?>>
 	<thead class="etetable-thead">
 		<tr>
 			<?php echo $this->loadTemplate('thead'); ?>
@@ -32,6 +97,7 @@ defined('_JEXEC') or die;
 	</thead>
 
 	<?php 
+
 	if(!$this->print) : ?>
 	<!--<tfoot>
 		<tr>
@@ -60,3 +126,17 @@ defined('_JEXEC') or die;
 	} ?>
 	</tbody>
 </table>
+
+
+<script type="text/javascript">
+	
+jQuery( document ).ready(function() {
+   
+   jQuery( ".etetable-saveicon" ).live( "click", function() {
+    	document.adminForm.task.value = 'etetable.saveOrder';
+		document.adminForm.submit();
+});
+});
+
+
+</script>

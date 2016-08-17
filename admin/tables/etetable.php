@@ -29,6 +29,10 @@ class EventtableeditTableEtetable extends JTable {
 			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}
+		/*if (is_array($array['switcher_mode']))
+		{
+			$array['switcher_mode'] = json_encode($array['switcher_mode']);
+		}*/
 
 		if (isset($array['metadata']) && is_array($array['metadata'])) {
 			$registry = new JRegistry();
@@ -167,10 +171,10 @@ class EventtableeditTableEtetable extends JTable {
      * @return      int
      * @since       1.6
      */
-    protected function _getAssetParentId()
+   /* protected function _getAssetParentId()
     {
             $asset = JTable::getInstance('Asset');
             $asset->loadByName('com_eventtableedit');
             return $asset->id;
-    }
+    }*/
 }

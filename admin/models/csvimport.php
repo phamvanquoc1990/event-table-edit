@@ -228,12 +228,26 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	protected function insertRowToDb($data, $ordering) {
 		$user = JFactory::getUser();
 		$data = $this->prepareDataForDb($data);
+
+		// NULL replace with free //
+		$newdata = str_replace('NULL', "'free'", implode(', ', $data));
+		// END NULL replace with free //
+
+
 		
 		$query = 'INSERT INTO #__eventtableedit_rows_' . $this->id .
 				 ' (created_by, ordering, ' . implode(', ', $this->heads['name']) . ')' .
-				 ' VALUES (' . $user->get('id') . ', ' . $ordering . ', ' . implode(', ', $data) . ')';
+				 ' VALUES (' . $user->get('id') . ', ' . $ordering . ', ' . $newdata . ')';
 		//echo $query;
 		$this->db->setQuery($query);
+		$this->db->query();
+
+			$selectallrecords = "SELECT COUNT(id) AS row FROM #__eventtableedit_rows_" . $this->id;
+		$this->db->setQuery($selectallrecords);
+		$rwo = $this->db->loadResult();
+		
+		$updatecol = "UPDATE `#__eventtableedit_details` SET row='".$rwo."' WHERE id='".$this->id."'";
+		$this->db->setQuery($updatecol);
 		$this->db->query();
 	}
 	
@@ -241,19 +255,35 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	 * Prepare content before saving it in the database
 	 */
 	protected function prepareDataForDb($data) {
+
+		
+
 		for($a = 0; $a < count($data); $a++) {
 			$data[$a] = trim($data[$a]);
 			//$data[$a] = mysql_escape_string($data[$a]);
 			
 			// If data is empty write a NULL and if datatype is not int, float, date or time
 			$d = $this->heads['datatype'][$a];
-			if ($data[$a] != '' &&  $d != 'int' && $d != 'float') {
-				$data[$a] = "'" . $data[$a] . "'";
-			} else if ($data[$a] == '') {
+			//if ($data[$a] != '' &&  $d != 'int' && $d != 'float') {
+			if ($data[$a] != '' &&  $d != 'int') {
+				if($d == 'float'){
+					$data[$a] = "'" . str_replace(',','.', $data[$a]) . "'";
+				}else if($d == 'boolean'){
+					if($data[$a] == 'ja'){
+						$data[$a] = "'0'";
+					}else{
+						$data[$a] = "'1'";
+					}
+				}else if($d == 'date'){
+					$data[$a] = "'" .date('Y-m-d',strtotime(str_replace('.','-',$data[$a]))). "'";
+				}else{
+					$data[$a] = "'" . $data[$a] . "'";
+				}
+			}else if ($data[$a] == '') {
 				$data[$a] = 'NULL';
 			}
 		}
-				
+	
 		return $data;
 	}
 	

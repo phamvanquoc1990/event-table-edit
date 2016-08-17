@@ -108,8 +108,7 @@ class EventtableeditModelEtetables extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'a.id, a.name, a.alias, a.checked_out, a.checked_out_time, a.user_id, ' .
-				'a.published, a.access, a.language'
+				'a.id, a.*'
 			)
 		);
 		$query->from('#__eventtableedit_details AS a');

@@ -16,6 +16,7 @@ JHtml::_('behavior.formvalidation');
 	function checkics(val){
 		if(val == 0){
 			jQuery('.location').hide();
+			jQuery('.normalshows').show();
 			// jQuery('#jform_location').removeClass('required');
 			// jQuery('#jform_location').removeAttr( "required" );
 
@@ -48,9 +49,14 @@ JHtml::_('behavior.formvalidation');
 			jQuery('#jform_useremailtext').removeClass('required');
 			jQuery('#jform_useremailtext').removeAttr( "required" );
 
+			jQuery('#jform_hours').removeClass('required');
+			jQuery('#jform_hours').removeAttr( "required" );
+
+
 			
 		}else{
 			jQuery('.location').show();
+			jQuery('.normalshows').hide();
 			// jQuery('#jform_location').addClass('required');
 			// jQuery('#jform_location').attr( "required","required" );
 
@@ -80,6 +86,9 @@ JHtml::_('behavior.formvalidation');
 
 			jQuery('#jform_useremailtext').addClass('required');
 			jQuery('#jform_useremailtext').attr( "required","required" );
+
+			jQuery('#jform_hours').addClass('required');
+			jQuery('#jform_hours').attr(  "required","required" );
 
 		}
 
@@ -149,8 +158,17 @@ JHtml::_('behavior.formvalidation');
 						<li><?php echo $this->form->getLabel('normalorappointment'); ?>
 					<?php echo $this->form->getInput('normalorappointment'); ?></li>
 
+					<li class="normalshows"><?php echo $this->form->getLabel('sorting'); ?>
+					<?php echo $this->form->getInput('sorting'); ?></li>
 
+					<li class="normalshows"><?php echo $this->form->getLabel('switcher'); ?>
+					<?php echo $this->form->getInput('switcher'); ?></li>
 
+				<li class="location"><?php echo $this->form->getLabel('hours'); ?>
+					<?php echo $this->form->getInput('hours'); ?></li>
+
+					<li class="location"><?php echo $this->form->getLabel('showdayname'); ?>
+					<?php echo $this->form->getInput('showdayname'); ?></li>
 <li class="location">
 							<label title="" class="hasTooltip" for="jform_icsfilename" id="jform_icsfilename-lbl" data-original-title="&lt;strong&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_LABEL'); ?>&lt;/strong&gt;&lt;br /&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_DESC'); ?>">
 	<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_LABEL'); ?><span class="star">&nbsp;*</span></label>
@@ -208,6 +226,20 @@ JHtml::_('behavior.formvalidation');
 						<br>
 					<?php echo $this->form->getInput('useremailtext'); ?></li>
 
+
+
+
+					<?php if($this->item->id == ''){ ?>
+						<li><?php echo $this->form->getLabel('row'); ?>
+						<?php echo $this->form->getInput('row'); ?></li>
+
+						<li><?php echo $this->form->getLabel('col'); ?>
+						<?php echo $this->form->getInput('col'); ?></li>
+					<?php }else{ ?>
+						<input type="hidden" aria-required="true" required="required" step="1" size="30" class="inputbox required" value="<?php echo $this->item->row; ?>" id="jform_row" name="jform[row]"></li>
+						<input type="hidden" aria-required="true" required="required" step="1" size="30" class="inputbox required" value="<?php echo $this->item->col; ?>" id="jform_col" name="jform[col]"></li>
+
+						<?php } ?>
 
 						
 
@@ -299,8 +331,8 @@ JHtml::_('behavior.formvalidation');
 
 	</div>
 </div> 
-</div> 
-
+</div> <?php echo $this->form->getInput('temps'); ?>
+		
 		<input type="hidden" name="task" value="" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>

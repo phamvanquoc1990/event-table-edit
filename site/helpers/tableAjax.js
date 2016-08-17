@@ -52,6 +52,7 @@ function addClickEvent(row) {
 	var endCell = tableProperties.nmbCells + tableProperties.show_first_row;
 
 	var constt = Math.round(endCell/6);
+	//var constt = 2;
 
 	var j=0;
 	var z= 0;
@@ -66,7 +67,7 @@ function addClickEvent(row) {
 		);
 		var aa = parseInt(a);
 		var dd = '';
-		if(a == 0){
+		if(aa == 1){
 			dd = ' title';
 		}else{
 			dd = ' tablesaw-priority-'+z;
@@ -112,7 +113,11 @@ function addActionRow(row, singleOrdering) {
 	var tempTable = tableProperties.myTable.tBodies[0];
 	for(var a = row; a < tempTable.rows.length; a++ ) {
 		var cell = new Element('td', {
-			'id': 'etetable-action'
+			'id': 'etetable-action',
+			'class':"editable tablesaw-priority-50",
+			'data-tablesaw-priority':"50",
+			'data-tablesaw-sortable-col':"col"
+
 		});
 		
 		var elem = tempTable.rows[a].appendChild(cell);
@@ -128,7 +133,10 @@ function addActionRow(row, singleOrdering) {
  */
 function addActionRowFirstTime() {
 	var thead = new Element('th', {
-		'text': lang.actions
+		'text': lang.actions,
+		'class':"evth50 tablesaw-priority-50 tablesaw-sortable-head",
+			'data-tablesaw-priority':"50",
+			'data-tablesaw-sortable-col':"col"
 	});
 
 	tableProperties.myTable.tHead.rows[0].appendChild(thead);
@@ -144,6 +152,7 @@ function addActionRowFirstTime() {
 	if (access.reorder && !tableProperties.defaultSorting) {
 		var saveIcon = new Element('div', {
 			'id'	: 'etetable-saveicon',
+			'class'	: 'etetable-saveicon',
 			'title' : lang.saveOrder,
 			'events': {
 				'click': function() {

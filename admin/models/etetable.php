@@ -116,6 +116,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 
 		if (empty($data)) {
 			$data = $this->getItem();
+			//$data->switcher_mode = json_decode($data->switcher_mode);
 		}
 
 		return $data;
@@ -129,7 +130,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function prepareTable(&$table)
+	/*protected function prepareTable(&$table)
 	{
 		jimport('joomla.filter.output');
 		$date = JFactory::getDate();
@@ -141,7 +142,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 		if (empty($table->alias)) {
 			$table->alias = JApplication::stringURLSafe($table->name);
 		}
-	}
+	}*/
 	
 	/**
 	 * Method to save the form data.
@@ -157,7 +158,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 		$table		= $this->getTable();
 		$pk			= (!empty($data['id'])) ? $data['id'] : (int)$this->getState($this->getName().'.id');
 		$isNew		= true;
-
+		
 		// Include the content plugins for the on save events.
 		JPluginHelper::importPlugin('content');
 
@@ -209,6 +210,24 @@ class EventtableeditModelEtetable extends JModelAdmin {
 			return false;
 		}
 
+		
+
+		if($data['id'] == 0 && @$data['temps'] == 1){
+			$this->createRowsTable($table->id);
+			if($data['col'] > 0){
+				$db = JFactory::getDBO();
+				for ($i=1; $i <= $data['col']; $i++) { 
+					$nameofhead = 'Head'.$i;
+					$ins = "INSERT INTO #__eventtableedit_heads (`id`,`table_id`,`name`,`datatype`,`ordering`) VALUES ('',".$table->id.",'".$nameofhead."','text',".$i.")";	
+					$db->setQuery($ins);
+					$db->query();
+					$newId = $db->insertid();
+					$this->updateRowsTable('0',$newId,$table->id);
+				}
+			}
+			$this->Insertemptyrow($table->id,$data['row']);
+		}
+		
 		// Trigger the onContentAfterSave event.
 		$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, $table, $isNew));
 
@@ -220,6 +239,73 @@ class EventtableeditModelEtetable extends JModelAdmin {
 
 		return true;
 	}
+	public function Insertemptyrow($id,$emptyrow){
+		$db = JFactory::getDBO();
+		$select = 'SELECT id FROM #__eventtableedit_heads WHERE table_id="'.$id.'"';
+
+		$db->setQuery($select);
+		$filedsname = $db->loadColumn();
+
+		$headdefine = '';
+		for ($x=0; $x < count($filedsname); $x++) { 
+			$headdefine .= '`head_'.$filedsname[$x].'`,';
+		}
+	
+		$headdefine = rtrim($headdefine,',');
+		
+		$aemptyda = count($filedsname);
+		
+		$nbspstring = '';
+		for ($j=0; $j < $aemptyda; $j++) { 
+			$nbspstring .= "'&nbsp',";
+		}
+
+		for ($z=0; $z < $emptyrow; $z++) { 
+			$nbspstring = rtrim($nbspstring,',');
+			$insert = "INSERT INTO `#__eventtableedit_rows_" . $id . "` ($headdefine) VALUES ($nbspstring)";
+			$db->setQuery($insert);
+			$db->query();
+		}
+		
+
+	}
+
+	private function createRowsTable($id) {
+		$db = JFactory::getDBO();
+		// Need to use getPrefix because of a Joomla Bug
+		// within quotes #__ is not replaced
+		$query = 'SHOW TABLE STATUS LIKE \' #__eventtableedit_rows_' . $id . '\'';
+		$db->setQuery($query);
+		
+		if (count($db->loadObjectList()) > 0) {
+			return false;
+		}
+		
+		// A new table has to be created
+		$query = 'CREATE TABLE #__eventtableedit_rows_' . $id .
+				 ' (id INT NOT NULL AUTO_INCREMENT,' .
+				 ' ordering INT(11) NOT NULL default 0,' .
+				 ' created_by INT(11) NOT NULL default 0,' .
+				 ' PRIMARY KEY (id))' .
+				 ' ENGINE=MyISAM CHARACTER SET \'utf8\' COLLATE \'utf8_general_ci\'';
+		$db->setQuery($query);
+		$db->query();
+	}
+
+	private function updateRowsTable($cid, $newId,$id) {
+		$db = JFactory::getDBO();
+		$query = 'ALTER TABLE #__eventtableedit_rows_' . $id . ' ';
+		
+		// If it's a existing column
+		if ($cid != 0) {
+			$query .= 'CHANGE head_' . $newId . ' head_' . $newId . ' text';
+		} else {
+			$query .= 'ADD head_' . $newId . ' text';
+		}
+		
+		$db->setQuery($query);
+		$db->query();
+	}
 	
 	/**
 	 * Method to perform batch operations on a set of tables.
@@ -230,7 +316,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 	 * @return	boolean	Returns true on success, false on failure.
 	 * @since	1.6
 	 */
-	function batch($commands, $pks)
+/*	function batch($commands, $pks)
 	{
 		// Sanitize user ids.
 		$pks = array_unique($pks);
@@ -274,7 +360,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 		
 		return true;
 	}
-
+*/
 	/**
 	 * Batch access level changes for a group of rows.
 	 *

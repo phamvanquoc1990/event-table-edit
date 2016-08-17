@@ -133,7 +133,7 @@ Theads.prototype.addRows = function(startRow, endRow) {
 		this.theads[a].addCell(this.theads[a].addName());
 		this.theads[a].addCell(this.theads[a].addDatatype());
 		this.theads[a].addCell(this.theads[a].addOrdering());
-		this.theads[a].addCell(this.theads[a].addDefaultSorting());
+		//this.theads[a].addCell(this.theads[a].addDefaultSorting());
 		this.theads[a].addCell(this.theads[a].addDeleteIcon());
 	}
 }

@@ -40,7 +40,7 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		$postget = $input->getArray($_REQUEST);
 			
 		// Initialize Variables
-		$this->model =& $this->getModel('csvimport');
+		$this->model = $this->getModel('csvimport');
 		$this->file = $input->files->get('fupload');
 		
 		$this->separator    = $postget['separator']; 
@@ -80,13 +80,13 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 			$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit'));
 			return false;
 		}
-		$postget = $input->getArray($_REQUEST);
+		$postget = $input->getArray();
 		// Get Variables
 		$name = $postget['tableName']; 
 		$datatype = $postget['datatypesList']; 
 		
-		$this->model =& $this->getModel('csvimportnewtable');
-		$detailsModel =& $this->getModel('etetable');
+		$this->model = $this->getModel('csvimportnewtable');
+		$detailsModel = $this->getModel('etetable');
 		$this->model->importCsvNew($detailsModel, $name, $datatype);
 		$input->set('view','csvimport');
 		$input->set('com_eventtableedit.layout','summary');

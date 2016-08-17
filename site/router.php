@@ -22,7 +22,7 @@
 function EventTableEditBuildRoute(&$query)
 {
 	$segments = array();
-	
+
 	// get a menu item based on Itemid or currently active
 	$app	= JFactory::getApplication();
 	$menu	= $app->getMenu();
@@ -44,7 +44,7 @@ function EventTableEditBuildRoute(&$query)
 	if (isset($query['id'])) {
 		if (!isset($menuItem)) {
 			$segments[] = $query['id'];
-		}else if($query['view'] == 'appointmentform' || $query['view'] == 'changetable'){
+		}else if($query['view'] == 'appointmentform' || $query['view'] == 'changetable' || $query['view'] == 'appointments'){
 			$segments[] = $query['id'];
 			
 		}
@@ -83,17 +83,18 @@ function EventTableEditParseRoute($segments)
 		{
 			$vars['view'] = 'changetable';
 			
-			if (!isset($item)) {
-				$val = explode(':', $segments[1]);
+			$val = explode(':', $segments[1]);
 				$vars['id'] = $val[0];
-			} else {
-				$vars['id'] = $item->params->get('tablenumber');
-			}
 		} break;
 		case 'etetable':
 		case 'eventtableedit':
 		{
 			$vars['view'] = 'etetable';
+		} break;
+		case 'appointments':
+		{
+			$vars['view'] = 'appointments';
+			$vars['id'] = $segments[1];
 		} break;
 		case 'appointmentform':
 		{

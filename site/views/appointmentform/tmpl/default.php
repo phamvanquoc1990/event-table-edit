@@ -53,40 +53,49 @@ JHtml::_('behavior.formvalidation');
 $app = JFactory::getApplication();
 
 $main      = $app->input;
-$id        = $main->getInt('id', '');
-$postget   = $main->getArray($_POST);
-
-$cols = $this->heads[$postget['col']];
-$rows = $this->rows[$postget['row']];
-$details = $rows[$postget['col']];
-
-
-
 $Itemid   = $main->getInt('Itemid', '');
 
-if($details != 'free'){
-	$linkreturn = 'index.php?option=com_eventtableedit&view=appointments&id='.$id.'&Itemid='.$Itemid;
-	$msg = JText::_('COM_EVENTTABLEEDIT_YOU_CAN_NOTBOOK_YOUR_APPOINTMENT');
+$id        = $main->getInt('id', '');
+$postget   = $main->getArray($_POST);
+$totalappointments_row_col = explode(',', $postget['rowcolmix']);
+$datesofhead = array();
+
+$appointmentsdate = array();
+foreach ($totalappointments_row_col as $rowcol) {
 	
-	$app->enqueueMessage($msg, 'error');
-	$app->redirect(JRoute::_($linkreturn,false));
+	$temps = explode('_', $rowcol);
+	 $rops = $temps[0];
+	
+	$cops = $temps[1];
+	$cols = $this->heads[$cops];
+	$rows = $this->rows[$rops];
+	$details  = $rows[$cops];
+
+	if($details == 'free'){
+	 // add weekday in first row (head) //
+		if($this->item->showdayname == 1){
+			$namesofday = strtoupper(date('l',strtotime(str_replace('.', '-', trim($cols->name)))));
+			 $datesofhead[] = JTEXT::_('COM_EVENTTABLEEDIT_'.strtoupper($namesofday)).' '.$cols->name.' '.JText::_('COM_EVENTTABLEEDIT_UM').' '.$rows['0'];
+		}else{
+			 $datesofhead[] = $cols->name.JText::_('COM_EVENTTABLEEDIT_UM').$rows['0'];
+		}
+		$appointmentsdate[] = str_replace('.', '-', $cols->name).' '.$rows['0'].':00';
+		
+	}
+ // END add weekday in first row (head) //
+
 }
-
-
-
+$datesofhead = implode(',', $datesofhead);
 ?>
-
-<p>
-<?php echo JText::sprintf('COM_EVENTTABLEEDIT_BOOK_BEGIN',$cols->name,$rows['0']);
-								 ?>
-</p>
+<!--
+<p><?php echo JText::sprintf('COM_EVENTTABLEEDIT_BOOK_BEGIN',$datesofhead); ?></p>
 <p>
 <?php echo JText::_('COM_EVENTTABLEEDIT_BUTTON_GO_BACKTEXT'); ?>
-</p>
-<input type="button" class="btn" value="<?php echo JText::_('COM_EVENTTABLEEDIT_GO_BACK'); ?>" name="goback" onclick="goback();">
+</p>-->
 
 <script>
-	function goback(){
+	function goback1(){
+		
 		window.location = "<?php echo JRoute::_('index.php?option=com_eventtableedit&view=appointments&id='.$id.'&Itemid='.$Itemid,false) ?>";
 	}
 </script>
@@ -102,7 +111,8 @@ if($details != 'free'){
 
 
 
-<form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" name="adminForm" id="adminForm" method="post" class="form-validate">
+
+<form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" name="adminForm" id="adminForm" method="post" class="form-validate span6">
 
 	<?php // echo '<pre>';print_r($this->item);
 
@@ -150,7 +160,8 @@ if($details != 'free'){
       <div class="controls"><textarea name="comment" id="comment" cols="10" rows="5"></textarea></div>
 
 </div>
-
+<p>* <?php echo JText::_('COM_EVENTTABLEEDIT_STAR'); ?></p>
+<br>
 
 
 
@@ -166,18 +177,20 @@ if($details != 'free'){
 	<input type="hidden" name="view" value="appointmentform" />
 
 	<input type="submit" name="submit" class="btn" value="<?php echo JText::_('COM_EVENTTABLEEDIT_FINAL_RESERVATION'); ?>">
+<br>
+	<input type="button" class="btn goback" value="<?php echo JText::_('COM_EVENTTABLEEDIT_GO_BACK'); ?>" name="goback" onclick="goback1();">
 
 	<input type="hidden" name="task" value="appointmentform.save" />
 
 	<input type="hidden" name="id" value="<?php echo $this->item->id; ?>" />
 
-	<input type="hidden" name="row" value="<?php echo $postget['row']; ?>" />
+	<input type="hidden" name="rowcolmix" value="<?php echo $postget['rowcolmix']; ?>" />
 
-	<input type="hidden" name="col" value="<?php echo $postget['col']; ?>" />
-
+	<!--<input type="hidden" name="col" value="<?php //echo $postget['col']; ?>" />
+	-->
 	<input type="hidden" name="Itemid" value="<?php echo $Itemid; ?>" />
 
-	<input type="hidden" name="dateappointment" value="<?php echo str_replace('.', '-', $cols->name).' '.$rows['0'].':00'; ; ?>" />
+	<input type="hidden" name="dateappointment" value="<?php echo implode(',', $appointmentsdate) ; ?>" />
 
 	
 
@@ -185,9 +198,121 @@ if($details != 'free'){
 
 </form>
 
+<div class="span6">
+	<?php 
+	$model 		   = $this->getModel ( 'appointmentform' );
+		$cols 		   = $model->getHeads();
+		$rows          = $model->getRows();
+	$totalappointments_row_col = explode(',', $postget['rowcolmix']);
+	foreach ($totalappointments_row_col as $rowcol) {
+			$temps = explode('_', $rowcol);
+			$rops = $temps[0];
+			$cops = $temps[1];
+			$roweditpost   = $rops;
+			$coleditpost   = $cops;
+
+			$to_time = strtotime($rows['rows'][0][0]);
+			$from_time = strtotime($rows['rows'][1][0]);
+			$mintdiffrence =  round(abs($from_time - $to_time) / 60,2);
+		}
 
 
-<p>* <?php echo JText::_('COM_EVENTTABLEEDIT_STAR'); ?></p>
+
+				$postdateappointment = $appointmentsdate;
+
+
+	if(count($appointmentsdate) > 0){ 
+
+
+		$timeArr = $postdateappointment;
+		sort($timeArr);
+
+		$date_array = array();
+		$start = '';
+		$ref_start = &$start;
+		$end = '';
+		$ref_end = &$end;
+		foreach ($timeArr as $time) {
+				$date = date("Y-m-d", strtotime($time));
+				if($start == '' || strtotime($time) < strtotime($start)){
+					$ref_start = $time;
+				}
+				if (strtotime($time) > strtotime($end) && strtotime($time) <= strtotime('+ '.$mintdiffrence.' minutes',strtotime($end))){
+					$ref_end = $time;
+				} else {
+					$ref_start = $time;
+					$ref_end = $time;
+					$date_array[$time] = $time;
+				}
+				$date_array[$start] = $end;
+		}
+
+
+
+
+
+
+		?>
+	<h3><?php echo JText::_('COM_EVENTTABLEEDIT_TABLE_BOOKING'); ?></h3>
+	<ul class="appintments_list">
+		<?php 
+
+		foreach ($date_array as $keystart => $valueend) {
+		?>
+		<li>
+			<?php  $exp_startdate	= explode(' ',$keystart);
+			$exp_sdate		= explode('-',$exp_startdate[0]);
+			$timesremovedsec = explode(':', $exp_startdate[1]);
+			$exp_stime		= explode(':',$exp_startdate[1]);
+			
+			 $starttimeonly = $exp_stime[0].':'.$exp_stime[1];
+		
+			
+
+			$exp_enddate	= explode(' ',$valueend);
+			 $exp_edate		= explode('-',$exp_enddate[0]);
+			
+			$exp_etime		= explode(':',$exp_enddate[1]);
+			
+			$mintplus = intval($exp_etime[1]) + intval($mintdiffrence);
+			
+			if($mintplus >= 60){
+				$mintsend = $mintplus - 60;
+				
+				if($mintsend > 9){
+					$mintsendadd = $mintsend;
+				}else{
+					$mintsendadd = '0'.$mintsend;
+
+				}
+
+				if($exp_etime[0] > 9){
+					$hoursends = $exp_etime[0] + 1; 
+				}else{
+					$hoursends1 = $exp_etime[0] + 1;
+					$hoursends = '0'.$hoursends1;
+				}
+				if($hoursends == 24){
+					$endtimeonly = '00:'.$mintsendadd;
+				}else{
+					$endtimeonly = $hoursends.':'.$mintsendadd;
+				}
+			}else{
+				$endtimeonly = $exp_etime[0].':'.$mintplus;
+			}
+			
+			$namesofday1 = date('l',strtotime($keystart));
+			
+			echo JTEXT::_('COM_EVENTTABLEEDIT_'.strtoupper($namesofday1)).', '.date('d.m.Y',strtotime($keystart)).', '.$starttimeonly.' - '.$endtimeonly;
+			?>
+		</li>
+		<?php } ?>
+		
+	</ul>
+	<?php } ?>
+
+</div>
+
 
 
 
