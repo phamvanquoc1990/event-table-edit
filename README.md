@@ -6,7 +6,7 @@ Download latest version 4.2 (since 17.08.2016): https://github.com/Theophilix/ev
 
 Demo site for backend and frontend (includes appointment-table): http://demo.eventtableedit.com 
 
-# I Version history
+## I Version history
 
 For version 4.2:
 
