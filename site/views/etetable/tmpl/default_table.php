@@ -99,7 +99,7 @@ if($this->item->switcher == 1){
 	<?php 
 
 	if(!$this->print) : ?>
-	<!--<tfoot>
+	<tfoot>
 		<tr>
 			<td colspan="100%">
 				<div id="container">
@@ -107,7 +107,7 @@ if($this->item->switcher == 1){
 				</div>
 			</td>
 		</tr>
-	</tfoot>-->
+	</tfoot>
 	<?php endif; ?>	
 
 	<tbody>

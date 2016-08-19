@@ -101,7 +101,8 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 
 
 	
-
+		$arrayof_sdates = array();
+		$arrayof_times = array();
 		foreach ($date_array as $keyu => $valueu) {
 			
 		
@@ -110,6 +111,7 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 			$timesremovedsec = explode(':', $exp_startdate[1]);
 			$exp_stime		= explode(':',$exp_startdate[1]);
 			$starttimeonly = $exp_stime[0].$exp_stime[1].$exp_stime[2];
+			$starttimeonly_email = $exp_stime[0].':'.$exp_stime[1];
 		  	$startdate		= date('Ymd',strtotime($keyu))."T".$starttimeonly;
 		 	$exp_enddate	= explode(' ',$valueu);
 			$exp_edate		= explode('-',$exp_enddate[0]);
@@ -130,11 +132,15 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 				}
 				if($hoursends == 24){
 					$endtimeonly = '00'.$mintsendadd.$exp_etime[2];
-					 $enddate		= date('Ymd',strtotime($multipleics) + 3600*24)."T".$endtimeonly;
+					
+					$enddate		= date('Ymd',strtotime($valueu) + 3600*24)."T".$endtimeonly;
+					
+				
 				
 				}else{
 					$endtimeonly = $hoursends.$mintsendadd.$exp_etime[2];
-					  $enddate		= date('Ymd',strtotime($valueu))."T".$endtimeonly;
+					$enddate		= date('Ymd',strtotime($valueu))."T".$endtimeonly;
+					
 				
 				}
 				   
@@ -143,8 +149,10 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 			}else{
 				$endtimeonly = $exp_etime[0].$mintplus.$exp_etime[2];
 				$enddate		= date('Ymd',strtotime($valueu))."T".$endtimeonly;
-			}
-
+				}
+			$arrayof_sdates[] = date('d.m.Y',strtotime($keyu));
+			$arrayof_times[] = $starttimeonly_email;
+			
 			// START CAL // 
 
 				$config = JFactory::getConfig();
@@ -181,6 +189,7 @@ END:VCALENDAR';
 			$msg = JText::_('COM_EVENTEDITTABLE_APPOINTMENT_SUCCESSFULLY_BOOKED');
 		$ttemp++;
 		}
+
 	
 /*
 		foreach ($postdateappointment as $appointmentsics) {
@@ -268,6 +277,23 @@ END:VCALENDAR';
 		
 		}
 */
+
+		// echo '<pre>';
+		// print_r($arrayof_sdates);
+		// print_r($arrayof_edates);
+		// print_r($date_array);
+		// exit;
+		// for ($b=0; $b < $arrayof_sdates; $b++) { 
+		// 	$array = 
+		// }
+
+
+
+
+			
+				$replace_onlydate = implode(' / ',$arrayof_sdates);
+				$replace_onlytime = implode(' / ',$arrayof_times);
+				
 			// START user email // 
 				$mailer = JFactory::getMailer();
 				$config = JFactory::getConfig();
@@ -282,8 +308,11 @@ END:VCALENDAR';
 				$subject = str_replace('{date}', str_replace('-', '.', $exp_startdate[0]), $subject);
 				$subject = str_replace('{time}', $timesremovedsec[0].':'.$timesremovedsec[1], $subject);
 				$body =  $tableeditpostalldata->useremailtext;
-				$body = str_replace('{date}', str_replace('-', '.', $exp_startdate[0]), $body);
-				$body = str_replace('{time}', $timesremovedsec[0].':'.$timesremovedsec[1], $body);
+
+
+				$body = str_replace('{date}', $replace_onlydate, $body);
+				$body = str_replace('{time}',$replace_onlytime, $body);
+				//$body = $this->escapeString($description);
 				$mailer->setSender($sender);		
 				$mailer->addRecipient($post['email']);
 				$mailer->setSubject($subject);
@@ -307,8 +336,14 @@ END:VCALENDAR';
 				$adminsubject = str_replace('{first_name}', $post['first_name'], $adminsubject);
 				$adminsubject = str_replace('{last_name}', $post['last_name'], $adminsubject);
 				
+				$description = $post['comment'];
+
+				$description_adminbody = $tableeditpostalldata->adminemailtext;
+				$description_adminbody = str_replace('{comment}',$post['comment'], $description_adminbody);
+				$description_adminbody = str_replace('{date}',$replace_onlydate, $description_adminbody);
+				$description_adminbody = str_replace('{time}',$replace_onlytime, $description_adminbody);
 				
-				$adminbody   = '&nbsp;';
+				$adminbody   = $this->escapeString($description_adminbody);
 				$mailer->setSender($sender);		
 				$mailer->addRecipient($tableeditpostalldata->email);
 				$mailer->isHTML(true);

@@ -145,13 +145,6 @@ $datesofhead = implode(',', $datesofhead);
 
 </div>
 
-<div class="control-group">
-
-  <label class="control-label"><?php echo JText::_('COM_EVENTTABLEEDIT_PHONE'); ?></label>
-
-      <div class="controls"><input type="text" value="" name="phone"></div>
-
-</div>
 
 <div class="control-group">
 

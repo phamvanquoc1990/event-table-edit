@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="component" version="4.2" method="upgrade">
 	<name>com_eventtableedit</name>
-	<creationDate>18-07-2016</creationDate>
+	<creationDate>18-08-16</creationDate>
 	<author>Manuel Kaspar and Matthias Gruhn</author>
 	<license>GNU/GPL</license>
 	<copyright>2007 - 2016 Manuel Kaspar and Matthias Gruhn</copyright>

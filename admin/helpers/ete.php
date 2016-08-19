@@ -56,6 +56,7 @@ class eteHelper {
 				'index.php?option=com_eventtableedit&view=csvexport',
 				$vName == 'csvexport'
 			);
+		
 		}
 	}
 	

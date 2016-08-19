@@ -139,7 +139,20 @@
 
 		<field name="useremailsubject" type="text" label="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_SUBJECT_LABEL" description="COM_EVENTTABLEEDIT_FIELD_USEREMAIL_SUBJECT_DESC" class="inputbox" size="30"   />
 
-		
+
+<field name="adminemailtext" width="400px"
+			type="editor"
+			default=""
+			label="COM_EVENTTABLEEDIT_FIELD_ADMINEMAILTEXT_LABEL"
+			description="COM_EVENTTABLEEDIT_FIELD_ADMINEMAILTEXT_LABEL"
+			class="inputbox"
+			filter="safehtml"
+			buttons="true"
+			
+			hide="readmore,pagebreak">
+		</field>
+
+
 <field name="useremailtext" width="400px"
 			type="editor"
 			default=""
@@ -148,6 +161,7 @@
 			class="inputbox"
 			filter="safehtml"
 			buttons="true"
+			
 			hide="readmore,pagebreak">
 		</field>
 		<field name="normalorappointment" type="radio" class="inputbox" default="0" label="COM_EVENTTABLEEDIT_FIELD_FUNCTION_LABEL" description="COM_EVENTTABLEEDIT_FIELD_FUNCTION_DESC">

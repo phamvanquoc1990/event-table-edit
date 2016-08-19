@@ -33,6 +33,10 @@ for($colCount = 0; $colCount < count($this->rows[0]) - 1; $colCount++) {
 		} else {
 			$atemptime = '<input type="hidden" value="1">';
 		}
+	}else if($this->heads[$colCount]->datatype == 'float'){
+			$float_val = str_replace(',','.',$this->rows[$this->rowCount][$colCount]);
+			$atemptime = '<input type="hidden" value="'.$float_val.'">';
+		
 	}
 
 	if($colCount == 0){

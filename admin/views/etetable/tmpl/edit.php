@@ -49,6 +49,11 @@ JHtml::_('behavior.formvalidation');
 			jQuery('#jform_useremailtext').removeClass('required');
 			jQuery('#jform_useremailtext').removeAttr( "required" );
 
+		
+			jQuery('#jform_adminemailtext').removeClass('required');
+			jQuery('#jform_adminemailtext').removeAttr( "required" );
+
+			
 			jQuery('#jform_hours').removeClass('required');
 			jQuery('#jform_hours').removeAttr( "required" );
 
@@ -87,6 +92,10 @@ JHtml::_('behavior.formvalidation');
 			jQuery('#jform_useremailtext').addClass('required');
 			jQuery('#jform_useremailtext').attr( "required","required" );
 
+			jQuery('#jform_adminemailtext').addClass('required');
+			jQuery('#jform_adminemailtext').attr( "required","required" );
+
+
 			jQuery('#jform_hours').addClass('required');
 			jQuery('#jform_hours').attr(  "required","required" );
 
@@ -106,7 +115,10 @@ JHtml::_('behavior.formvalidation');
 </script>
 <style>
 	#jform_useremailtext_ifr,#jform_aftertext_ifr,#jform_pretext_ifr{
-		height: 250px !important;
+		height: 125px !important;
+	}
+	#jform_commentary,#jform_commentary_ifr,#jform_adminemailtext,#jform_adminemailtext_ifr{
+		height: 125px !important;	
 	}
 	.editor{
 		width: 60%;
@@ -183,6 +195,7 @@ JHtml::_('behavior.formvalidation');
 
 						<li class="location"><?php echo $this->form->getLabel('summary'); ?>
 					<?php echo $this->form->getInput('summary'); ?></li>
+				
 
 
 <li class="location">
@@ -217,6 +230,8 @@ JHtml::_('behavior.formvalidation');
 						<br>
 					<?php echo $this->form->getInput('useremailsubject'); ?></li>
 
+
+
 					<li class="location" >	
 					<label title="" class="hasTooltip" for="jform_useremailtext" id="jform_useremailtext-lbl" data-original-title="&lt;strong&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_USEREMAIL_TEXT'); ?>&lt;/strong&gt;">
 	<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_USEREMAIL_TEXT'); ?><span class="star">&nbsp;*</span></label>
@@ -226,7 +241,16 @@ JHtml::_('behavior.formvalidation');
 						<br>
 					<?php echo $this->form->getInput('useremailtext'); ?></li>
 
+					
 
+					<li class="location" >	
+					<label title="" class="hasTooltip" for="jform_adminemailtext" id="jform_adminemailtext-lbl" data-original-title="&lt;strong&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ADMINEMAILTEXT_LABEL'); ?>&lt;/strong&gt;">
+	<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ADMINEMAILTEXT_LABEL'); ?><span class="star">&nbsp;*</span></label>
+
+					<!--<?php echo $this->form->getLabel('adminemailtext'); ?>-->
+					<?php echo JText::_('COM_EVENTTABLEEDIT_USED_VARIABLE_IN_ADMINUSED_EMAIL_SUBJECT'); ?>
+					
+					<?php echo $this->form->getInput('adminemailtext'); ?></li>
 
 
 					<?php if($this->item->id == ''){ ?>

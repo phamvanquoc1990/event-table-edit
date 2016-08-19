@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `#__eventtableedit_details` (
   `adminemailsubject` varchar(500) NOT NULL,
   `useremailsubject` varchar(500) NOT NULL,
   `useremailtext` text NOT NULL,
+  `adminemailtext` text NOT NULL,
   `displayname` varchar(255) NOT NULL,
   `icsfilename` varchar(255) NOT NULL,
   `sorting` tinyint(1) NOT NULL DEFAULT '0',
