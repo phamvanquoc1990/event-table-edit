@@ -36,12 +36,13 @@ For version 4.2:
 - Editable table (insert pictures, BBCode...)
 - Sorting options
 - Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
-- Multiple appointment booking function with confirmation email and ICAL-attachment
+- Multiple appointment booking function with confirmation email and ICAL calendar (.ics file) attachment
 - Complete rights management (Joomla ACL)
 - Multilingual (currently available: DE, EN)
-- CSV and TXT-Import with different formats (text, date, time, integer, float, boolean, link, mail) 
+- CSV and TXT import with different formats (text, date, time, integer, float, boolean, link, mail) 
   and import settings (separator, values in quotes or not)
 - CSV Export
+- XML import and export: import and export a table with all settings
 - Own CSS based template
 
 Frontend view options:
