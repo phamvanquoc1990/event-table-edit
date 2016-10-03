@@ -27,7 +27,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		$cell    = $postget['cell'];
 		
 		//Get Model and perform action
-		$model =& $this->getModel('etetable');
+		$model = $this->getModel('etetable');
 		$ret = $model->getCell($rowId, $cell);
 		
 		echo $ret;
@@ -49,7 +49,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		$content = $postget['content'];
 		
 		//Get Model and perform action
-		$model =& $this->getModel('etetable');
+		$model = $this->getModel('etetable');
 		$ret = $model->saveCell($rowId, $cell, $content);
 		
 		echo $ret;
@@ -65,7 +65,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		}
 		
 		//Get Model and perform action
-		$model =& $this->getModel('etetable');
+		$model = $this->getModel('etetable');
 		$ret = $model->newRow();
 		
 		echo $ret;
@@ -102,7 +102,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		$Itemid  = $postget['Itemid'];
 		$id      = $postget['id'];
 		
-		$model =& $this->getModel('etetable');
+		$model = $this->getModel('etetable');
 		$model->saveOrder($rowIds, $order);
 
 		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id='.$id.'&Itemid='.$Itemid,false), 
@@ -127,7 +127,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 	 * has the right to edit it
 	 */
 	private function checkAclOwnRow($rowId) {
-		$user   = &JFactory::getUser();
+		$user   = JFactory::getUser();
 		$uid = $user->get('id');
 		
 		$model =& $this->getModel('etetable');

@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id:$
+ * $Id: default.php 140 2011-01-11 08:11:30Z kapsl $
  * @copyright (C) 2007 - 2011 Manuel Kaspar
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
@@ -21,31 +21,24 @@
 
 // no direct access
 defined( '_JEXEC' ) or die;
-
-
-$app = JFactory::getApplication();
-$id = $app->input->get('tableList');
-$file = "csv_".$id.".csv";
-
-
- $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
- if (!$pf)
- {
- 	echo "Cannot create $file!" . NL;
- 	return;
- }
- fwrite ($pf, $this->csvFile);
- fclose ($pf);
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
 	<div class="">
 	<fieldset class="adminform">
-		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLE') ?></legend>
+		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_UPLOAD_XMLFILE') ?></legend>
 		
-		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php echo $this->csvFile; ?></textarea>
-				<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
-
+		
+		<ul class="adminformlist">
+			<li>
+				<label><?php echo JText::_('COM_EVENTTABLEEDIT_XMLFILE'); ?>: </label>
+				<input type="file" name="fupload" />
+			</li>
+			
+			
+			
+			
+		</ul>
 	</fieldset>
 	</div>
 	
@@ -53,3 +46,4 @@ $file = "csv_".$id.".csv";
 	<input type="hidden" name="boxchecked" value="1" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
+<style>#tables1{display: none;}</style>

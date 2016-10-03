@@ -25,7 +25,7 @@ jimport( 'joomla.application.component.view');
 require_once JPATH_COMPONENT.'/views/csvimport/view.html.php';
 require_once JPATH_COMPONENT.'/models/csvimport.php';
 
-class EventtableeditViewCsvexport extends JViewLegacy {
+class EventtableeditViewxmlexport extends JViewLegacy {
 	function display($tpl = null) {
 		$user = JFactory::getUser();
 		$app = JFactory::getApplication();
@@ -67,9 +67,9 @@ class EventtableeditViewCsvexport extends JViewLegacy {
 	}
 	
 	protected function addDefaultToolbar()	{
-		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_MANAGER_CSVEXPORT'), 'export');
+		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_MANAGER_XMLEXPORT'), 'export');
 
-		JToolBarHelper::custom('csvexport.export', 'apply.png', '', 'COM_EVENTTABLEEDIT_EXPORT', false);
+		JToolBarHelper::custom('xmlexport.export', 'apply.png', '', 'COM_EVENTTABLEEDIT_EXPORT', false);
 	}
 	
 	/**
@@ -78,9 +78,8 @@ class EventtableeditViewCsvexport extends JViewLegacy {
 	protected function addSummaryToolbar()	{
 		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_EXPORT_SUMMARY'), 'export');
 
-		JToolBarHelper::custom('csvexport.cancel', 'apply.png', '', 'COM_EVENTTABLEEDIT_OK', false);
-		JToolBarHelper::custom('csvexport.download', 'apply.png', '', 'COM_EVENTTABLEEDIT_DOWNLOAD_FILE', false);
-
+		JToolBarHelper::custom('xmlexport.cancel', 'apply.png', '', 'COM_EVENTTABLEEDIT_OK', false);
+		JToolBarHelper::custom('xmlexport.download', 'apply.png', '', 'COM_EVENTTABLEEDIT_DOWNLOAD_FILE', false);
 	}
 }
 ?>

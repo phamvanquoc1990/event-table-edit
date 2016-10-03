@@ -128,6 +128,14 @@ JHtml::_('behavior.formvalidation');
 		float: left;
 		margin-left: 5px;
 	}
+	<?php
+	if($this->item->show_pagination == 1){ ?>
+		.pagebreak{display:block;list-style: none;}
+	<?php }else{ ?>
+		.pagebreak{display:none;list-style: none;}
+	<?php }
+	 ?>
+	}
 </style>
 
 
@@ -272,9 +280,25 @@ JHtml::_('behavior.formvalidation');
 
 					<li><?php echo $this->form->getLabel('addtitle'); ?>
 					<?php echo $this->form->getInput('addtitle'); ?></li>
+					<li><?php echo $this->form->getLabel('rowsort'); ?>
+					<?php echo $this->form->getInput('rowsort'); ?></li>
 					
-					<li><?php echo $this->form->getLabel('show_pagination'); ?>
-					<?php echo $this->form->getInput('show_pagination'); ?></li>
+				<!--	<li><?php //echo $this->form->getLabel('show_pagination'); ?>
+					<?php //echo $this->form->getInput('show_pagination'); ?></li>
+				-->
+					<li>
+						<label title="" class="hasTooltip" for="jform_show_pagination" id="jform_show_pagination-lbl" data-original-title="&lt;strong&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_SHOW_PAGINATION_LABEL'); ?>&lt;/strong&gt;&lt;br /&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_SHOW_PAGINATION_DESC'); ?>">
+	<?php echo JText::_('COM_EVENTTABLEEDIT_SHOW_PAGINATION_LABEL'); ?></label>
+						<fieldset class="inputbox radio" id="jform_show_pagination">
+							<input type="radio" value="1" name="jform[show_pagination]" id="jform_show_pagination0" <?php if($this->item->show_pagination == 1){?> checked="checked" <?php } ?> onclick="jQuery('.pagebreak').show();">	
+							<label for="jform_show_pagination0"><?php echo JText::_('JSHOW'); ?></label>
+								<li class="pagebreak"><?php echo $this->form->getLabel('pagebreak'); ?>
+					<?php echo $this->form->getInput('pagebreak'); ?></li>
+							<input type="radio" value="0" name="jform[show_pagination]" id="jform_show_pagination1" <?php if($this->item->show_pagination == 0){?> checked="checked" <?php } ?> onclick="jQuery('.pagebreak').hide();">
+							<label for="jform_show_pagination1"><?php echo JText::_('JHIDE'); ?></label>
+						</fieldset>
+					</li>
+					
 
 					<li><?php echo $this->form->getLabel('show_first_row'); ?>
 					<?php echo $this->form->getInput('show_first_row'); ?></li>
@@ -326,8 +350,7 @@ JHtml::_('behavior.formvalidation');
 					<li><?php echo $this->form->getLabel('tablecolor2'); ?>
 					<?php echo $this->form->getInput('tablecolor2'); ?></li>
 
-					<li><?php echo $this->form->getLabel('pagebreak'); ?>
-					<?php echo $this->form->getInput('pagebreak'); ?></li>
+				
 
 					<li><?php echo $this->form->getLabel('cellbreak'); ?>
 					<?php echo $this->form->getInput('cellbreak'); ?></li>

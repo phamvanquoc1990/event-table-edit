@@ -22,20 +22,11 @@
 // no direct access
 defined( '_JEXEC' ) or die;
 
-
 $app = JFactory::getApplication();
 $id = $app->input->get('tableList');
-$file = "csv_".$id.".csv";
+$file = "tablexml_".$id.".xml";
 
 
- $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
- if (!$pf)
- {
- 	echo "Cannot create $file!" . NL;
- 	return;
- }
- fwrite ($pf, $this->csvFile);
- fclose ($pf);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" method="post" name="adminForm" id="adminForm">
@@ -43,9 +34,8 @@ $file = "csv_".$id.".csv";
 	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLE') ?></legend>
 		
-		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php echo $this->csvFile; ?></textarea>
-				<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
-
+		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php  readfile(JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file); //echo $this->csvFile; ?></textarea>
+		<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
 	</fieldset>
 	</div>
 	

@@ -37,7 +37,7 @@ class EventtableeditControllerCsvexport extends JControllerLegacy {
 		}
 		
 		// Initialize Variables
-		$this->model =& $this->getModel('csvexport');
+		$this->model = $this->getModel('csvexport');
 
 		$input  =  JFactory::getApplication()->input;
 		$postget = $input->getArray($_POST);
@@ -59,5 +59,22 @@ class EventtableeditControllerCsvexport extends JControllerLegacy {
 	public function cancel() {
 		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit'));
 		return false;
+	}
+
+		public function download(){
+
+		$app = JFactory::getApplication();
+		$id = $app->input->get('tableList');
+		$file = JPATH_ROOT."/components/com_eventtableedit/template/tablexml/csv_".$id.".csv";
+
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/xml');
+		header('Content-Disposition: attachment; filename="'.basename($file).'"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($file));
+		readfile($file);
+		exit;
 	}
 }

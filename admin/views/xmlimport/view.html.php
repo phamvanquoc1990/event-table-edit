@@ -22,10 +22,13 @@
 // no direct access
 defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.view');
-require_once JPATH_COMPONENT.'/views/csvimport/view.html.php';
-require_once JPATH_COMPONENT.'/models/csvimport.php';
+require_once JPATH_COMPONENT.'/helpers/ete.php';
+require_once JPATH_SITE.'/components/com_eventtableedit/helpers/datatypes.php';
 
-class EventtableeditViewCsvexport extends JViewLegacy {
+/**
+ * This view can diesplay different stages of the import process
+ */
+class EventtableeditViewXmlimport extends JViewLegacy {
 	function display($tpl = null) {
 		$user = JFactory::getUser();
 		$app = JFactory::getApplication();
@@ -36,51 +39,28 @@ class EventtableeditViewCsvexport extends JViewLegacy {
 		}
 		$input  =  JFactory::getApplication()->input;
 		$layout = $input->get('com_eventtableedit.layout');
-		// Switch the differnet datatypes
-		
-		switch ($layout) {
-			case 'summary':
-				// Check for errors.
-				if (count($errors = $this->get('Errors'))) {
-					JError::raiseError(500, implode("\n", $errors));
-					return false;
-				}
-				$postget = $input->getArray($_REQUEST);
-				
-				$this->assignRef('csvFile',$postget['csvFile']);
-				
-				$this->addSummaryToolbar();
-				break;
-			default:
-				$importView = new EventtableeditViewCsvimport();
-				$tableList = $importView->createTableSelectList();
-				
-				$this->assignRef('tables', $tableList);
-				
-				$this->addDefaultToolbar();
-		}
-		
+		$this->addDefaultToolbar();	
 		$this->document->addStyleSheet($this->baseurl.'/components/com_eventtableedit/template/css/eventtableedit.css');
 		
 		$this->setLayout($layout);
 	    parent::display($tpl);
 	}
 	
-	protected function addDefaultToolbar()	{
-		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_MANAGER_CSVEXPORT'), 'export');
-
-		JToolBarHelper::custom('csvexport.export', 'apply.png', '', 'COM_EVENTTABLEEDIT_EXPORT', false);
-	}
-	
 	/**
-	 * The Toolbar for showing the summary of the export
+	 * Generates a select list, where all tables are listed
+	 * This function is also used in the export module
 	 */
-	protected function addSummaryToolbar()	{
-		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_EXPORT_SUMMARY'), 'export');
 
-		JToolBarHelper::custom('csvexport.cancel', 'apply.png', '', 'COM_EVENTTABLEEDIT_OK', false);
-		JToolBarHelper::custom('csvexport.download', 'apply.png', '', 'COM_EVENTTABLEEDIT_DOWNLOAD_FILE', false);
+	
+	protected function addDefaultToolbar()	{
+		$canDo		= eteHelper::getActions();
 
+		JToolBarHelper::title(JText::_('COM_EVENTTABLEEDIT_MANAGER_XMLIMPORT'), 'import');
+
+		// For uploading, check the create permission.
+		if ($canDo->get('core.csv')) {
+			JToolBarHelper::custom('xmlimport.upload', 'upload.png', '', 'COM_EVENTTABLEEDIT_UPLOAD', true);
+		}
 	}
 }
 ?>

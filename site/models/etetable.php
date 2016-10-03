@@ -43,7 +43,7 @@ class EventtableeditModelEtetable extends JModelList
 		$this->db = $this->getDbo();
 	}
 	
-	protected function populateState()
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		// Load state from the request.
 
@@ -173,14 +173,17 @@ class EventtableeditModelEtetable extends JModelList
 			
 			// Settings for pagination
 			// Default Pagebreak if not set
-			$limit = $data->pagebreak;
-			
-			if ($limit == '') {
-				$limit = 100;
+				$limit = $data->pagebreak;
+			if($data->show_pagination==1){
+				if ($limit == '') {
+					$limit = 100;
+				}
+				$limit = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $pk . '.limit', 'limit', $limit);
+				$this->setState('list.limit',$limit);
+			}else{
+				//$limit = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $pk . '.limit', 'limit', $limit);
+				$this->setState('list.limit', '');
 			}
-			
-			$limit = $app->getUserStateFromRequest('com_eventtableedit.etetable.list.' . $pk . '.limit', 'limit', $limit);
-			$this->setState('list.limit', $limit);
 			
 			$this->getACL($data);
 
@@ -429,7 +432,7 @@ class EventtableeditModelEtetable extends JModelList
 	  * Get Ordering and Creator
 	  */
 	 private function prepareData($rows) {
-		$user   = &JFactory::getUser();
+		$user   = JFactory::getUser();
 		$ret = array();
 		foreach ($rows as $row) {
 			$ret['ordering'][] = $row->ordering;

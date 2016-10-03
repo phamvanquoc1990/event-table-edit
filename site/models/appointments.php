@@ -42,7 +42,7 @@ class EventtableeditModelappointments extends JModelList
 		$this->db = $this->getDbo();
 	}
 	
-	protected function populateState()
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		// Load state from the request.
 		$app 		= JFactory::getApplication('site');
@@ -425,7 +425,7 @@ class EventtableeditModelappointments extends JModelList
 	  * Get Ordering and Creator
 	  */
 	 private function prepareData($rows) {
-		$user   = &JFactory::getUser();
+		$user   = JFactory::getUser();
 		$ret = array();
 		foreach ($rows as $row) {
 			$ret['ordering'][] = $row->ordering;

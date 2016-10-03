@@ -56,6 +56,16 @@ class eteHelper {
 				'index.php?option=com_eventtableedit&view=csvexport',
 				$vName == 'csvexport'
 			);
+			JSubMenuHelper::addEntry(
+				JText::_('COM_EVENTTABLEEDIT_SUBMENU_XMLIMPORT'),
+				'index.php?option=com_eventtableedit&view=xmlimport',
+				$vName == 'xmlimport'
+			);
+			JSubMenuHelper::addEntry(
+				JText::_('COM_EVENTTABLEEDIT_SUBMENU_XMLEXPORT'),
+				'index.php?option=com_eventtableedit&view=xmlexport',
+				$vName == 'xmlexport'
+			);
 		
 		}
 	}

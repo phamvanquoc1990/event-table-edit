@@ -142,11 +142,11 @@ function addActionRowFirstTime() {
 	tableProperties.myTable.tHead.rows[0].appendChild(thead);
 	
 	// Add the ordering link
-	if (tableProperties.show_pagination) {
+	//if (tableProperties.show_pagination) {
 		var orderingLink = new Element('span', {'id'	: 'etetable-orderingLink'});
 		orderingLink.innerHTML = others.orderingLink;
 		orderingLink.inject(thead);
-	}
+	//}
 	
 	// Add order save icon if allowed
 	if (access.reorder && !tableProperties.defaultSorting) {

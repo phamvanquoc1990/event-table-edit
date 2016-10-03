@@ -99,7 +99,14 @@ if($this->item->switcher == 1){
 	<?php 
 
 	if(!$this->print) : ?>
-	<tfoot>
+	<tfoot class="limit">
+	<tr>
+			<td colspan="100%">
+				<div id="container">
+					<?php echo $this->pagination->getLimitBox(); ?>
+				</div>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="100%">
 				<div id="container">
@@ -107,6 +114,16 @@ if($this->item->switcher == 1){
 				</div>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="100%">
+				<div id="container">
+					<?php echo $this->pagination->getPagesCounter(); ?>
+				</div>
+			</td>
+		</tr>
+
+		
+
 	</tfoot>
 	<?php endif; ?>	
 

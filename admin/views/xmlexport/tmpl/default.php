@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id:$
+ * $Id: default.php 140 2011-01-11 08:11:30Z kapsl $
  * @copyright (C) 2007 - 2011 Manuel Kaspar
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
@@ -19,23 +19,8 @@
  * along with Event Table Edit. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// no direct access
+// no direct access adminForm
 defined( '_JEXEC' ) or die;
-
-
-$app = JFactory::getApplication();
-$id = $app->input->get('tableList');
-$file = "csv_".$id.".csv";
-
-
- $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
- if (!$pf)
- {
- 	echo "Cannot create $file!" . NL;
- 	return;
- }
- fwrite ($pf, $this->csvFile);
- fclose ($pf);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" method="post" name="adminForm" id="adminForm">
@@ -43,9 +28,28 @@ $file = "csv_".$id.".csv";
 	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLE') ?></legend>
 		
-		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php echo $this->csvFile; ?></textarea>
-				<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
-
+		
+		<ul class="adminformlist">
+			<li id="tableList">
+				<label><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLES_DESC'); ?>: </label>
+				<?php echo $this->tables; ?>
+			</li>
+			<!--<li>
+				<label><?php //echo JText::_('COM_EVENTTABLEEDIT_SEPARATOR'); ?>: </label>
+				<select name="separator">
+					<option selected="selected">;</option>
+					<option>,</option>
+					<option>:</option>
+				</select>
+			</li>
+			<li>
+				<label><?php //echo JText::_('COM_EVENTTABLEEDIT_DOUBLEQUOTES'); ?>: </label>
+				<select name="doubleqt">
+					<option selected="selected" value="1"><?php //echo JText::_('JYES'); ?></option>
+					<option value="0"><?php //echo JText::_('JNO'); ?></option>
+				</select>
+			</li>-->
+		</ul>
 	</fieldset>
 	</div>
 	

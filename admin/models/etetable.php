@@ -239,6 +239,114 @@ class EventtableeditModelEtetable extends JModelAdmin {
 
 		return true;
 	}
+	public function saveXml($data)
+	{
+
+		$data['adminemailsubject']  = html_entity_decode($data['adminemailsubject']);
+		$data['useremailsubject']   = html_entity_decode($data['useremailsubject']);
+		$data['useremailtext'] 		= html_entity_decode($data['useremailtext']);
+		$data['adminemailtext']     = html_entity_decode($data['adminemailtext']);
+
+		$data['pretext'] 		= html_entity_decode($data['pretext']);
+		$data['aftertext']     = html_entity_decode($data['aftertext']);
+
+		// Initialise variables;
+		$dispatcher = JDispatcher::getInstance();
+		$table		= $this->getTable();
+		$pk			= (!empty($data['id'])) ? $data['id'] : (int)$this->getState($this->getName().'.id');
+		$isNew		= true;
+		$db = JFactory::getDBO();
+		// Include the content plugins for the on save events.
+		JPluginHelper::importPlugin('content');
+
+		// Load the row if saving an existing category.
+		if ($pk > 0) {
+			$table->load($pk);
+			$isNew = false;
+		}
+		
+	
+		// Alter the title for save as copy
+		if (!$isNew && $data['id'] == 0) {
+			$m = null;
+			$data['alias'] = '';
+			if (preg_match('#\((\d+)\)$#', $table->name, $m)) {
+				$data['name'] = preg_replace('#\(\d+\)$#', '('.($m[1] + 1).')', $table->name);
+			}
+			else {
+				$data['name'] .= ' (2)';
+			}
+		}
+
+		// Bind the data.
+		if (!$table->bind($data)) {
+			$this->setError($table->getError());
+			return false;
+		}
+		$data['rules'] = json_decode($data['rules'],true);
+		// Bind the rules.
+		if (isset($data['rules'])) {
+			$rules = new JRules($data['rules']);
+			$table->setRules($rules);
+		}
+
+		// Check the data.
+		/*if (!$table->check()) {
+			$this->setError($table->getError());
+			return false;
+		}*/
+		
+		// Trigger the onContentBeforeSave event.
+		$result = $dispatcher->trigger($this->event_before_save, array($this->option.'.'.$this->name, $table, $isNew));
+		if (in_array(false, $result, true)) {
+			$this->setError($table->getError());
+			return false;
+		}
+
+		// Store the data.
+		if (!$table->store()) {
+
+			$this->setError($table->getError());
+			return false;
+		}
+
+		
+
+		if($data['id'] == 0 && @$data['temps'] == 1){
+			$this->createRowsTable($table->id);
+			if($data['col'] > 0){
+				
+				for ($i=1; $i <= $data['col']; $i++) { 
+					$nameofhead = 'Head'.$i;
+					$ins = "INSERT INTO #__eventtableedit_heads (`id`,`table_id`,`name`,`datatype`,`ordering`) VALUES ('',".$table->id.",'".$nameofhead."','text',".$i.")";	
+					$db->setQuery($ins);
+					$db->query();
+					$newId = $db->insertid();
+					$this->updateRowsTable('0',$newId,$table->id);
+				}
+			}
+			$this->Insertemptyrow($table->id,$data['row']);
+		}else{
+			$this->createRowsTable($table->id);
+			if(count($data['headdata']['linehead']) > 0){
+				
+				for ($i=0; $i <= count($data['headdata']['linehead'])-1; $i++) {
+					$temp = $data['headdata']['linehead'][$i]; 
+					$nameofhead = $temp['name'];
+					$datatype = $temp['datatype'];
+					$ins = "INSERT INTO #__eventtableedit_heads (`id`,`table_id`,`name`,`datatype`,`ordering`) VALUES ('',".$table->id.",'".$nameofhead."','".$datatype."',".$i.")";	
+					$db->setQuery($ins);
+					$db->query();
+					$newId = $db->insertid();
+					$this->updateRowsTablefromxml('0',$newId,$table->id,$datatype);
+				}
+			}
+			$this->Insertrowfromxml($table->id,$data['rowdata']['linerow']);
+
+		}
+	
+		return $table->id;
+	}
 	public function Insertemptyrow($id,$emptyrow){
 		$db = JFactory::getDBO();
 		$select = 'SELECT id FROM #__eventtableedit_heads WHERE table_id="'.$id.'"';
@@ -268,6 +376,41 @@ class EventtableeditModelEtetable extends JModelAdmin {
 		}
 		
 
+	}
+
+	public function Insertrowfromxml($id,$prerow){
+
+			
+		$db = JFactory::getDBO();
+		$select = 'SELECT id FROM #__eventtableedit_heads WHERE table_id="'.$id.'" ORDER BY id ASC';
+		$db->setQuery($select);
+		$filedsname = $db->loadColumn();
+		$headdefine = '`ordering`,`created_by`,';
+		for ($x=0; $x < count($filedsname); $x++) { 
+			$headdefine .= '`head_'.$filedsname[$x].'`,';
+		}
+		$headdefine = rtrim($headdefine,',');
+		$aemptyda = count($filedsname);
+		for ($z=0; $z < count($prerow); $z++) { 
+			$reocrddata = array_values($prerow[$z]);
+			$nbspstring = '';
+			
+			for ($p=2; $p < count($reocrddata); $p++) { 
+
+				$checkstring = str_replace("'", "\'",$reocrddata[$p]);
+				if(is_array($checkstring)){
+					$checkstring = '&nbsp;';
+				}
+				$nbspstring .= '"'.$checkstring.'",';
+			}
+			$nbspstring = rtrim($nbspstring,',');
+			//$nbspstring = rtrim($nbspstring,',');
+			 $insert = "INSERT INTO `#__eventtableedit_rows_" . $id . "` ($headdefine) VALUES ($nbspstring)";
+			
+			$db->setQuery($insert);
+			$db->query();
+		}
+		
 	}
 
 	private function createRowsTable($id) {
@@ -301,6 +444,23 @@ class EventtableeditModelEtetable extends JModelAdmin {
 			$query .= 'CHANGE head_' . $newId . ' head_' . $newId . ' text';
 		} else {
 			$query .= 'ADD head_' . $newId . ' text';
+		}
+		
+		$db->setQuery($query);
+		$db->query();
+	}
+	private function updateRowsTablefromxml($cid, $newId,$id,$datatype) {
+		$db = JFactory::getDBO();
+		if($datatype == 'boolean' || $datatype == 'link' || $datatype == 'mail'){
+			$datatype = 'text';
+		}
+		$query = 'ALTER TABLE #__eventtableedit_rows_' . $id . ' ';
+		
+		// If it's a existing column
+		if ($cid != 0) {
+			$query .= 'CHANGE head_' . $newId . ' head_' . $newId . ' '.$datatype;
+		} else {
+			$query .= 'ADD head_' . $newId . ' '.$datatype;
 		}
 		
 		$db->setQuery($query);

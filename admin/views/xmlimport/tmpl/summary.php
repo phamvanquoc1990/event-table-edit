@@ -21,35 +21,37 @@
 
 // no direct access
 defined( '_JEXEC' ) or die;
-
-
 $app = JFactory::getApplication();
-$id = $app->input->get('tableList');
-$file = "csv_".$id.".csv";
-
-
- $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
- if (!$pf)
- {
- 	echo "Cannot create $file!" . NL;
- 	return;
- }
- fwrite ($pf, $this->csvFile);
- fclose ($pf);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" method="post" name="adminForm" id="adminForm">
 	<div class="">
-	<fieldset class="adminform">
-		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLE') ?></legend>
-		
-		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php echo $this->csvFile; ?></textarea>
-				<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
-
-	</fieldset>
+		<fieldset class="adminform">
+			<?php 
+			switch ($app->getUserState('com_eventtableedit.importAction', 'newTable')) {
+				case 'newTable':
+					echo $this->loadTemplate('newtable');
+					break;
+				case 'overwriteTable':
+					echo $this->loadTemplate('overwritetable');
+					break;
+				case 'appendTable':
+					echo $this->loadTemplate('appendtable');
+					break;
+			}
+			
+			if (!$app->getUserState('com_eventtableedit.csvError', true)) : ?>
+			
+			<p id="gotoTable">
+				<?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_GOTO_CONFIG_DESC'); ?>
+				<a href="<?php echo JRoute::_('index.php?option=com_eventtableedit&view=etetables'); ?>">
+					<?php echo JText::_('COM_EVENTTABLEEDIT_IMPORT_GOTO_CONFIG'); ?>
+				</a>
+			</p>
+			<?php endif; ?>
+		</fieldset>
 	</div>
 	
 	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="boxchecked" value="1" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
