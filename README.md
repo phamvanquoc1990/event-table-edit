@@ -13,6 +13,7 @@ For version 4.3:
 [1] Normal mode
 - XML import and export function: export and import a table with all settings.
 - file download option for csv export
+- additional delete and sort row function renamed. It is called "Additional row sorting and deleting column"(ger:"Zusatzspalte zur Umsortierung und Löschung der Tabellenzeilen")
 
 [2] Appointment mode
 - no changes
