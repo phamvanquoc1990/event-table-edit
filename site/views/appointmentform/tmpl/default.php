@@ -4,7 +4,7 @@
 
  * $Id: default.php 144 2011-01-13 08:17:03Z kapsl $
 
- * @copyright (C) 2007 - 2009 Manuel Kaspar
+ * @copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
 
  * @license GNU/GPL, see LICENSE.php in the installation package
 

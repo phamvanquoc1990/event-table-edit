@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id: eventtableedit.php 140 2011-01-11 08:11:30Z kapsl $
- * @copyright (C) 2007 - 2011 Manuel Kaspar
+ * @copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *
