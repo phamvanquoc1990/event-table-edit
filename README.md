@@ -12,12 +12,14 @@ For version 4.4:
 
 [1] Normal mode
 - bug removed: when importing empty cells from csv-file, cell value changed to "free". Solution: select box "csv is appointment-table".
-- xml import/export: now xml-files are scanned for event table edit signature
-- minor spellings errors corrected
 
 [2] Appointment mode
 - bug removed: ICS files are deleted now
 
+[3] Universal changes
+- minor spellings errors corrected
+- xml import/export: now xml-files are scanned for event table edit signature
+- Plugin update notification and update function via Joomla backend reactivated
 
 For version 4.3:
 
