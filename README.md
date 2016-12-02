@@ -19,7 +19,7 @@ For version 4.4:
 [3] Universal changes
 - minor spellings errors corrected
 - xml import/export: now xml-files are scanned for event table edit signature
-- Plugin update notification and update function via Joomla backend reactivated
+- plugin update notification and update function via Joomla backend reactivated
 
 For version 4.3:
 
