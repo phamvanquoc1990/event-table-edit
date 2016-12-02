@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id:$
- * @copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
+ * @copyright (C) 2007 - 2010 Manuel Kaspar
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *

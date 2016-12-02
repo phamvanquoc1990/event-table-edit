@@ -4,7 +4,7 @@
 
  * @version
 
- * @copyright	Copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
 
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
 
@@ -355,7 +355,13 @@ END:VCALENDAR';
 				$mailer->addAttachment($addAttachment);
 				$mailer->Send();
 			// End admin email //
-
+				if(count($addAttachment) > 0){
+					foreach ($addAttachment as $oneattachment) {
+						if(file_exists($oneattachment)){
+							unlink($oneattachment);
+						}
+					}
+				}
 
 		$app->redirect(JRoute::_('index.php?option=com_eventtableedit&view=appointments&id='.$tableeditpost.'&Itemid='.$Itemid,false),$msg);
 

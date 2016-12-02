@@ -4,7 +4,7 @@
 
  * $Id: view.html.php 157 2011-03-19 00:08:23Z kapsl $
 
- * @copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
+ * @copyright (C) 2007 - 2009 Manuel Kaspar
 
  * @license GNU/GPL, see LICENSE.php in the installation package
 

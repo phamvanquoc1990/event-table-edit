@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id:$
- * @copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn / Filter by unimx
+ * @copyright (C) 2007 - 2011 Manuel Kaspar / Filter by unimx
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *

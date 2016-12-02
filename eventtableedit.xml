@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="component" version="4.4" method="upgrade">
 	<name>com_eventtableedit</name>
-	<creationDate>28-09-16</creationDate>
+	<creationDate>28-11-16</creationDate>
 	<author>Manuel Kaspar and Matthias Gruhn</author>
 	<license>GNU/GPL</license>
 	<copyright>2007 - 2016 Manuel Kaspar and Matthias Gruhn</copyright>
@@ -74,6 +74,8 @@
 			<language tag="de-DE">language/de-DE/de-DE.com_eventtableedit.sys.ini</language>
 		</languages>
 	</administration>
-	
+	  <updateservers>
+	    <server type="extension" priority="1" name="Event Table Edit Update Site">https://github.com/Theophilix/event-table-edit/blob/master/eventtableedit.xml</server>
+    </updateservers>
 	
 </extension>

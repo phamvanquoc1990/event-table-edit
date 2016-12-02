@@ -6,7 +6,7 @@
 
  * @package		eventtableedit
 
- * @copyright	Copyright (C) 2007 - 2016 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
 
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
 
