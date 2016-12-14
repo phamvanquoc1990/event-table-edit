@@ -2,11 +2,17 @@
 Event Table Edit is a free and open source table plugin for Joomla 2.5, 3.x and above (original author: Manuel Kaspar, continuation: Matthias Gruhn). With the plugin, you can create a responsive, editable table with CSV import and export function and XML export/import for table settings. It also has a full rights management (Joomla ACL). 
 You can  transform the table into an appointment booking system with confirmation emails for users and the admin, including iCal-calendar-files for both in the attachment. As it is based on a CSS-template, the layout of the table can be changed easily. The responsive function is based on the "Column Toggle Table with Mini Map" from the tablesaw plugins (https://github.com/filamentgroup/tablesaw).
 
-Download latest version 4.4 (since 02.12.2016): https://github.com/Theophilix/event-table-edit/archive/master.zip
+Download latest version 4.4.1 (since 14.12.2016): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
 Demo site for backend and frontend (includes appointment table): http://demo.eventtableedit.com 
 
 ## I Version history
+
+For version 4.4.1:
+[1] Normal mode
+- bug removed: https://github.com/Theophilix/event-table-edit/issues/28: Sorting by date field results in an error if date field is empty
+[3] Universal changes
+- english corrections: https://github.com/Theophilix/event-table-edit/pull/29 -> Thank you, user "brianteeman"!
 
 For version 4.4:
 
