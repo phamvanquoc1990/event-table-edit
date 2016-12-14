@@ -12,6 +12,7 @@ For version 4.4.1:
 
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/28: Sorting by date field results in an error if date field is empty
+
 [3] Universal changes
 - english corrections: https://github.com/Theophilix/event-table-edit/pull/29 -> Thank you, user "brianteeman"!
 
