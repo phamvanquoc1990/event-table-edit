@@ -9,6 +9,7 @@ Demo site for backend and frontend (includes appointment table): http://demo.eve
 ## I Version history
 
 For version 4.4.1:
+
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/28: Sorting by date field results in an error if date field is empty
 [3] Universal changes
