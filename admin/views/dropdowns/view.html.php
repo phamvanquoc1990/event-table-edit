@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id: view.html.php 85 2009-09-22 16:07:12Z kapsl $
- * @copyright (C) 2007 - 2010 Manuel Kaspar
+ * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *

@@ -1,6 +1,6 @@
 /*
  * $Id: $
- * @copyright (C) 2007 - 2010 Manuel Kaspar
+ * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
  * @license GNU/GPL
  */
 

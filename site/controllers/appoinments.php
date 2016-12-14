@@ -1,7 +1,7 @@
 <?php
 /**
  * @version
- * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
+ * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

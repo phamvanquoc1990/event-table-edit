@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id: edit.php 140 2011-01-11 08:11:30Z kapsl $
- * @copyright (C) 2007 - 2010 Manuel Kaspar
+ * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
  * @license GNU/GPL
  */
 
