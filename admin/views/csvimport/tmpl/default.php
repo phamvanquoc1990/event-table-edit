@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id: default.php 140 2011-01-11 08:11:30Z kapsl $
- * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright (C) 2007 - 2011 Manuel Kaspar
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *
@@ -22,7 +22,6 @@
 // no direct access
 defined( '_JEXEC' ) or die;
 ?>
-
 <form action="<?php echo JRoute::_('index.php?option=com_eventtableedit'); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="adminForm">
 	<div class="">
 	<fieldset class="adminform">
@@ -31,6 +30,14 @@ defined( '_JEXEC' ) or die;
 		<p><?php echo JText::sprintf('COM_EVENTTABLEEDIT_CSVIMPORT_DESC', (int) $this->maxFileSize) ?></p>
 		
 		<ul class="adminformlist">
+			<li>
+				
+				<label><?php echo JText::_('COM_EVENTTABLEEDIT_CHECKBOX_NORMAL'); ?>: </label>
+				<select name="checkfun">
+					<option value="0"><?php echo JText::_('JNO') ?></option>
+					<option value="1"><?php echo JText::_('JYES') ?></option>
+				</select>
+			</li>
 			<li>
 				<label><?php echo JText::_('COM_EVENTTABLEEDIT_CSVFILE'); ?>: </label>
 				<input type="file" name="fupload" />

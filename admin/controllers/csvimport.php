@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2011 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +18,7 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 	protected $importaction;
 	protected $separator;
 	protected $doubleqt;
+	protected $checkfun;
 	protected $model;
 	
 	function __construct() {
@@ -38,7 +39,7 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		}
 		$input  =  JFactory::getApplication()->input;
 		$postget = $input->getArray($_REQUEST);
-			
+		
 		// Initialize Variables
 		$this->model = $this->getModel('csvimport');
 		$this->file = $input->files->get('fupload');
@@ -46,7 +47,8 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		$this->separator    = $postget['separator']; 
 		$this->doubleqt     = $postget['doubleqt'];  
 		$this->importaction = $postget['importaction']; 
-		
+		$this->checkfun = $postget['checkfun']?$postget['checkfun']:0; 
+			
 		$input->set('view','csvimport');
 		
 
@@ -62,7 +64,8 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		
 		$this->checkForErrors();
 		$this->moveFile();
-		$this->model->setVariables($this->id, $this->separator, $this->doubleqt);
+		$this->model->setVariables($this->id, $this->separator, $this->doubleqt,$this->checkfun);
+		
 		$this->switchUploadTypes();
 		parent::display();
 	}
@@ -74,16 +77,18 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		// ACL Check
 		$user = JFactory::getUser();
 		$input  =  JFactory::getApplication()->input;
-		
+		$checkfun = $input->get('checkfun');
+		$input->set('checkfun',$checkfun);
 		if (!$user->authorise('core.csv', 'com_eventtableedit')) {
 			JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 			$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit'));
 			return false;
 		}
 		$postget = $input->getArray();
+		
 		// Get Variables
 		$name = $postget['tableName']; 
-		$datatype = $postget['datatypesList']; 
+		$datatype = $postget['datatypesList'];
 		
 		$this->model = $this->getModel('csvimportnewtable');
 		$detailsModel = $this->getModel('etetable');
@@ -165,5 +170,6 @@ class EventtableeditControllerCsvimport extends JControllerLegacy {
 		$this->app->setUserState("com_eventtableedit.importAction", $this->importaction);
 		$this->app->setUserState("com_eventtableedit.separator", $this->separator);
 		$this->app->setUserState("com_eventtableedit.doubleqt", $this->doubleqt);
+		$this->app->setUserState("com_eventtableedit.checkfun", $this->checkfun);
 	}
 }

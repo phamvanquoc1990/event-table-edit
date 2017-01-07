@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,11 +24,14 @@ class eteHelper {
 	}
 	
 	public static function date_mysql_to_german($date, $format) {
-		if ($date == NULL) {
+
+		//if($date == '0000-00-00'){ return '00-00-0000';}
+		if ($date == NULL || $date == '0000-00-00' || $date == '&nbsp;') {
 			return NULL;
 		}
 		
-	    return strftime( $format, strtotime( $date ));
+	    return  strftime( $format, strtotime( $date )).'~'.$date;
+	    
 	}
 	
 	public static function format_time($time, $format) {
@@ -38,10 +41,10 @@ class eteHelper {
 		return strftime( $format, strtotime( $time ));
 	}
 
-	public static function parseBoolean($cell) {
+		public static function parseBoolean($cell) {
 		if ($cell != '' && $cell != null) {
 			if ((int) $cell == 1) {
-	  			$cell = '<img src="' . JURI::root() . 'administrator/components/com_eventtableedit/template/images/cross.png">';
+	  			$cell = '<img src="' . JURI::root() . 'components/com_eventtableedit/template/images/cross.png">';
 			}
 			else if ((int) $cell == 0) {
 				$cell = '<img src="' . JURI::root() . 'components/com_eventtableedit/template/images/tick.png">';

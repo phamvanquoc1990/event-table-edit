@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2011 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,7 +17,9 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	protected $id;
 	protected $csvHeadLine;
 	protected $separator;
+
 	protected $doubleqt;
+	protected $checkfun;
 	protected $heads;
 	
 	function __construct() {
@@ -46,10 +48,12 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	/**
 	 * Pseudo constructor for setting the variables
 	 */
-	public function setVariables($id, $separator, $doubleqt) {
+		public function setVariables($id, $separator, $doubleqt,$checkfun) {
 		$this->id = $id;
 		$this->separator = $separator;
 		$this->doubleqt = $doubleqt;
+	 	$this->checkfun = $checkfun;
+		
 	}
 	
 	/**
@@ -139,6 +143,8 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	}
 	
 	protected function readCsvFile($startRow = 0) {
+		$app = JFactory::getApplication();
+		$checkfun =  $app->input->get('checkfun');
 		$fp = fopen(JPATH_BASE.DS.'components'.DS.'com_eventtableedit'.DS.'tmpUpload.csv', 'r');
 
 		if (!$fp) {
@@ -160,7 +166,7 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 			if (empty($row)) continue;
 
 			$data = $this->readCsvLine($row);
-			$this->insertRowToDb($data, $startRow + $lineCount);
+			$this->insertRowToDb($data, $startRow + $lineCount,$checkfun);
 			$lineCount++;
 		}
 		fclose($fp);
@@ -225,13 +231,20 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 	/**
 	 * Writes one csv data row to the db
 	 */
-	protected function insertRowToDb($data, $ordering) {
+	protected function insertRowToDb($data, $ordering,$checkfun) {
 		$user = JFactory::getUser();
+		
 		$data = $this->prepareDataForDb($data);
+		
 
-		// NULL replace with free //
-		$newdata = str_replace('NULL', "'free'", implode(', ', $data));
-		// END NULL replace with free //
+		if($checkfun == 1){
+			// NULL replace with free //
+			$newdata = str_replace('NULL', "'free'", implode(', ', $data));
+			// END NULL replace with free //
+		}else{
+			$newdata =implode(', ', $data);
+		}
+
 
 
 		

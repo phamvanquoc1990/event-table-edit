@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2011 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +18,7 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 	protected $importaction;
 	protected $separator;
 	protected $doubleqt;
+	protected $checkfun;
 	protected $model;
 	
 	function __construct() {
@@ -38,6 +39,7 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 		// Initialize Variables
 		$this->model = $this->getModel('xmlimport');
 		$this->file = $input->files->get('fupload');
+		$this->checkfun    = @$postget['checkfun']; 
 		$info = pathinfo(basename($this->file['name']));
 		$ext = strtolower($info['extension']);
 		
@@ -63,6 +65,7 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 			$xml['temps'] = 1;	
 		}
 		$xml['alias']= substr(md5(rand()), 0, 7);
+		$xml['checkfun']=$this->checkfun?$this->checkfun:'0';
 		$model = $this->getModel('Etetable','EventtableeditModel');
 		$tablesave = $model->saveXml($xml);
 		if($tablesave > 0){

@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -81,11 +81,16 @@ td.tablesaw-priority-50 a {
 <?php
 $sorting_enable = 'data-tablesaw-minimap ';
 $switcher_enable = 'columntoggle';
+if(@$_REQUEST['mode']){
+	$tmodes = $_REQUEST['mode'];
+}else{
+	$tmodes = $switcher_enable;
+}
+
 if($this->item->sorting == 1){
 	$sorting_enable .= 'data-tablesaw-sortable data-tablesaw-sortable-switch ';
 }
 if($this->item->switcher == 1){
-	//$switcher_enable = 'columntoggle';
 	$sorting_enable .= 'data-tablesaw-mode-switch';
 }
 ?>
@@ -143,17 +148,3 @@ if($this->item->switcher == 1){
 	} ?>
 	</tbody>
 </table>
-
-
-<script type="text/javascript">
-	
-jQuery( document ).ready(function() {
-   
-   jQuery( ".etetable-saveicon" ).live( "click", function() {
-    	document.adminForm.task.value = 'etetable.saveOrder';
-		document.adminForm.submit();
-});
-});
-
-
-</script>

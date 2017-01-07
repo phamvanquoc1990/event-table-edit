@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -341,7 +341,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 					$this->updateRowsTablefromxml('0',$newId,$table->id,$datatype);
 				}
 			}
-			$this->Insertrowfromxml($table->id,$data['rowdata']['linerow']);
+			$this->Insertrowfromxml($table->id,$data['rowdata']['linerow'],$data['checkfun']);
 
 		}
 	
@@ -378,7 +378,7 @@ class EventtableeditModelEtetable extends JModelAdmin {
 
 	}
 
-	public function Insertrowfromxml($id,$prerow){
+	public function Insertrowfromxml($id,$prerow,$checkfun){
 
 			
 		$db = JFactory::getDBO();
@@ -399,7 +399,11 @@ class EventtableeditModelEtetable extends JModelAdmin {
 
 				$checkstring = str_replace("'", "\'",$reocrddata[$p]);
 				if(is_array($checkstring)){
+					if($checkfun == 1){
+					$checkstring = 'free';
+					}else{
 					$checkstring = '&nbsp;';
+					}
 				}
 				$nbspstring .= '"'.$checkstring.'",';
 			}

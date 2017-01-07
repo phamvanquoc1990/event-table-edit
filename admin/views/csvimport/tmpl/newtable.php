@@ -1,7 +1,7 @@
 <?php
 /**
  * $Id:$
- * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright (C) 2007 - 2011 Manuel Kaspar
  * @license GNU/GPL, see LICENSE.php in the installation package
  * This file is part of Event Table Edit
  *
@@ -21,6 +21,11 @@
 
 // no direct access
 defined( '_JEXEC' ) or die;
+
+$app = JFactory::Getapplication();
+$checkfun = $app->input->get('checkfun');
+
+
 ?>
 
 <script type="text/javascript">
@@ -63,5 +68,6 @@ defined( '_JEXEC' ) or die;
 		</fieldset>
 	</div>
 	<input type="hidden" name="task" value="" />
+		<input type="hidden" name="checkfun" value="<?php echo $checkfun?$checkfun:'0'; ?>" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>

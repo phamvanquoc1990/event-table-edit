@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -23,19 +23,25 @@ if ($this->item->show_first_row) :?>
 for($colCount = 0; $colCount < count($this->rows[0]) - 1; $colCount++) { 
 	$atemptime = '';
 	if($this->heads[$colCount]->datatype == 'date'){
-		$DT = explode('.',$this->rows[$this->rowCount][$colCount]);
+
+		
 		if($this->rows[$this->rowCount][$colCount] == '&nbsp;' || $this->rows[$this->rowCount][$colCount] == '' || $this->rows[$this->rowCount][$colCount] == ' '){
 			$atemptime = '<input type="hidden" value="0">';
 		}else{
-			$ymd=$DT[2].'-'.$DT[1].'-'.$DT[0];
+			$DT = explode('~',$this->rows[$this->rowCount][$colCount]);
+			$ymd=$DT[1];
+			$this->rows[$this->rowCount][$colCount] = $DT['0'];
 		$atemptime = '<input type="hidden" value="'.strtotime($ymd).'">';
 		}
 	}else if($this->heads[$colCount]->datatype == 'boolean'){
 		$pos = strpos($this->rows[$this->rowCount][$colCount],'cross.png');
+		$pos1 = strpos($this->rows[$this->rowCount][$colCount],'tick.png');
 		if ($pos !== false) {
 			$atemptime = '<input type="hidden" value="0">';
-		} else {
+		} else if($pos1 !== false){
 			$atemptime = '<input type="hidden" value="1">';
+		}else{
+			$atemptime = '<input type="hidden" value="2">';
 		}
 	}else if($this->heads[$colCount]->datatype == 'float'){
 			$float_val = str_replace(',','.',$this->rows[$this->rowCount][$colCount]);
