@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -23,10 +23,18 @@ if ($this->item->show_first_row) :?>
 $thcount = 0;
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
+$cont = round(count($this->heads)/12);
 
-$cont = round((count($this->heads)+ $this->item->show_first_row)/6);
+//$cont = round((count($this->heads)+ $this->item->show_first_row)/6);
 //$cont = 1;
-
+$main  = JFactory::getApplication()->input;
+$postget = $main->getArray($_REQUEST);
+if(@$postget['sort']){
+$sortdynamic = explode('_', $postget['sort']);
+$sortdynamic = $sortdynamic[0];
+}else{
+	$sortdynamic = 0;
+}
 $j=0;
 foreach ($this->heads as $head) { 
 	/*if($head->head == 'link' || $head->head == 'mail'){
@@ -47,7 +55,7 @@ foreach ($this->heads as $head) {
 				$myclass = $thcount.' '.$classofdynamic;
 				}
 ?>
-	<th class="evth<?php echo $myclass; ?>"  data-tablesaw-sortable-col="" data-tablesaw-priority="<?php echo $priority; ?>" scope="col"><?php 	echo trim($head->name);?></th>
+	<th class="evth<?php echo $myclass; ?>"  data-tablesaw-sortable-col="" <?php //if($j==$sortdynamic){ echo 'data-tablesaw-sortable-default-col="true"'; }  ?> data-tablesaw-priority="<?php echo $priority; ?>" scope="col"><?php 	echo trim($head->name);?></th>
 	<?php
 	
 	if($j%$cont == 0){

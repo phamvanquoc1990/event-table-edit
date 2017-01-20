@@ -6,7 +6,7 @@
 
  * @package		eventtableedit
 
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
 
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
 
@@ -86,7 +86,7 @@ $effectiveDate    = strtotime("-$hoursitem hours", strtotime($bookdats));
 
 	 */ ?>
 
-	<td class="etetable-row_<?php echo $this->rowCount . '_' . $colCount.' '.$mydyanmiclass.' '.$temptd ; ?>" 
+	<td class="etetable-row_<?php echo $this->rowCount . '_' . $colCount.'  '.$temptd ; ?>" 
 
 		id="etetable-row_<?php echo $this->rowCount . '_' . $colCount; ?>">
 

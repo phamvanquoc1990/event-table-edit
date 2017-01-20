@@ -1,6 +1,6 @@
 /*
  * $Id: $
- * @copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright (C) 2007 - 2010 Manuel Kaspar
  * @license GNU/GPL
  */
 
@@ -51,7 +51,7 @@ function addClickEvent(row) {
 	var mycells = tableProperties.myTable.tBodies[0].rows[row].cells;
 	var endCell = tableProperties.nmbCells + tableProperties.show_first_row;
 
-	var constt = Math.round(endCell/6);
+	var constt = Math.round(endCell/12);
 	//var constt = 2;
 
 	var j=0;
@@ -67,7 +67,7 @@ function addClickEvent(row) {
 		);
 		var aa = parseInt(a);
 		var dd = '';
-		if(aa == 1){
+		if(aa == 0){
 			dd = ' title';
 		}else{
 			dd = ' tablesaw-priority-'+z;

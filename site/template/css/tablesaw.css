@@ -623,6 +623,18 @@ table.tablesaw thead td {
 
   .tablesaw-columntoggle th.tablesaw-priority-50,
   .tablesaw-columntoggle td.tablesaw-priority-50,
+  .tablesaw-columntoggle th.tablesaw-priority-12,
+  .tablesaw-columntoggle td.tablesaw-priority-12,
+  .tablesaw-columntoggle th.tablesaw-priority-11,
+  .tablesaw-columntoggle td.tablesaw-priority-11,
+  .tablesaw-columntoggle th.tablesaw-priority-10,
+  .tablesaw-columntoggle td.tablesaw-priority-10,
+  .tablesaw-columntoggle th.tablesaw-priority-9,
+  .tablesaw-columntoggle td.tablesaw-priority-9,
+  .tablesaw-columntoggle th.tablesaw-priority-8,
+  .tablesaw-columntoggle td.tablesaw-priority-8,
+  .tablesaw-columntoggle th.tablesaw-priority-7,
+  .tablesaw-columntoggle td.tablesaw-priority-7,
   .tablesaw-columntoggle th.tablesaw-priority-6,
   .tablesaw-columntoggle td.tablesaw-priority-6,
   .tablesaw-columntoggle th.tablesaw-priority-5,
@@ -657,6 +669,8 @@ table.tablesaw thead td {
 /* Show priority 1 at 320px (20em x 16px) */
 
 @media (min-width: 20em) {
+  .tablesaw-columntoggle th.tablesaw-priority-50,
+  .tablesaw-columntoggle td.tablesaw-priority-50,
   .tablesaw-columntoggle th.tablesaw-priority-1,
   .tablesaw-columntoggle td.tablesaw-priority-1 {
     display: table-cell;
@@ -665,7 +679,7 @@ table.tablesaw thead td {
 
 /* Show priority 2 at 480px (30em x 16px) */
 
-@media (min-width: 30em) {
+@media (min-width: 25em) {
   .tablesaw-columntoggle th.tablesaw-priority-2,
   .tablesaw-columntoggle td.tablesaw-priority-2 {
     display: table-cell;
@@ -674,20 +688,17 @@ table.tablesaw thead td {
 
 /* Show priority 3 at 640px (40em x 16px) */
 
-@media (min-width: 40em) {
+@media (min-width: 30em) {
   .tablesaw-columntoggle th.tablesaw-priority-3,
   .tablesaw-columntoggle td.tablesaw-priority-3 {
     display: table-cell;
   }
 
-  .tablesaw-columntoggle tbody td {
-    line-height: 2;
-  }
-}
+
 
 /* Show priority 4 at 800px (50em x 16px) */
 
-@media (min-width: 50em) {
+@media (min-width: 35em) {
   .tablesaw-columntoggle th.tablesaw-priority-4,
   .tablesaw-columntoggle td.tablesaw-priority-4 {
     display: table-cell;
@@ -696,7 +707,7 @@ table.tablesaw thead td {
 
 /* Show priority 5 at 960px (60em x 16px) */
 
-@media (min-width: 60em) {
+@media (min-width: 40em) {
   .tablesaw-columntoggle th.tablesaw-priority-5,
   .tablesaw-columntoggle td.tablesaw-priority-5 {
     display: table-cell;
@@ -705,7 +716,7 @@ table.tablesaw thead td {
 
 /* Show priority 6 at 1,120px (70em x 16px) */
 
-@media (min-width: 70em) {
+@media (min-width: 45em) {
   .tablesaw-columntoggle th.tablesaw-priority-6,
   .tablesaw-columntoggle td.tablesaw-priority-6 {
     display: table-cell;
@@ -713,13 +724,151 @@ table.tablesaw thead td {
 }
 
 
-@media (min-width: 80em) {
-  .tablesaw-columntoggle th.tablesaw-priority-50,
-  .tablesaw-columntoggle td.tablesaw-priority-50 {
+
+@media (min-width: 50em) {
+  .tablesaw-columntoggle th.tablesaw-priority-7,
+  .tablesaw-columntoggle td.tablesaw-priority-7 {
+    display: table-cell;
+  }
+}
+  
+@media (min-width: 55em) {
+  .tablesaw-columntoggle th.tablesaw-priority-8,
+  .tablesaw-columntoggle td.tablesaw-priority-8 {
+    display: table-cell;
+  }
+}
+@media (min-width: 60em) {
+  .tablesaw-columntoggle th.tablesaw-priority-9,
+  .tablesaw-columntoggle td.tablesaw-priority-9 {
+    display: table-cell;
+  }
+}
+@media (min-width: 65em) {
+  .tablesaw-columntoggle th.tablesaw-priority-10,
+  .tablesaw-columntoggle td.tablesaw-priority-10 {
+    display: table-cell;
+  }
+}
+@media (min-width: 70em) {
+  .tablesaw-columntoggle th.tablesaw-priority-11,
+  .tablesaw-columntoggle td.tablesaw-priority-11 {
     display: table-cell;
   }
 }
 
+@media (min-width: 75em) {
+  .tablesaw-columntoggle th.tablesaw-priority-12,
+  .tablesaw-columntoggle td.tablesaw-priority-12 {
+    display: table-cell;
+  }
+}
+/*
+@media (min-width: 47.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-13,
+  .tablesaw-columntoggle td.tablesaw-priority-13 {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 50em) {
+  .tablesaw-columntoggle th.tablesaw-priority-14,
+  .tablesaw-columntoggle td.tablesaw-priority-14 {
+    display: table-cell;
+  }
+}
+
+
+@media (min-width: 52.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-15,
+  .tablesaw-columntoggle td.tablesaw-priority-15 {
+    display: table-cell;
+  }
+}
+
+
+@media (min-width: 55em) {
+  .tablesaw-columntoggle th.tablesaw-priority-16,
+  .tablesaw-columntoggle td.tablesaw-priority-16 {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 57.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-17,
+  .tablesaw-columntoggle td.tablesaw-priority-17 {
+    display: table-cell;
+  }
+}
+
+
+@media (min-width: 60em) {
+  .tablesaw-columntoggle th.tablesaw-priority-18,
+  .tablesaw-columntoggle td.tablesaw-priority-18 {
+    display: table-cell;
+  }
+}
+
+
+
+@media (min-width: 62.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-19,
+  .tablesaw-columntoggle td.tablesaw-priority-19 {
+    display: table-cell;
+  }
+}
+
+
+@media (min-width: 65em) {
+  .tablesaw-columntoggle th.tablesaw-priority-20,
+  .tablesaw-columntoggle td.tablesaw-priority-20 {
+    display: table-cell;
+  }
+}
+
+
+
+@media (min-width: 67.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-21,
+  .tablesaw-columntoggle td.tablesaw-priority-21 {
+    display: table-cell;
+  }
+}
+
+
+@media (min-width: 70em) {
+  .tablesaw-columntoggle th.tablesaw-priority-22,
+  .tablesaw-columntoggle td.tablesaw-priority-22 {
+    display: table-cell;
+  }
+}
+
+
+
+@media (min-width: 72.5em) {
+  .tablesaw-columntoggle th.tablesaw-priority-23,
+  .tablesaw-columntoggle td.tablesaw-priority-23 {
+    display: table-cell;
+  }
+}
+
+
+
+
+@media (min-width: 75em) {
+  .tablesaw-columntoggle th.tablesaw-priority-24,
+  .tablesaw-columntoggle td.tablesaw-priority-24 {
+    display: table-cell;
+  }
+}
+*/
+
+
+
+.tablesaw-columntoggle tbody td {
+    line-height: 2;
+  }
+}
 @media only all {
   /* Unchecked manually: Always hide */
 

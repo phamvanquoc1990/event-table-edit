@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -23,7 +23,7 @@ if ($this->item->show_first_row) :?>
 $thcount = 0;
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
-$cont = round(count($this->heads)/6);
+$cont = round(count($this->heads)/12);
 $j=0;
 $ars = 0;
 foreach ($this->heads as $head) { 

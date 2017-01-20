@@ -2,7 +2,7 @@
 /**
  * @version		$Id: $
  * @package		eventtableedit
- * @copyright	Copyright (C) 2007 - 2017 Manuel Kaspar and Matthias Gruhn
+ * @copyright	Copyright (C) 2007 - 2010 Manuel Kaspar
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -79,14 +79,16 @@ td.tablesaw-priority-50 a {
 }
  </style>
 <?php
+$main  = JFactory::getApplication()->input;
+$postget = $main->getArray($_REQUEST);
 $sorting_enable = 'data-tablesaw-minimap ';
 $switcher_enable = 'columntoggle';
-if(@$_REQUEST['mode']){
-	$tmodes = $_REQUEST['mode'];
+if(@$postget['mode']){
+	$tmodes = $postget['mode'];
 }else{
 	$tmodes = $switcher_enable;
 }
-
+$sortdy = @$postget['sort']?@$postget['sort']:'0_asc';
 if($this->item->sorting == 1){
 	$sorting_enable .= 'data-tablesaw-sortable data-tablesaw-sortable-switch ';
 }
@@ -94,7 +96,7 @@ if($this->item->switcher == 1){
 	$sorting_enable .= 'data-tablesaw-mode-switch';
 }
 ?>
-<table class="tablesaw" id="etetable-table" data-tablesaw-mode="<?php echo $switcher_enable; ?>"  <?php echo $sorting_enable; ?>>
+<table class="tablesaw" id="etetable-table" data-tablesaw-mode="<?php echo $tmodes; ?>"  <?php echo $sorting_enable; ?>>
 	<thead class="etetable-thead">
 		<tr>
 			<?php echo $this->loadTemplate('thead'); ?>
