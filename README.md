@@ -9,6 +9,7 @@ Demo site for backend and frontend (includes appointment table): http://demo.eve
 ## I Version history
 
 For version 4.4.2:
+
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/31: Sorting row column disappears in toggle view
 
