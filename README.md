@@ -12,7 +12,7 @@ Demo site for backend and frontend (includes appointment table): http://demo.eve
 - Sorting options
 - Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
 - Multiple appointment booking function with confirmation email and ICAL calendar (.ics file) attachment
-- Complete rights management (Joomla ACL)
+- Complete rights management (Joomla ACL: add/delete rows, edit cells, rearrange rows, administer table from frontend)
 - Multilingual (currently available: DE, EN)
 - CSV and TXT import with different formats (text, date, time, integer, float, boolean, link, mail) 
   and import settings (separator, values in quotes or not)
@@ -21,10 +21,13 @@ Demo site for backend and frontend (includes appointment table): http://demo.eve
 - Own CSS based template
 
 Frontend view options:
-- Sort columns
+- Sort columns (setting in rights management)
+- Delete rows (setting in rights management)
+- Add rows (setting in rights management)
 - Filter rows
 - Pagination
 - Print view
+- Administer table (setting in rights management)
 
 Backend options:
 
@@ -37,8 +40,10 @@ a) General
   + CSV Import and Export
 - Show or hide table title
 - Usertext before and after table
+- Show or hide column to delete or sort rows
 - Use Metadata
 - Enhanced SEO
+- Support BB-Code
 
 b) Layout / Style
 
