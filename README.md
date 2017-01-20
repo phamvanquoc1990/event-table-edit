@@ -6,7 +6,56 @@ Download latest version 4.4.2 (since 20.01.2017): https://github.com/Theophilix/
 
 Demo site for backend and frontend (includes appointment table): http://demo.eventtableedit.com 
 
-## I Version history
+## I Features:
+
+- Editable table (insert pictures, BBCode...)
+- Sorting options
+- Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
+- Multiple appointment booking function with confirmation email and ICAL calendar (.ics file) attachment
+- Complete rights management (Joomla ACL)
+- Multilingual (currently available: DE, EN)
+- CSV and TXT import with different formats (text, date, time, integer, float, boolean, link, mail) 
+  and import settings (separator, values in quotes or not)
+- CSV Export
+- XML import and export: import and export a table with all settings
+- Own CSS based template
+
+Frontend view options:
+- Sort columns
+- Filter rows
+- Pagination
+- Print view
+
+Backend options:
+
+a) General
+- Normal or appointment booking function
+- Options for appointment booking function:
+  + ICAL / .ics-File options (location, subject, name of file)
+  + Set admin email address and email display name
+  + Confirmation email settings (chose subject and message text with appointment-date and -time-variables)
+  + CSV Import and Export
+- Show or hide table title
+- Usertext before and after table
+- Use Metadata
+- Enhanced SEO
+
+b) Layout / Style
+
+Choose or select:
+- Date format
+- Time format
+- Float separator ("," or ".")
+- Cell spacing
+- Cell padding
+- Colors of alternating rows
+- Maximum length of cell content
+- Display table in the same, or a new window
+
+Please post all feature requests in the issues tab.
+
+
+## II Version history
 
 For version 4.4.2:
 
@@ -58,51 +107,4 @@ For version 4.2:
 - "Add weekdays to header" option added
 - Layout improvements in frontend and backend
 
-## II Features:
-
-- Editable table (insert pictures, BBCode...)
-- Sorting options
-- Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
-- Multiple appointment booking function with confirmation email and ICAL calendar (.ics file) attachment
-- Complete rights management (Joomla ACL)
-- Multilingual (currently available: DE, EN)
-- CSV and TXT import with different formats (text, date, time, integer, float, boolean, link, mail) 
-  and import settings (separator, values in quotes or not)
-- CSV Export
-- XML import and export: import and export a table with all settings
-- Own CSS based template
-
-Frontend view options:
-- Sort columns
-- Filter rows
-- Pagination
-- Print view
-
-Backend options:
-
-a) General
-- Normal or appointment booking function
-- Options for appointment booking function:
-  + ICAL / .ics-File options (location, subject, name of file)
-  + Set admin email address and email display name
-  + Confirmation email settings (chose subject and message text with appointment-date and -time-variables)
-  + CSV Import and Export
-- Show or hide table title
-- Usertext before and after table
-- Use Metadata
-- Enhanced SEO
-
-b) Layout / Style
-
-Choose or select:
-- Date format
-- Time format
-- Float separator ("," or ".")
-- Cell spacing
-- Cell padding
-- Colors of alternating rows
-- Maximum length of cell content
-- Display table in the same, or a new window
-
-Please post all feature requests in the issues tab.
 
