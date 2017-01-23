@@ -235,7 +235,7 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 		$user = JFactory::getUser();
 		
 		$data = $this->prepareDataForDb($data);
-		
+
 
 		if($checkfun == 1){
 			// NULL replace with free //
@@ -248,9 +248,10 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 
 
 		
-		$query = 'INSERT INTO #__eventtableedit_rows_' . $this->id .
+		 $query = 'INSERT INTO #__eventtableedit_rows_' . $this->id .
 				 ' (created_by, ordering, ' . implode(', ', $this->heads['name']) . ')' .
 				 ' VALUES (' . $user->get('id') . ', ' . $ordering . ', ' . $newdata . ')';
+				 
 		//echo $query;
 		$this->db->setQuery($query);
 		$this->db->query();
@@ -282,7 +283,7 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 				if($d == 'float'){
 					$data[$a] = "'" . str_replace(',','.', $data[$a]) . "'";
 				}else if($d == 'boolean'){
-					if($data[$a] == 'ja'){
+					if($data[$a] == 'ja' || $data[$a] == '0'){
 						$data[$a] = "'0'";
 					}else{
 						$data[$a] = "'1'";
