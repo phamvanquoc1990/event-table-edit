@@ -67,6 +67,8 @@ For version 4.4.3:
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/27: Locale not recognized (in date format) (?)
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/39: When adding a new row, refreshing page is necessary before editing cell.
+- Joomla update notification and update via Joomla administrator backend enabled. 
+
 
 For version 4.4.2:
 
