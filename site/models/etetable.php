@@ -560,7 +560,8 @@ class EventtableeditModelEtetable extends JModelList
 		//echo $query;
 		$this->db->setQuery($query);
 		$this->db->query();
-
+		$inserttempid = $this->db->insertid();
+		
 		$selectallrecords = "SELECT COUNT(id) AS row FROM #__eventtableedit_rows_" . $this->id;
 		$this->db->setQuery($selectallrecords);
 		$rwo = $this->db->loadResult();
@@ -569,7 +570,7 @@ class EventtableeditModelEtetable extends JModelList
 		$this->db->setQuery($updatecol);
 		$this->db->query();
 				
-		return $this->db->insertid() . '|' . $newOrdering;
+		return  $inserttempid. '|' . $newOrdering;
 	}
 	
 	/**

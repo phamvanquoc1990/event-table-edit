@@ -29,8 +29,11 @@ class eteHelper {
 		if ($date == NULL || $date == '0000-00-00' || $date == '&nbsp;') {
 			return NULL;
 		}
-		
-	    return  strftime( $format, strtotime( $date )).'~'.$date;
+		$lang = JFactory::getLanguage();
+		if($lang->getTag() == 'de-DE'){
+			setlocale(LC_TIME, 'de_DE', 'de_DE.UTF-8');
+		}
+	    return  utf8_encode(strftime( $format, strtotime( $date )));
 	    
 	}
 	
@@ -38,7 +41,11 @@ class eteHelper {
 		if ($time == NULL) {
 			return NULL;
 		}
-		return strftime( $format, strtotime( $time ));
+		$lang = JFactory::getLanguage();
+		if($lang->getTag() == 'de-DE'){
+			setlocale(LC_TIME, 'de_DE', 'de_DE.UTF-8');
+		}
+		return utf8_encode(strftime( $format, strtotime( $time )));
 	}
 
 		public static function parseBoolean($cell) {

@@ -28,10 +28,12 @@ for($colCount = 0; $colCount < count($this->rows[0]) - 1; $colCount++) {
 		if($this->rows[$this->rowCount][$colCount] == '&nbsp;' || $this->rows[$this->rowCount][$colCount] == '' || $this->rows[$this->rowCount][$colCount] == ' '){
 			$atemptime = '<input type="hidden" value="0">';
 		}else{
-			$DT = explode('~',$this->rows[$this->rowCount][$colCount]);
-			$ymd=$DT[1];
-			$this->rows[$this->rowCount][$colCount] = $DT['0'];
-		$atemptime = '<input type="hidden" value="'.strtotime($ymd).'">';
+		//	$DT = explode('~',$this->rows[$this->rowCount][$colCount]);
+			//$ymd=$DT[1];
+			$tempdates = $this->rows[$this->rowCount][$colCount];
+			
+			$tempdates = date('Y-m-d',strtotime($tempdates));
+		$atemptime = '<input type="hidden" value="'.strtotime($tempdates).'">';
 		}
 	}else if($this->heads[$colCount]->datatype == 'boolean'){
 		$pos = strpos($this->rows[$this->rowCount][$colCount],'cross.png');
