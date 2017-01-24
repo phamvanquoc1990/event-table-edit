@@ -62,7 +62,7 @@ Please post all feature requests in the issues tab.
 
 ## II Version history
 
-For version 4.4.2:
+For version 4.4.3:
 
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/27: Locale not recognized (in date format) (?)
