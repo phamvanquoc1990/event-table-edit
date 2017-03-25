@@ -23,8 +23,13 @@ if ($this->item->show_first_row) :?>
 $thcount = 0;
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
+if(count($this->heads) > 6){
 $cont = round(count($this->heads)/12);
-
+}else if(count($this->heads) > 3 && count($this->heads) < 6){
+$cont = round(count($this->heads)/6);
+}else{
+	$cont = 1;
+}
 //$cont = round((count($this->heads)+ $this->item->show_first_row)/6);
 //$cont = 1;
 $main  = JFactory::getApplication()->input;
@@ -36,7 +41,12 @@ $sortdynamic = $sortdynamic[0];
 	$sortdynamic = 0;
 }
 $j=0;
+$doc = JFactory::getDocument();
 foreach ($this->heads as $head) { 
+	$sortcalss = '';
+	if($head->datatype == 'text'){
+		$sortcalss = 'custom-sort'.$head->id;	
+	}
 	/*if($head->head == 'link' || $head->head == 'mail'){
 		$priority = "persist";
 		$classofdynamic = "";
@@ -55,7 +65,7 @@ foreach ($this->heads as $head) {
 				$myclass = $thcount.' '.$classofdynamic;
 				}
 ?>
-	<th class="evth<?php echo $myclass; ?>"  data-tablesaw-sortable-col="" <?php //if($j==$sortdynamic){ echo 'data-tablesaw-sortable-default-col="true"'; }  ?> data-tablesaw-priority="<?php echo $priority; ?>" scope="col"><?php 	echo trim($head->name);?></th>
+	<th class="evth<?php echo $myclass; ?>" id="<?php echo $sortcalss; ?>"  data-tablesaw-sortable-col="" <?php //if($j==$sortdynamic){ echo 'data-tablesaw-sortable-default-col="true"'; }  ?> data-tablesaw-priority="<?php echo $priority; ?>" scope="col"><?php 	echo trim($head->name);?></th>
 	<?php
 	
 	if($j%$cont == 0){

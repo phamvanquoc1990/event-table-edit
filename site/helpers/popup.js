@@ -579,7 +579,7 @@ BuildPopupWindow.prototype.sendData = function() {
 		self.removePopup();
 		removeLoad();
 		jQuery('.tablesaw-modeswitch select').trigger('change');
-		window.location.reload();
+		
 	}
 	}).send();
 }

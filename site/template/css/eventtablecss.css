@@ -49,7 +49,12 @@
  	margin-top: 15px;
 
  }
-
+.etetable-button .filtersub {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0 !important;
+    border: medium none;
+    box-shadow: none;
+    width: 100%;
+}
  
 
  .etetable-filter form {
@@ -1343,6 +1348,10 @@ text-decoration: none;
 }
 #etetable-table tbody td{
 	font-size: 9pt !important;
+}
+
+.input-append.filterstext {
+    margin-left: 4px;
 }
 @media only screen and (min-width : 300px) and (max-width : 640px) {
 	.orangeclass {

@@ -679,7 +679,7 @@ table.tablesaw thead td {
 
 /* Show priority 2 at 480px (30em x 16px) */
 
-@media (min-width: 25em) {
+@media (min-width: 30em) {
   .tablesaw-columntoggle th.tablesaw-priority-2,
   .tablesaw-columntoggle td.tablesaw-priority-2 {
     display: table-cell;
@@ -688,7 +688,7 @@ table.tablesaw thead td {
 
 /* Show priority 3 at 640px (40em x 16px) */
 
-@media (min-width: 30em) {
+@media (min-width: 40em) {
   .tablesaw-columntoggle th.tablesaw-priority-3,
   .tablesaw-columntoggle td.tablesaw-priority-3 {
     display: table-cell;
@@ -698,7 +698,7 @@ table.tablesaw thead td {
 
 /* Show priority 4 at 800px (50em x 16px) */
 
-@media (min-width: 35em) {
+@media (min-width: 50em) {
   .tablesaw-columntoggle th.tablesaw-priority-4,
   .tablesaw-columntoggle td.tablesaw-priority-4 {
     display: table-cell;
@@ -707,7 +707,7 @@ table.tablesaw thead td {
 
 /* Show priority 5 at 960px (60em x 16px) */
 
-@media (min-width: 40em) {
+@media (min-width: 60em) {
   .tablesaw-columntoggle th.tablesaw-priority-5,
   .tablesaw-columntoggle td.tablesaw-priority-5 {
     display: table-cell;
@@ -716,7 +716,7 @@ table.tablesaw thead td {
 
 /* Show priority 6 at 1,120px (70em x 16px) */
 
-@media (min-width: 45em) {
+@media (min-width: 70em) {
   .tablesaw-columntoggle th.tablesaw-priority-6,
   .tablesaw-columntoggle td.tablesaw-priority-6 {
     display: table-cell;
@@ -725,7 +725,7 @@ table.tablesaw thead td {
 
 
 
-@media (min-width: 50em) {
+@media (min-width: 80em) {
   .tablesaw-columntoggle th.tablesaw-priority-7,
   .tablesaw-columntoggle td.tablesaw-priority-7 {
     display: table-cell;

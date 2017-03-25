@@ -50,8 +50,13 @@ function addClickEvent(row) {
 	
 	var mycells = tableProperties.myTable.tBodies[0].rows[row].cells;
 	var endCell = tableProperties.nmbCells + tableProperties.show_first_row;
-
-	var constt = Math.round(endCell/12);
+	if(endCell > 6){
+		var constt = Math.round(endCell/12);
+	}else if(endCell > 3 && endCell < 6){
+		var constt = Math.round(endCell/6);
+	}else{
+		var constt = 1;	
+	}
 	//var constt = 2;
 
 	var j=0;

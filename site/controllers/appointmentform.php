@@ -343,7 +343,8 @@ END:VCALENDAR';
 				$description_adminbody = str_replace('{date}',$replace_onlydate, $description_adminbody);
 				$description_adminbody = str_replace('{time}',$replace_onlytime, $description_adminbody);
 				
-				$adminbody   = $this->escapeString($description_adminbody);
+				//$adminbody   = $this->escapeString($description_adminbody);
+				$adminbody   = $description_adminbody;
 				$mailer->setSender($sender);		
 				$mailer->addRecipient($tableeditpostalldata->email);
 				$mailer->isHTML(true);

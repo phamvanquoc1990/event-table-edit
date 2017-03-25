@@ -60,6 +60,10 @@ class EventtableeditModelEtetable extends JModelList
 		$this->setState('list.ordering', $app->getUserStateFromRequest($pk . '.filter_order', 'filter_order', 'a.ordering', 'string'));
 		$this->setState('list.direction', $app->getUserStateFromRequest($pk . '.filter_order_Dir',	'filter_order_Dir', 'asc', 'cmd'));
 
+
+		$this->setState('filterstring', $app->getUserStateFromRequest($pk . '.filterstring', 'filterstring', '', 'string'));
+		$this->setState('filterstring1', $app->getUserStateFromRequest($pk . '.filterstring1', 'filterstring1', '', 'string'));
+
 		$this->setState('list.start',$main->getInt('limitstart', '0'));
 	}
 	
@@ -386,7 +390,9 @@ class EventtableeditModelEtetable extends JModelList
 		// Filter
 		$filter = $this->filterRows();
 		if ($filter != false) {
-			$query->where($filter);
+			$ex = explode('~', $filter);
+			$query->where($ex[0]);
+			$query->where($ex[1]);
 		}
 	
 		return $query;
@@ -398,17 +404,19 @@ class EventtableeditModelEtetable extends JModelList
 	  */
 	 private function filterRows() {
 	 	$main  = JFactory::getApplication()->input;
-		$this->filter = 	$main->get('filterstring');
-	
+		 $filter1 = 	$this->getState('filterstring1','');
+		$this->filter = $this->getState('filterstring', '');
 
-		if ($this->filter == '') {
+		if ($this->filter == '' && $filter1 == '') {
 			return false;
 		}
 
 		$this->filter = str_replace('*', '%', $this->filter);
-	
+		$filter1 = str_replace('*', '%', $filter1);
 		$queryAr = array();
-		$likeQuery = 'LIKE "'. "%". htmlentities($this->filter, ENT_QUOTES, 'utf-8') . "%". '"';
+		$queryAr1 = array();
+		$likeQuery = 'LIKE "'. "%". $this->filter . "%". '"';
+		$likeQuery1 = 'LIKE "'. "%". $filter1 . "%". '"';
 	
 		// Get Heads
 		if (!isset($this->heads)) {
@@ -420,12 +428,22 @@ class EventtableeditModelEtetable extends JModelList
 		
 		foreach($this->heads as $head) {
 			$queryAr[] = 'head_' . $head->id . ' ' . $likeQuery;
+			$queryAr1[] = 'head_' . $head->id . ' ' . $likeQuery1;
 		}
 	
 		$query = implode(' OR ', $queryAr);
-		//echo $query;
+		$query1 = implode(' OR ', $queryAr1);
+		
+		if ($this->filter == '') {
+			$query = '1=1';			
+		}
 
-		return $query;  
+		if ($filter1 == '') {
+			$query1 = '1=1';			
+		}
+
+		  $query2 = $query.'~'.$query1;
+		return $query2;  
 	 }
 
 	 /**
@@ -496,6 +514,9 @@ class EventtableeditModelEtetable extends JModelList
 		// Translating mySQL Date
 		if ($dt == "date") {
 			$cell = eteHelper::date_mysql_to_german($cell, $this->_item->dateformat);
+			if($cell == ''){
+				$cell = '<input value="0" type="hidden">';
+			}
 		}
 		// Translate Time
 		else if ($dt == "time") {

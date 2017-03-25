@@ -23,7 +23,7 @@ class eteHelper {
 	    return    sprintf("%04d.%02d.%02d", $d[2], $d[1], $d[0]);
 	}
 	
-	public static function date_mysql_to_german($date, $format) {
+		public static function date_mysql_to_german($date, $format) {
 
 		//if($date == '0000-00-00'){ return '00-00-0000';}
 		if ($date == NULL || $date == '0000-00-00' || $date == '&nbsp;') {
@@ -33,7 +33,8 @@ class eteHelper {
 		if($lang->getTag() == 'de-DE'){
 			setlocale(LC_TIME, 'de_DE', 'de_DE.UTF-8');
 		}
-	    return  utf8_encode(strftime( $format, strtotime( $date )));
+		$hidden = '<input type="hidden" value="'.strtotime( $date ).'">';
+	    return  $hidden.utf8_encode(strftime( $format, strtotime( $date )));
 	    
 	}
 	
