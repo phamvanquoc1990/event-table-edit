@@ -1,15 +1,15 @@
 # Event Table Edit
 Event Table Edit (abbrev. ETE) is a free and open source table plugin for Joomla 2.5, 3.x and above (original author: Manuel Kaspar, continuation: Matthias Gruhn). With the plugin, you can create a responsive, editable table with CSV import and export function and XML export/import for table settings. It also has a full rights management (Joomla ACL). 
-You can  transform the table into an appointment booking system with confirmation emails for users and the admin, including iCal-calendar-files for both in the attachment. As it is based on a CSS-template, the layout of the table can be changed easily. The responsive function is based on the "Column Toggle Table with Mini Map" from the tablesaw plugins (https://github.com/filamentgroup/tablesaw).
+You can  transform the table into an appointment booking system with confirmation emails for users and the admin, including iCal calendar files for both in the attachment. As it is based on a CSS-template, the layout of the table can be changed easily. The responsive function is based on the "Column Toggle Table with Mini Map" from the tablesaw plugins (https://github.com/filamentgroup/tablesaw).
 
-Download latest version 4.4.2 (since 20.01.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
+Download latest version 4.5 (since 25.03.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
 Demo site for backend and frontend (includes appointment table): http://demo.eventtableedit.com 
 
 ## I Features:
 
 - Editable table (insert pictures, BBCode...)
-- Sorting options
+- Sorting options (A-Z, Z-A, natural sorting is used)
 - Choice of layout mode (stack, swipe, toggle) for enhanced responsiveness
 - Multiple appointment booking function with confirmation email and ICAL calendar (.ics file) attachment
 - Complete rights management (Joomla ACL: add/delete rows, edit cells, rearrange rows, administer table from frontend)
@@ -61,6 +61,30 @@ Please post all feature requests in the issues tab.
 
 
 ## II Version history
+
+For version 4.5:
+
+[1] Normal mode
+- enhancement: natural sorting, not perfect yet, but work on it will continue
+- bugfix: BBCode is working now
+- bugfix: php 7.1 modulo by zero
+- bugfix: 800px width (deleting column disappeared)
+- bugfix: sort date problem when deleting content of date cell
+- bugfix: dropdown fields error
+- bugfix: filter problem:  a) Umlaut ä/ö/ü + b) filter not working with enter key + c) value does not stay in filter input form after clicking on “show” -> now, 2 input fields
+- bugfix: firefox browser asks to refresh page after editing cells
+
+[2] Appointment mode
+- bugfix: admin doesn’t get email (was problem with „/“) + email does not show multiple appointments (example:  you have an appointment on 05.03.2017 / 06.03.2017 at 17:20 / 17:40)
+
+
+For version 4.4.3:
+
+[1] Normal mode
+- bug removed: https://github.com/Theophilix/event-table-edit/issues/27: Locale not recognized (in date format) (?)
+- bug removed: https://github.com/Theophilix/event-table-edit/issues/39: When adding a new row, refreshing page is necessary before editing cell.
+- Joomla update notification and update via Joomla administrator backend enabled. 
+
 
 For version 4.4.2:
 
