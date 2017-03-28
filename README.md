@@ -63,12 +63,13 @@ Please post all feature requests in the issues tab.
 ## II Version history
 
 For version 4.5.1:
+
 [1] Normal mode
 - bugfix: uploaded wrong stringparser file -> bbcode works now
 - bugfix: “deprecated” warnings in development debug mode
 
 [2] Appointment mode
--enhancement: https://github.com/Theophilix/event-table-edit/issues/41: Frontend / Appointment table: Edit table values directly for admins
+- enhancement: https://github.com/Theophilix/event-table-edit/issues/41: Frontend / Appointment table: admins can edit table values directly (change free -> reserved and vice versa)
 
 
 For version 4.5:
