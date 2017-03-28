@@ -69,7 +69,7 @@ For version 4.5.1:
 - bugfix: “deprecated” warnings in development debug mode
 
 [2] Appointment mode
-- enhancement: https://github.com/Theophilix/event-table-edit/issues/41: Frontend / Appointment table: admins can edit table values directly (change free -> reserved and vice versa)
+- enhancement: https://github.com/Theophilix/event-table-edit/issues/41: Frontend / Appointment table: admins can edit table values directly (change free -> reserved and vice versa) when logged in to frontend.
 
 
 For version 4.5:
