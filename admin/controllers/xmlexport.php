@@ -105,8 +105,8 @@ class EventtableeditControllerXmlexport extends JControllerLegacy {
 <location>'.$table->location.'</location>
 <summary>'.$table->summary.'</summary>
 <email>'.$table->email.'</email>
-<adminemailsubject>'.str_replace('&','&amp;',htmlentities($table->adminemailsubject)).'></adminemailsubject>
-<useremailsubject>'.str_replace('&','&amp;',htmlentities($table->useremailsubject)).'></useremailsubject>
+<adminemailsubject>'.str_replace('&','&amp;',htmlentities($table->adminemailsubject)).'</adminemailsubject>
+<useremailsubject>'.str_replace('&','&amp;',htmlentities($table->useremailsubject)).'</useremailsubject>
 <useremailtext>'.str_replace('&','&amp;',htmlentities($table->useremailtext)).'</useremailtext>
 <adminemailtext>'.str_replace('&','&amp;',htmlentities($table->adminemailtext)).'</adminemailtext>
 <displayname>'.$table->displayname.'</displayname>

@@ -179,7 +179,18 @@ class EventtableeditViewappointments extends JViewLegacy
 			
 			
 			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/tableAjax.js');
-			//$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js');
+			// Start appintment edit popup install // 
+			$user = JFactory::GetUser();
+			if(in_array(8,$user->groups)){
+				$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js');
+				$style = '.etetable-linecolor0{background-color:#fff;}';
+				$this->document->addStyleDeclaration( $style );
+				
+			}
+			if ($this->item->rowsort == 0) {
+			$this->document->addStyleDeclaration(".eventtableedit .tablesaw-priority-50 {display: none !important;}");;
+			}
+			// END appintment edit popup install // 
 		//	$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/jquery.js');
 		
 		}

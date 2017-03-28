@@ -199,8 +199,15 @@ class StringParser {
 	 *
 	 * @access public
 	 */
-	function StringParser () {
-	}
+	
+	public function __construct()
+    {
+        // Constructor's functionality here, if you have any.
+    }
+     public function StringParser()
+    {
+        self::__construct();
+    }
 	
 	/**
 	 * Add a filter
@@ -910,11 +917,20 @@ class StringParser_Node {
 	 *                        occurred at. If not determinable, it is -1.
 	 * @global __STRINGPARSER_NODE_ID
 	 */
-	function StringParser_Node ($occurredAt = -1) {
-		$this->_id = $GLOBALS['__STRINGPARSER_NODE_ID']++;
-		$this->occurredAt = $occurredAt;
+	public function __construct($occurredAt = -1)
+    {
+        // Constructor's functionality here, if you have any.
+       $this->_id = $GLOBALS['__STRINGPARSER_NODE_ID']++;
+	 	$this->occurredAt = $occurredAt;
+    }
+	public function StringParser_Node ($occurredAt = -1) {
+	 	
+	 	self::__construct($occurredAt = -1);
+	 	 
 	}
 	
+
+   
 	/**
 	 * Type of the node
 	 *
@@ -1248,7 +1264,7 @@ class StringParser_Node {
 	 * @param object $node The node to destroy
 	 * @return bool True on success, else false.
 	 */
-	function destroyNode (&$node) {
+	public static function destroyNode (&$node) {
 		if ($node === null) {
 			return false;
 		}
@@ -1486,10 +1502,21 @@ class StringParser_Node_Text extends StringParser_Node {
 	 *                        occurred at. If not determinable, it is -1.
 	 * @see StringParser_Node_Text::content
 	 */
-	function StringParser_Node_Text ($content, $occurredAt = -1) {
-		parent::StringParser_Node ($occurredAt);
-		$this->content = $content;
-	}
+	
+	public function __construct($content, $occurredAt = -1)
+    {
+         parent::StringParser_Node ($occurredAt);
+	 	$this->content = $content;
+    }
+
+    public function StringParser_Node_Text($content, $occurredAt = -1)
+    {
+        // PHP4-style constructor.
+        // This will NOT be invoked, unless a sub-class that extends `foo` calls it.
+        // In that case, call the new-style constructor to keep compatibility.
+        self::__construct($content, $occurredAt = -1);
+
+    }
 	
 	/**
 	 * Append text to content

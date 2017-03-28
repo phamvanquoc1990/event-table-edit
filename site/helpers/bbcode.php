@@ -183,7 +183,7 @@ function do_bbcode_style ($action, $attributes, $content, $params, $node_object)
 	    return true;
 	}
 	$attr=array();
-	if ( $attributes['color']!='') {
+	if (isset($attributes['color'])) {
 		$attr[] = 'color:'.$attributes['color'];
 	}
 	if ( $attributes['size']!='') {

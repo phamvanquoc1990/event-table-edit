@@ -27,6 +27,21 @@ JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers');
 $main  = JFactory::getApplication()->input;
 $Itemid = 	$main->getInt('Itemid', '');
 
+$uri = JFactory::getURI();
+$absolute_url = $uri->toString();
+$catUrl		  = $absolute_url;
+$findme   = '?';
+$pos = strpos($absolute_url, $findme);
+// The !== operator can also be used.  Using != would not work as expected
+// because the position of 'a' is 0. The statement (0 != false) evaluates
+// to false.
+if ($pos !== false) {
+	$absolute_url .= '&ajaxload=true';
+} else {
+	$absolute_url .= '?ajaxload=true';
+}
+
+
 if($this->item->sorting == 1){
 ?>
 <script>

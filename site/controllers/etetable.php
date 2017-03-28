@@ -44,14 +44,28 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 			return false;
 		}
 		$postget = $main->getArray($_POST);
-		
 		$cell    = $postget['cell'];
 		$content = $postget['content'];
-		
+		$db = JFactory::getDBO();
+		// START if appointment text changed from appointment view then code below is affected //
+		$gettable_settings = "SELECT * FROM #__eventtableedit_details WHERE id='".$postget['id']."'";
+		$db->setQuery($gettable_settings);
+		$current_table_settings = $db->loadobject();
 		//Get Model and perform action
 		$model = $this->getModel('etetable');
 		$ret = $model->saveCell($rowId, $cell, $content);
-		
+		if($current_table_settings->normalorappointment == 1){
+			if($ret == 'free'){
+				$ret =  '<span class="buleclass">'.JText::_(strtoupper($ret)).'</span>'; // free appointment
+			}else if($ret == 'reserved'){
+				$ret =  '<span class="redclass">'.JText::_(strtoupper($ret)).'</span>'; // reserved appointment
+			}else{
+				$ret = $ret;
+			}	
+		}else{
+			$ret = $ret;
+		}
+		// END if appointment text is changed from appointment view then code below is affected //
 		echo $ret;
 		exit;
 	}
