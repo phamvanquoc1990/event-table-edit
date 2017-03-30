@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension type="component" version="4.2" method="upgrade">
+<extension type="component" version="4.4.3" method="upgrade">
 	<name>com_eventtableedit</name>
-	<creationDate>25-06-2016</creationDate>
+	<creationDate>25-03-17</creationDate>
 	<author>Manuel Kaspar and Matthias Gruhn</author>
 	<license>GNU/GPL</license>
-	<copyright>2007 - 2016 Manuel Kaspar and Matthias Gruhn</copyright>
+	<copyright>2007 - 2017 Manuel Kaspar and Matthias Gruhn</copyright>
 	<authorEmail>webmaster@eventtableedit.com</authorEmail>
 	<authorUrl>http://www.eventtableedit.com</authorUrl>
-	<version>4.2</version>
+	<version>4.5</version>
 	<description>COM_EVENTTABLEEDIT_DESCRIPTION</description>
 
 	<scriptfile>script.php</scriptfile>
@@ -47,6 +47,8 @@
 			<menu view="dropdowns" img="components/com_eventtableedit/template/images/menu/dropdowns.png">COM_EVENTTABLEEDIT_DROPDOWNS</menu>
 			<menu view="csvimport" img="components/com_eventtableedit/template/images/menu/import.png">COM_EVENTTABLEEDIT_CSV_IMPORT</menu>
 			<menu view="csvexport" img="components/com_eventtableedit/template/images/menu/export.png">COM_EVENTTABLEEDIT_CSV_EXPORT</menu>
+			<menu view="xmlimport" img="components/com_eventtableedit/template/images/menu/import.png">COM_EVENTTABLEEDIT_MENUXML_IMPORT</menu>
+			<menu view="xmlexport" img="components/com_eventtableedit/template/images/menu/export.png">COM_EVENTTABLEEDIT_MENUXML_EXPORT</menu>
 		</submenu>
 
 		<files folder="admin">
@@ -72,6 +74,8 @@
 			<language tag="de-DE">language/de-DE/de-DE.com_eventtableedit.sys.ini</language>
 		</languages>
 	</administration>
-	
+	<updateservers>
+	    <server type="extension" priority="1" name="Event Table Edit Update Site"><![CDATA[https://update.eventtableedit.com/ete_update.xml]]></server>
+    </updateservers>
 	
 </extension>

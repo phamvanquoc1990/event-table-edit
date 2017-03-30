@@ -47,7 +47,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		$cell    = $postget['cell'];
 		$content = $postget['content'];
 		$db = JFactory::getDBO();
-		// START if appointment text changed from appointment view then code below is affected //
+		// START if appointment text changed from appointment view then below code is efected //
 		$gettable_settings = "SELECT * FROM #__eventtableedit_details WHERE id='".$postget['id']."'";
 		$db->setQuery($gettable_settings);
 		$current_table_settings = $db->loadobject();
@@ -65,7 +65,7 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		}else{
 			$ret = $ret;
 		}
-		// END if appointment text is changed from appointment view then code below is affected //
+		// END if appointment text changed from appointment view then below code is efected //
 		echo $ret;
 		exit;
 	}

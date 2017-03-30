@@ -95,9 +95,7 @@ if($this->item->sorting == 1){
 if($this->item->switcher == 1){
 	$sorting_enable .= 'data-tablesaw-mode-switch';
 }
-
 ?>
-
 <table class="tablesaw" id="etetable-table" data-tablesaw-mode="<?php echo $tmodes; ?>"  <?php echo $sorting_enable; ?>>
 	<thead class="etetable-thead">
 		<tr>
@@ -141,7 +139,6 @@ if($this->item->switcher == 1){
 	/**
 	 * The table body
 	 */
-	
 	if ($this->rows) {
 		for($this->rowCount = 0; $this->rowCount < count($this->rows); $this->rowCount++) { ?>
 			<tr>
@@ -150,7 +147,6 @@ if($this->item->switcher == 1){
 			
 			<?php
 		}
-	} 
-	?>
+	} ?>
 	</tbody>
 </table>

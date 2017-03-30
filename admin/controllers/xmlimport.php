@@ -31,10 +31,14 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 	 */
 	public function upload() {
 		// ACL Check
+
 		$app = JFactory::getApplication();
 
 		$input  =  JFactory::getApplication()->input;
 		$postget = $input->getArray($_REQUEST);
+
+		$xml = JFactory::getXML(JPATH_COMPONENT_ADMINISTRATOR .'/eventtableedit.xml');
+		$currentversion = (string)$xml->version;
 			
 		// Initialize Variables
 		$this->model = $this->getModel('xmlimport');
@@ -55,9 +59,17 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 		}		
 			
 		$xml = simplexml_load_file($this->file['tmp_name']);
+		if(empty($xml)){
+			$msg = JTEXT::_('COM_EVENTTABLEEDIT_FILE_IS_NOT_CORRECT');
+			$app->redirect('index.php?option=com_eventtableedit&view=xmlimport',$msg,'error');
+			
+		}else if($xml->getName() !='Event_Table_Edit_XML_file'){
+			$msg = JTEXT::_('COM_EVENTTABLEEDIT_FILE_IS_NOT_CORRECT');
+			$app->redirect('index.php?option=com_eventtableedit&view=xmlimport',$msg,'error');
+		}
 		$xml = json_encode($xml);
 		$xml = json_decode($xml, TRUE);
-	
+
 		$xml['id'] = 0;
 		if(count($xml['rowdata']['linerow']) > 0){
 			$xml['temps'] = 0;
@@ -66,11 +78,21 @@ class EventtableeditControllerXmlimport extends JControllerLegacy {
 		}
 		$xml['alias']= substr(md5(rand()), 0, 7);
 		$xml['checkfun']=$this->checkfun?$this->checkfun:'0';
+
+		
 		$model = $this->getModel('Etetable','EventtableeditModel');
+
 		$tablesave = $model->saveXml($xml);
+		//exit;
 		if($tablesave > 0){
+		
 			$msg = JTEXT::_('COM_EVENTTABLEEDIT_SUCCESSFULLY_TABLES_AND_DATA_CREATED');
+			if($currentversion != $xml['ETE_version']){
+				$msg = JTEXT::_('COM_EVENTTABLEEDIT_FILE_IMPORTED_BUT_ETE_VERSION_NOT_MATCH');
+				$app->redirect('index.php?option=com_eventtableedit&view=etetables',$msg,JTEXT::_('COM_EVENTTABLEEDIT_FILE_IMPORTED_WARNING'));
+			}
 			$app->redirect('index.php?option=com_eventtableedit&view=etetables',$msg);
+			
 		}
 			
 		

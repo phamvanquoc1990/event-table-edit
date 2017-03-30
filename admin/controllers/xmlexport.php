@@ -35,7 +35,9 @@ class EventtableeditControllerXmlexport extends JControllerLegacy {
 			$this->setRedirect(JRoute('index.php?option=com_eventtableedit'));
 			return false;
 		}
-		
+		$xml = JFactory::getXML(JPATH_COMPONENT_ADMINISTRATOR .'/eventtableedit.xml');
+		$version = (string)$xml->version;
+
 		// Initialize Variables
 		$this->model = $this->getModel('xmlexport');
 		$app = JFactory::getApplication();
@@ -63,7 +65,8 @@ class EventtableeditControllerXmlexport extends JControllerLegacy {
 		$rows = $db->loadObjectList();
 
  $orderxml = '<?xml version="1.0" encoding="utf-8"?> 
-<rowall>
+<Event_Table_Edit_XML_file>
+<ETE_version>'.$version.'</ETE_version>
 <id>'.$table->id.'</id>
 <name>'.$table->name.'</name>
 <alias>'.$table->alias.'</alias>
@@ -151,7 +154,7 @@ foreach ($rows as $row) {
 				$b++;
 }
 $orderxml .= '</rowdata>';
- $orderxml .= '</rowall>';
+ $orderxml .= '</Event_Table_Edit_XML_file>';
 
 //echo '<pre>';
 //echo htmlspecialchars($orderxml);
