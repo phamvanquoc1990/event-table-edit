@@ -1212,7 +1212,7 @@ if( Tablesaw.mustard ) {
 						dataMode = $table.attr( 'data-tablesaw-mode' ),
 						isSelected;
 
-					html.push( '<span class="btn btn-small">&#160;<select>' );
+					html.push( '<span class="btn btn-small">&#160;<select name="mode">' );
 					for( var j=0, k = S.modes.length; j<k; j++ ) {
 						if( ignoreMode && ignoreMode.toLowerCase() === S.modes[ j ] ) {
 							continue;
@@ -1254,6 +1254,17 @@ if( Tablesaw.mustard ) {
 
 			$table.attr( 'data-tablesaw-mode', val );
 			$table.table();
+
+			$('.pagination').each(function(){
+				$(this).find('li').each(function(){
+					console.log($(this).children('a').attr('href'));
+					var url = $(this).find('a').attr('href');
+					if (url != null){
+						url = url + "&mode=" + val;
+						$(this).children('a').attr('href', url);
+					}
+				})
+			});
 		}
 	};
 
