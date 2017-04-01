@@ -64,6 +64,9 @@ Please post all feature requests in the issues tab.
 
 For version 4.5.2:
 
+[1] Normal mode
+- bugfix: layout mode change when using pagination https://github.com/Theophilix/event-table-edit/issues/30
+
 [3] Universal changes
 - bugfix / enhancement: xml import error and version handling
 
