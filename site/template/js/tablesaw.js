@@ -1242,6 +1242,19 @@ if( Tablesaw.mustard ) {
 
 			$switcher.find( '.btn' ).tablesawbtn();
 			$switcher.find( 'select' ).bind( 'change', S.onModeChange );
+
+			//to change pagination urls during init
+			var val = $table.attr( 'data-tablesaw-mode' );
+			$('.pagination').each(function(){
+				$(this).find('li').each(function(){
+					console.log($(this).children('a').attr('href'));
+					var url = $(this).find('a').attr('href');
+					if (url != null){
+						url = url + "&mode=" + val;
+						$(this).children('a').attr('href', url);
+					}
+				})
+			});
 		},
 		onModeChange: function() {
 			var $t = $( this ),
@@ -1255,6 +1268,7 @@ if( Tablesaw.mustard ) {
 			$table.attr( 'data-tablesaw-mode', val );
 			$table.table();
 
+			//to change pagination urls on mode change
 			$('.pagination').each(function(){
 				$(this).find('li').each(function(){
 					console.log($(this).children('a').attr('href'));
