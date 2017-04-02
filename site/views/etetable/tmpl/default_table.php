@@ -85,6 +85,9 @@ $sorting_enable = 'data-tablesaw-minimap ';
 $switcher_enable = 'columntoggle';
 if(@$postget['mode']){
 	$tmodes = $postget['mode'];
+}else if(isset($_COOKIE['mode'])){
+	$tmodes = $_COOKIE['mode'];
+	unset($_COOKIE['mode']);
 }else{
 	$tmodes = $switcher_enable;
 }
