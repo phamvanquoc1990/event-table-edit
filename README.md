@@ -38,6 +38,7 @@ a) General
   + Set admin email address and email display name
   + Confirmation email settings (chose subject and message text with appointment-date and -time-variables)
   + CSV Import and Export
+  + Show or hide user names to user or admin
 - Show or hide table title
 - Usertext before and after table
 - Show or hide column to delete or sort rows
