@@ -89,7 +89,7 @@ class Csv {
 						$rows[$s][$r] = '"' . $rows[$s][$r] . '"';
 					}
 				}
-				
+				$rows[$s][$r] = str_replace('<br />','csvcsv',$rows[$s][$r]);
 				$csvfile .= $rows[$s][$r];
 				if ($r < count($rows[$s]) - 1) {
 					$csvfile .= $separator;

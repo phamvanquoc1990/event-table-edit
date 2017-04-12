@@ -27,7 +27,7 @@ $app = JFactory::getApplication();
 $id = $app->input->get('tableList');
 $file = "csv_".$id.".csv";
 
-
+$this->csvFile = str_replace('csvcsv','<br />',$this->csvFile);
  $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
  if (!$pf)
  {

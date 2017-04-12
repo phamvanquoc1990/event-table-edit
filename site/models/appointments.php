@@ -171,10 +171,11 @@ class EventtableeditModelappointments extends JModelList
 			
 			// Settings for pagination
 			// Default Pagebreak if not set
-			$limit = $data->pagebreak;
+
+			$limit = 200;
 			
 			if ($limit == '') {
-				$limit = 100;
+				$limit = 200;
 			}
 			
 			$limit = $app->getUserStateFromRequest('com_eventtableedit.appointments.list.' . $pk . '.limit', 'limit', $limit);

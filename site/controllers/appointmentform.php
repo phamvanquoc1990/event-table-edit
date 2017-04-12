@@ -33,6 +33,7 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 		$main  = JFactory::getApplication()->input;
 		$post  = $main->getArray($_POST);
 
+		
 
 		$totalappointments_row_col = explode(',', $post['rowcolmix']);
 		$tableeditpost = $post['id'];
@@ -45,7 +46,8 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 		$db = JFactory::GetDBO();
 		$postdateappointment = explode(',', $post['dateappointment']);
 		
-
+		
+	//	implode(glue,$user->id);
 
 		// update appointment date to Reserved // 
 		foreach ($totalappointments_row_col as $rowcol) {
@@ -63,7 +65,26 @@ class EventtableeditControllerappointmentform extends JControllerLegacy
 			$mintdiffrence =  round(abs($from_time - $to_time) / 60,2);
 			$findupdatecell = $cols[$coleditpost]->head;
 			$rowupdates = $roweditpost +1;
-			$Update = "UPDATE  #__eventtableedit_rows_".$tableeditpost." SET ".$findupdatecell."='reserved' WHERE id='".$rowupdates."'";
+			
+
+			$selectuserd = "SELECT ".$findupdatecell." FROM #__eventtableedit_rows_".$tableeditpost." WHERE id='".$rowupdates."'";
+			$db->setQuery($selectuserd);
+			$getUserbooking = $db->loadResult();
+			
+			if($getUserbooking == 'free'){
+				$reserved_app = $post['first_name'].' '.$post['last_name'];
+			}else{
+				$temp_check = strtolower(trim($getUserbooking));
+				$posUser = strpos($temp_check, '<br />');
+				if ($posUser !== false) {
+					$reserved_app = $getUserbooking.'<br />'.$post['first_name'].' '.$post['last_name'];
+				}else{
+					$reserved_app = $post['first_name'].' '.$post['last_name'];
+				}
+			}
+
+
+			$Update = "UPDATE  #__eventtableedit_rows_".$tableeditpost." SET ".$findupdatecell."='".$reserved_app."' WHERE id='".$rowupdates."'";
 			$db->setQuery($Update);
 			$db->query();
 		}

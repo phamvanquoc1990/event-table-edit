@@ -85,9 +85,6 @@ $sorting_enable = 'data-tablesaw-minimap ';
 $switcher_enable = 'columntoggle';
 if(@$postget['mode']){
 	$tmodes = $postget['mode'];
-}else if(isset($_COOKIE['mode'])){
-	$tmodes = $_COOKIE['mode'];
-	unset($_COOKIE['mode']);
 }else{
 	$tmodes = $switcher_enable;
 }
@@ -109,7 +106,7 @@ if($this->item->switcher == 1){
 	<?php 
 
 	if(!$this->print) : ?>
-	<tfoot class="limit">
+	 <tfoot class="limit">
 	<tr>
 			<td colspan="100%">
 				<div id="container">
@@ -134,7 +131,7 @@ if($this->item->switcher == 1){
 
 		
 
-	</tfoot>
+	</tfoot> 
 	<?php endif; ?>	
 
 	<tbody>

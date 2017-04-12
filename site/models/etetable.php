@@ -612,7 +612,34 @@ class EventtableeditModelEtetable extends JModelList
 		//echo $query;
 		$this->db->setQuery($query);
 		$cell = $this->db->loadResult();
-
+		if ($colName['datatype'] == 'text') {
+			$breaks = array("<br />","<br>","<br/>","<br /> ","<br> ","<br/> ");  
+			$cell = str_ireplace($breaks, "\n", $cell);  
+		}
+		// Handle Float separator
+		$this->getItem();
+		if ($colName['datatype'] == 'float') {
+			$cell = eteHelper::parseFloat($cell, $this->_item->float_separator);
+		}
+		
+		$ret[] = $cell;
+		$ret[] = $colName['datatype'];
+		
+		return implode('|', $ret);
+	}
+	public function getCell_save($rowId, $cell) {
+		$ret = array();
+		
+		$colName = $this->getColumnInfo($cell);
+				
+		$query = 'SELECT ' . $colName['head'] . ' AS content FROM #__eventtableedit_rows_' . $this->id .
+				 ' WHERE id = ' . $rowId;
+		//echo $query;
+		$this->db->setQuery($query);
+		$cell = $this->db->loadResult();
+		//$breaks = array("<br />","<br>","<br/>");  
+		//$cell = str_ireplace($breaks, "\r\n", $cell);  
+		
 		// Handle Float separator
 		$this->getItem();
 		if ($colName['datatype'] == 'float') {
@@ -632,7 +659,10 @@ class EventtableeditModelEtetable extends JModelList
 		$headName = $colInfo['head'];
 						
 		$content = $this->prepareContentForDb($content, $datatype);
-			
+		if ($colInfo['datatype'] == 'text') {
+			$breaks = array("<br />","<br>","<br/>","<br /> ","<br> ","<br/> ");  
+			$content = str_ireplace($breaks, "<br />", $content);  
+		}
 		$query = 'UPDATE #__eventtableedit_rows_' . $this->id .
 				 ' SET ' . $headName . ' = ' . $content . ' WHERE id = ' . $rowId;
 		
@@ -642,7 +672,7 @@ class EventtableeditModelEtetable extends JModelList
 		// Get the saved cell
 		// To see if bbcode is used, the table params has to be loaded
 		$this->getItem($this->id);
-		$ret = explode("|", $this->getCell($rowId, $cell));
+		$ret = explode("|", $this->getCell_save($rowId, $cell));
 		$ret = $this->parseCell($ret[0], $cell);
 		
 		return $ret;

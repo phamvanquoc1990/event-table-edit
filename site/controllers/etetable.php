@@ -43,9 +43,11 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		if (!$this->aclCheck('edit') && !$this->checkAclOwnRow($rowId)) {
 			return false;
 		}
-		$postget = $main->getArray($_POST);
+		$postget = $main->getArray($_REQUEST);
+
 		$cell    = $postget['cell'];
-		$content = $postget['content'];
+		$content = nl2br($postget['content']);
+		
 		$db = JFactory::getDBO();
 		// START if appointment text changed from appointment view then below code is efected //
 		$gettable_settings = "SELECT * FROM #__eventtableedit_details WHERE id='".$postget['id']."'";
@@ -55,13 +57,34 @@ class EventtableeditControllerEtetable extends JControllerLegacy
 		$model = $this->getModel('etetable');
 		$ret = $model->saveCell($rowId, $cell, $content);
 		if($current_table_settings->normalorappointment == 1){
-			if($ret == 'free'){
-				$ret =  '<span class="buleclass">'.JText::_(strtoupper($ret)).'</span>'; // free appointment
-			}else if($ret == 'reserved'){
-				$ret =  '<span class="redclass">'.JText::_(strtoupper($ret)).'</span>'; // reserved appointment
+			$user = JFactory::GetUser();
+			if(in_array('8', $user->groups)){
+				$permisioncheck = $current_table_settings->showusernametoadmin;
+				$admin = 1;
 			}else{
-				$ret = $ret;
-			}	
+				$permisioncheck = $current_table_settings->showusernametouser;
+				$admin = 0;
+			}
+
+
+			if($cell !=0){
+				if($ret == 'free'){
+					$ret =  '<span class="buleclass">'.JText::_(strtoupper($ret)).'</span>'; // free appointment
+				}else{
+					if($admin == 1){
+					 			if($permisioncheck == 0){
+					 				$ret = 'reserved';
+					 				$ret = strtoupper($ret);
+					 			}
+					 		}else{
+					 			if($permisioncheck == 0){
+					 				$ret = 'reserved';
+					 				$ret = strtoupper($ret);
+					 			}
+					 		}
+					$ret =  '<span class="redclass">'.JText::_($ret).'</span>'; // reserved appointment
+				}
+			}
 		}else{
 			$ret = $ret;
 		}

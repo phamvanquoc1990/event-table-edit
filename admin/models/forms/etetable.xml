@@ -41,6 +41,30 @@
 		<field name="col" required="true" type="number" label="COM_EVENTTABLEEDIT_FIELD_COL" description="COM_EVENTTABLEEDIT_FIELD_COL_DESC" class="inputbox" size="30" />
 
 		<field name="hours"  required="true" type="number" default="24" label="COM_EVENTTABLEEDIT_FIELD_HOURS" description="COM_EVENTTABLEEDIT_FIELD_HOURS_DESC" class="inputbox" size="30"	/>
+		<field name="showusernametoadmin"
+			type="radio"
+			default="0"
+			class="inputbox"
+			label="COM_EVENTTABLEEDIT_SHOW_SHOWUSERNAMETOADMIN"
+			description="COM_EVENTTABLEEDIT_SHOW_SHOWUSERNAMETOADMIN">
+			<option
+				value="1">JYES</option>
+			<option
+				value="0">JNO</option>
+		</field>
+		<field name="showusernametouser"
+			type="radio"
+			default="0"
+			class="inputbox"
+			label="COM_EVENTTABLEEDIT_SHOW_SHOWUSERNAMETOUSER"
+			description="COM_EVENTTABLEEDIT_SHOW_SHOWUSERNAMETOUSER">
+			<option
+				value="1">JYES</option>
+			<option
+				value="0">JNO</option>
+		</field>
+
+
 		<field name="showdayname"
 			type="radio"
 			default="0"

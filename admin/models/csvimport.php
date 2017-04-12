@@ -222,7 +222,7 @@ class EventtableeditModelCsvimport extends JModelLegacy {
 				$values[$h] = trim($values[$h]);
 			}	
 	
-			$values[$h] = htmlentities($values[$h], ENT_COMPAT, 'UTF-8');
+			//$values[$h] = htmlentities($values[$h], ENT_COMPAT, 'UTF-8');
 		}
 
 		return $values;

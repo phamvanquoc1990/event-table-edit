@@ -162,10 +162,6 @@ function addActionRowFirstTime() {
 			'events': {
 				'click': function() {
 					document.adminForm.task.value = 'etetable.saveOrder';
-					//setting cookie for table layout
-					var mode = document.getElementById('etetable-table').
-						getAttribute('data-tablesaw-mode');
-					document.cookie = "mode=" + mode;
 					document.adminForm.submit();
 				}
 			}

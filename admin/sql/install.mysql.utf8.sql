@@ -52,6 +52,8 @@ CREATE TABLE IF NOT EXISTS `#__eventtableedit_details` (
   `hours` int(11) NOT NULL,
   `showdayname` tinyint(4) NOT NULL,
   `rowsort` tinyint(4) NOT NULL DEFAULT '0',
+  `showusernametoadmin` tinyint(4) NOT NULL,
+  `showusernametouser` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 

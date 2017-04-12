@@ -41,8 +41,13 @@ class EventtableeditControllerChangetable extends JControllerLegacy
 				
 		$model = $this->getModel('changetable');
 		$model->save($cid, $name, $datatype, $defaultSorting);
-		
-		$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id=' . $id,false), JText::_('COM_EVENTTABLEEDIT_SETTINGS_SAVED'));
+		$normal = $model->getnormal_table($id);
+		if($normal == 0){
+			$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=etetable&id=' . $id,false), JText::_('COM_EVENTTABLEEDIT_SETTINGS_SAVED'));
+		}else{
+			$this->setRedirect(JRoute::_('index.php?option=com_eventtableedit&view=appointments&id=' . $id,false), JText::_('COM_EVENTTABLEEDIT_SETTINGS_SAVED'));
+			
+		}
 	}
 	
 	private function aclCheck() {

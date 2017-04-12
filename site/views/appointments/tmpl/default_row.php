@@ -44,6 +44,14 @@ if ($this->item->show_first_row) :?>
 
 <?php
 $hoursitem = $this->item->hours;
+$user = JFactory::GetUser();
+if(in_array('8', $user->groups)){
+	$permisioncheck = $this->item->showusernametoadmin;
+	$admin = 1;
+}else{
+	$admin = 0;
+	$permisioncheck = $this->item->showusernametouser;
+}
 /*
 
 $bookdats     = date('Y-m-d H:i:s',strtotime($post['dateappointment']));
@@ -70,10 +78,10 @@ $currenttimestemp = strtotime('now');
 $effectiveDate    = strtotime("-$hoursitem hours", strtotime($bookdats));
 
 
-	if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'reserved'){
-		$temptd= 'tdblue';
-	}else{
+	if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'free'){
 		$temptd= 'tdred';
+	}else{
+		$temptd= 'tdblue';
 	}
 	if($currenttimestemp > $effectiveDate){
 		$temptd= 'tdred';
@@ -95,7 +103,7 @@ $effectiveDate    = strtotime("-$hoursitem hours", strtotime($bookdats));
 		//$effectiveDate = strtotime("-$hoursitem hours", strtotime($bookdats));
 
 
-		if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) != 'reserved'){ 
+		if($colCount != 0 && strtolower(trim($this->rows[$this->rowCount][$colCount])) == 'free'){ 
 
 
 				//echo date('Y-m-d H:i:s',$currenttimestemp);
@@ -121,7 +129,19 @@ $effectiveDate    = strtotime("-$hoursitem hours", strtotime($bookdats));
 		<?php }else if($colCount != 0){ ?>
 
 				 	<span class="redclass"><?php  $redreserved = trim($this->rows[$this->rowCount][$colCount]);
-				 		echo JText::_(strtoupper($redreserved));
+				 		if($admin == 1){
+				 			if($permisioncheck == 0){
+				 				$redreserved = 'reserved';
+				 				$redreserved = JText::_(strtoupper($redreserved));
+				 			}
+				 		}else{
+				 			if($permisioncheck == 0){
+				 				$redreserved = 'reserved';
+				 				$redreserved  = JText::_(strtoupper($redreserved));
+				 			}
+				 		}
+				 		echo $redreserved;
+				 		
 				 	?></span> 
 
 		<?php }else{

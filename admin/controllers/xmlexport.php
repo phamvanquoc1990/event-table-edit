@@ -120,6 +120,8 @@ class EventtableeditControllerXmlexport extends JControllerLegacy {
 <col>'.$table->col.'</col>
 <hours>'.$table->hours.'</hours>
 <showdayname>'.$table->showdayname.'</showdayname>
+<showusernametoadmin>'.$table->showusernametoadmin.'</showusernametoadmin>
+<showusernametouser>'.$table->showusernametouser.'</showusernametouser>
 <rules>'.$table->rules.'</rules>';
 
 $orderxml .= '<headdata>';
@@ -148,19 +150,19 @@ foreach ($rows as $row) {
 					<created_by>'.$row->created_by.'</created_by>';
 					for ($h=0; $h < count($heads); $h++) { 
 						$findrowval = $heads[$h]->head;
-					 	$orderxml .= '<'.$findrowval.'>'.htmlentities($row->$findrowval).'</'.$findrowval.'>';	
+					 	$orderxml .= '<'.$findrowval.'>'.htmlspecialchars($row->$findrowval).'</'.$findrowval.'>';	
 					}
 				$orderxml .= '</linerow>';
 				$b++;
 }
 $orderxml .= '</rowdata>';
- $orderxml .= '</Event_Table_Edit_XML_file>';
+  $orderxml .= '</Event_Table_Edit_XML_file>';
 
 //echo '<pre>';
 //echo htmlspecialchars($orderxml);
 //echo '</pre>';
 
- $file = "tablexml_".$this->id.".xml";
+ $file = str_replace(' ','_',$table->name)."_".$this->id.".xml";
  $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
  if (!$pf)
  {
@@ -187,7 +189,10 @@ $orderxml .= '</rowdata>';
 
 			$app = JFactory::getApplication();
 			$id = $app->input->get('tableList');
-			$file = JPATH_ROOT."/components/com_eventtableedit/template/tablexml/tablexml_".$id.".xml";
+			$this->model = $this->getModel('xmlexport');
+			$name = $this->model->getTabledata($id);
+			$name = str_replace(' ','_',$name->name);
+			$file = JPATH_ROOT."/components/com_eventtableedit/template/tablexml/".$name."_".$id.".xml";
 			
 	header('Content-Description: File Transfer');
     header('Content-Type: application/xml');

@@ -62,6 +62,19 @@ Please post all feature requests in the issues tab.
 
 ## II Version history
 
+For version 4.5.3:
+
+[2] Appointment mode
+- enhancement: https://github.com/Theophilix/event-table-edit/issues/42: Frontend / Appointment function: Allow multiple bookings for the same day and time
+- enhancement: new options in backend: "show username to admin" and  "show username to user".
+- enhancement: admin can insert several usernames separated by ENTER key.
+- bugfix: print view now shows exactly what user sees
+
+[3] Universal changes
+- bugfix / enhancement: xml download: proposed filename is table name
+
+
+
 For version 4.5.2:
 
 [1] Normal mode

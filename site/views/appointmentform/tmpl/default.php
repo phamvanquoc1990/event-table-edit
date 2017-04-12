@@ -71,7 +71,7 @@ foreach ($totalappointments_row_col as $rowcol) {
 	$rows = $this->rows[$rops];
 	$details  = $rows[$cops];
 
-	if($details == 'free'){
+	//if($details == 'free'){
 	 // add weekday in first row (head) //
 		if($this->item->showdayname == 1){
 			$namesofday = strtoupper(date('l',strtotime(str_replace('.', '-', trim($cols->name)))));
@@ -81,7 +81,7 @@ foreach ($totalappointments_row_col as $rowcol) {
 		}
 		$appointmentsdate[] = str_replace('.', '-', $cols->name).' '.$rows['0'].':00';
 		
-	}
+	//}
  // END add weekday in first row (head) //
 
 }
@@ -212,7 +212,6 @@ $datesofhead = implode(',', $datesofhead);
 
 
 				$postdateappointment = $appointmentsdate;
-
 
 	if(count($appointmentsdate) > 0){ 
 

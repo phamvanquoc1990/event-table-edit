@@ -55,7 +55,9 @@
     box-shadow: none;
     width: 100%;
 }
- 
+ .print-icon img{
+ 	width: 22px;
+ }
 
  .etetable-filter form {
 

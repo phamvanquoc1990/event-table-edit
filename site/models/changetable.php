@@ -218,4 +218,11 @@ class EventtableeditModelChangetable extends JModelList
 		}
 		
 	}
+	public function getnormal_table($id){
+		$db = JFactory::GetDBO();
+		$select = "SELECT normalorappointment FROM #__eventtableedit_details WHERE id='".$id."'";
+		$db->setQuery($select);
+		$table = $db->loadResult();
+		return $table;
+	}
 }

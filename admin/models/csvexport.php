@@ -139,12 +139,14 @@ class EventtableeditModelCsvexport extends JModelLegacy {
 		foreach ($rows as $row) {
 			for ($b = 0; $b < count($this->heads['name']); $b++) {
 				$field = $this->heads['name'][$b];
-			
+				//$breaks = array("<br />","<br>","<br/>","<br /> ","<br> ","<br/> ");  
+				//$row->$field = str_ireplace($breaks, "\n", $row->$field);  
 				$this->csvData[$a][$b] = $row->$field;
 			}
 			
 			$a++;
 		}
 	}
+	
 }
 ?>

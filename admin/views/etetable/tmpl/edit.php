@@ -192,7 +192,7 @@ JHtml::_('behavior.formvalidation');
 <li class="location">
 							<label title="" class="hasTooltip" for="jform_icsfilename" id="jform_icsfilename-lbl" data-original-title="&lt;strong&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_LABEL'); ?>&lt;/strong&gt;&lt;br /&gt;<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_DESC'); ?>">
 	<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_ICSFILENAME_LABEL'); ?><span class="star">&nbsp;*</span></label>
-							<?php echo JText::_('COM_EVENTTABLEEDIT_USED_VARIABLE_IN_ADMIN_EMAIL_SUBJECT'); ?>
+							<?php echo JText::_('COM_EVENTTABLEEDIT_USED_VARIABLE_IN_ICS_SUBJECT'); ?>
 							<br>
 						<!--<?php echo $this->form->getLabel('icsfilename'); ?>-->
 					<?php echo $this->form->getInput('icsfilename'); ?></li>
@@ -245,7 +245,7 @@ JHtml::_('behavior.formvalidation');
 	<?php echo JText::_('COM_EVENTTABLEEDIT_FIELD_USEREMAIL_TEXT'); ?><span class="star">&nbsp;*</span></label>
 
 					<!--<?php echo $this->form->getLabel('useremailtext'); ?>-->
-					<?php echo JText::_('COM_EVENTTABLEEDIT_USED_VARIABLE_IN_USED_EMAIL_SUBJECT'); ?>
+					<?php echo JText::_('COM_EVENTTABLEEDIT_USED_VARIABLE_IN_USED_EMAIL_ADMIN'); ?>
 						<br>
 					<?php echo $this->form->getInput('useremailtext'); ?></li>
 
@@ -260,6 +260,14 @@ JHtml::_('behavior.formvalidation');
 					
 					<?php echo $this->form->getInput('adminemailtext'); ?></li>
 
+
+					<li class="location"><?php echo $this->form->getLabel('showusernametoadmin'); ?>
+					<?php echo $this->form->getInput('showusernametoadmin'); ?></li>
+				
+
+				<li class="location"><?php echo $this->form->getLabel('showusernametouser'); ?>
+					<?php echo $this->form->getInput('showusernametouser'); ?></li>
+				
 
 					<?php if($this->item->id == ''){ ?>
 						<li><?php echo $this->form->getLabel('row'); ?>

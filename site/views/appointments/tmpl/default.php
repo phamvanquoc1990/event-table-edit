@@ -23,11 +23,21 @@
 defined( '_JEXEC' ) or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers');
-
-
+$main  = JFactory::getApplication()->input;
+		$requests  = $main->getArray($_REQUEST);
+?>
+<?php
+if(isset($requests['print'])){
 ?>
 <style type="text/css">
-	
+
+.appointmentsbtn{display: none;}
+
+</style>
+<?php 
+}
+ ?>
+<style type="text/css">
 table#etetable-table tr td.highlighted {
   background-color:#c4c1c1;
   border: 1px solid #dddddd;
@@ -42,7 +52,8 @@ td.tdblue{
 	<?php if($this->item->show_print_view) :?>
 	<li class="print-icon">
 		<?php if (!$this->print) : ?>
-			<?php echo JHtml::_('icon.print_popup',  $this->item, $this->params); ?>
+			<?php echo str_replace('view=etetable', 'view=appointments',JHtml::_('icon.print_popup',  $this->item, $this->params)); ?>
+			<?php //echo JHtml::_('icon.print_popup',  $this->item, $this->params); ?>
 		<?php else : ?>
 			<?php echo JHtml::_('icon.print_screen',  $this->item, $this->params); ?>
 		<?php endif; ?>
@@ -86,7 +97,7 @@ if($this->item->addtitle == 1){ ?>
 
 	//If there is already a table set up
 	if ($this->heads) :?>
-  		<input type="button" name="appointments" value="<?php echo JText::_('COM_EVENTTABLEEDIT_BOOK_BUTTON') ?>" style="float:right;" onclick="subappointments();" class="btn btn-primary" />
+  		<input type="button" name="appointments" value="<?php echo JText::_('COM_EVENTTABLEEDIT_BOOK_BUTTON') ?>" style="float:right;" onclick="subappointments();" class="btn btn-primary appointmentsbtn" />
 		<div class="etetable-outtable">
 
 
