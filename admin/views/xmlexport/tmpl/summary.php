@@ -24,8 +24,10 @@ defined( '_JEXEC' ) or die;
 
 $app = JFactory::getApplication();
 $id = $app->input->get('tableList');
-$file = "tablexml_".$id.".xml";
-
+$this->model = $this->getModel('xmlexport');
+$name = $this->model->getTabledata($id);
+$name = str_replace(' ','_',$name->name);
+$file = JPATH_ROOT."/components/com_eventtableedit/template/tablexml/".$name."_".$id.".xml";
 
 ?>
 
@@ -34,7 +36,7 @@ $file = "tablexml_".$id.".xml";
 	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_EVENTTABLEEDIT_EXPORT_TABLE') ?></legend>
 		
-		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php  readfile(JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file); //echo $this->csvFile; ?></textarea>
+		<textarea readonly="readonly" rows="20" cols="150" id="export-text"><?php  readfile($file); //echo $this->csvFile; ?></textarea>
 		<input type="hidden" name="tableList" value="<?php echo $id; ?>" >
 	</fieldset>
 	</div>

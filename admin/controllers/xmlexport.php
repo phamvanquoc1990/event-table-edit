@@ -163,6 +163,7 @@ $orderxml .= '</rowdata>';
 //echo '</pre>';
 
  $file = str_replace(' ','_',$table->name)."_".$this->id.".xml";
+
  $pf = fopen (JPATH_ROOT.'/components/com_eventtableedit/template/tablexml/'.$file, "w");
  if (!$pf)
  {
