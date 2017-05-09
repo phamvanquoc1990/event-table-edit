@@ -39,6 +39,7 @@ a) General
   + Confirmation email settings (chose subject and message text with appointment-date and -time-variables)
   + CSV Import and Export
   + Show or hide user names to user or admin
+  + Set timelimit for bookings
 - Show or hide table title
 - Usertext before and after table
 - Show or hide column to delete or sort rows
