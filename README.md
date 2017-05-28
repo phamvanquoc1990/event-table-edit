@@ -4,6 +4,8 @@ You can  transform the table into an appointment booking system with confirmatio
 
 Download latest version 4.5.3 (since 12.04.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
+**Note: At the moment there are some problems with Joomla 3.7 and above. I am working on it.**
+
 Demo site for backend and frontend (includes appointment table): http://demo.eventtableedit.com 
 
 ## I Features:
