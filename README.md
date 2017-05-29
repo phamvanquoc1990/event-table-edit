@@ -66,7 +66,7 @@ Please post all feature requests in the issues tab.
 
 ## II Version history
 
-For version 4.5.3:
+**For version 4.5.3:**
 
 [2] Appointment mode
 - enhancement: https://github.com/Theophilix/event-table-edit/issues/42: Frontend / Appointment function: Allow multiple bookings for the same day and time
@@ -78,8 +78,7 @@ For version 4.5.3:
 - bugfix / enhancement: xml download: proposed filename is table name
 
 
-
-For version 4.5.2:
+**For version 4.5.2:**
 
 [1] Normal mode
 - bugfix: layout mode change when using pagination https://github.com/Theophilix/event-table-edit/issues/30
@@ -87,7 +86,7 @@ For version 4.5.2:
 [3] Universal changes
 - bugfix / enhancement: xml import error and version handling
 
-For version 4.5.1:
+**For version 4.5.1:**
 
 [1] Normal mode
 - bugfix: uploaded wrong stringparser file -> bbcode works now
@@ -97,7 +96,7 @@ For version 4.5.1:
 - enhancement: https://github.com/Theophilix/event-table-edit/issues/41: Frontend / Appointment table: admins can edit table values directly (change free -> reserved and vice versa) when logged in to frontend.
 
 
-For version 4.5:
+**For version 4.5:**
 
 [1] Normal mode
 - enhancement: natural sorting, not perfect yet, but work on it will continue
@@ -113,7 +112,7 @@ For version 4.5:
 - bugfix: admin doesn’t get email (was problem with „/“) + email does not show multiple appointments (example:  you have an appointment on 05.03.2017 / 06.03.2017 at 17:20 / 17:40)
 
 
-For version 4.4.3:
+**For version 4.4.3:**
 
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/27: Locale not recognized (in date format) (?)
@@ -121,12 +120,12 @@ For version 4.4.3:
 - Joomla update notification and update via Joomla administrator backend enabled. 
 
 
-For version 4.4.2:
+**For version 4.4.2:**
 
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/31: Sorting row column disappears in toggle view
 
-For version 4.4.1:
+**For version 4.4.1:**
 
 [1] Normal mode
 - bug removed: https://github.com/Theophilix/event-table-edit/issues/28: Sorting by date field results in an error if date field is empty
@@ -134,7 +133,7 @@ For version 4.4.1:
 [3] Universal changes
 - english corrections: https://github.com/Theophilix/event-table-edit/pull/29 -> Thank you, user "brianteeman"!
 
-For version 4.4:
+**For version 4.4:**
 
 [1] Normal mode
 - bug removed: when importing empty cells from csv-file, cell value changed to "free". Solution: select box "csv is appointment-table".
@@ -147,7 +146,7 @@ For version 4.4:
 - xml import/export: now xml-files are scanned for ETE-signature
 - plugin update notification and update function via Joomla backend reactivated
 
-For version 4.3:
+**For version 4.3:**
 
 [1] Normal mode
 - XML import and export function: export and import a table with all settings.
@@ -157,7 +156,7 @@ For version 4.3:
 [2] Appointment mode
 - no changes
 
-For version 4.2:
+**For version 4.2:**
 
 [1] Normal mode
 - Column sorting (via header click or selection menu) option added (unfortunately, natural sorting is still not working)
