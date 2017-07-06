@@ -536,7 +536,7 @@ class EventtableeditModelappointments extends JModelList
 	 */
 	public function newRow() {
 		//Get userid to store, who saved the row
-		$user   = &JFactory::getUser();
+		$user   = JFactory::getUser();
 		$uid    = $user->get('id');
 		
 		//Add new row to the database

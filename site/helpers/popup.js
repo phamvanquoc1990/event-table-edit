@@ -192,7 +192,8 @@ BuildPopupWindow.prototype.textWindow = function() {
  * Date window with calendar
  */
 BuildPopupWindow.prototype.dateWindow = function() {
-	var calSrc = others.rootUrl + '/templates/system/images/calendar.png';
+	
+	/*var calSrc = others.rootUrl + '/templates/system/images/calendar.png';
 	var calInput = new Element ('input', {
 		'id': 'etetable-inputfield',
 		'type': 'text',
@@ -206,6 +207,18 @@ BuildPopupWindow.prototype.dateWindow = function() {
 		'alt': 'Calendar',
 		'src': calSrc	
 	});
+	
+	
+	$('popupForm').appendChild(calInput);
+	$('popupForm').appendChild(calImg);
+	$('popupForm').appendChild(clear);
+	*/
+	
+	var calhtmls = '<div class="input-append"><input id="etetable-inputfield" name="ete-calendar" value="'+this.cellContent+'"  data-alt-value="" autocomplete="off" type="text"><button type="button" class="btn btn-secondary" id="etetable-inputfield_btn" data-inputfield="filterstring" data-dayformat="%Y-%m-%d" data-button="filterstring_btn" data-firstday="1" data-weekend="0,6" data-today-btn="1" data-week-numbers="1" data-show-time="0" data-show-others="1" data-time-24="24" data-only-months-nav="0"><span class="icon-calendar"></span></button></div>';
+	var div = new Element ('div', {
+		'class': 'field-calendar'
+	});	
+	div.innerHTML = calhtmls;
 	var clear = new Element ('span', {
 		'id'	: 'clear',
 		'class'	: 'etetable-button',
@@ -216,17 +229,15 @@ BuildPopupWindow.prototype.dateWindow = function() {
 			}
 		}
 	});
-	
-	$('popupForm').appendChild(calInput);
-	$('popupForm').appendChild(calImg);
+	$('popupForm').appendChild(div);
 	$('popupForm').appendChild(clear);
-	
+
 	// Reinitalize the Joomla-Calendar for the dynamically added date-picker
 	Calendar.setup({
 		inputField     :    "etetable-inputfield",
 		ifFormat       :    "%Y-%m-%d",
 		showsTime      :    false,
-		button         :    "calImg",
+		button         :    "etetable-inputfield_btn",
 		align		   :    "BR"
 	});
 }

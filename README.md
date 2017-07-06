@@ -2,11 +2,9 @@
 Event Table Edit (abbrev. ETE) is a free and open source table plugin for Joomla 2.5, 3.x and above (original author: Manuel Kaspar, continuation: Matthias Gruhn). With the plugin, you can create a responsive, editable table with CSV import and export function and XML export/import for table settings. It also has a full rights management (Joomla ACL). 
 You can  transform the table into an appointment booking system with confirmation emails for users and the admin, including iCal calendar files for both in the attachment. As it is based on a CSS-template, the layout of the table can be changed easily. The responsive function is based on the "Column Toggle Table with Mini Map" from the tablesaw plugins (https://github.com/filamentgroup/tablesaw).
 
-Download latest version 4.5.3 (since 12.04.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
+Download latest version 4.5.4 (since 06.07.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
 **Note: At the moment there are some problems with Joomla 3.7 and above. I am working on it.**
-
-Demo site for backend and frontend (includes appointment table): http://demo.eventtableedit.com 
 
 ## I Features:
 
@@ -65,6 +63,14 @@ Please post all feature requests in the issues tab.
 
 
 ## II Version history
+
+
+**For version 4.5.4:**
+
+[1] Normal mode
+- bugfix: calendar not working https://github.com/Theophilix/event-table-edit/issues/64
+- bugfix: compatibility problems with PHP-Version 7.0 and 7.1 https://github.com/Theophilix/event-table-edit/issues/65
+
 
 **For version 4.5.3:**
 
