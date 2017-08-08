@@ -6,7 +6,7 @@ Try all the functions in the demo site: https://demo.eventtableedit.com.
 
 Download latest version 4.5.4 (since 06.07.2017): https://github.com/Theophilix/event-table-edit/archive/master.zip
 
-Version history: see https://github.com/Theophilix/event-table-edit#ii-version-history.
+Version history: scroll down to "II".
 
 ## I Features:
 
