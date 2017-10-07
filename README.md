@@ -179,5 +179,3 @@ Please post all feature requests in the issues tab.
 - Time limit option (cells are marked as "blocked") added
 - "Add weekdays to header" option added
 - Layout improvements in frontend and backend
-
-
