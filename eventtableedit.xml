@@ -2,9 +2,9 @@
 <extension type="component" version="4.5.4" method="upgrade">
 	<name>com_eventtableedit</name>
 	<creationDate>06-07-17</creationDate>
-	<author>Manuel Kaspar and Matthias Gruhn</author>
+	<author>Manuel Kaspar and Theophilix</author>
 	<license>GNU/GPL</license>
-	<copyright>2007 - 2017 Manuel Kaspar and Matthias Gruhn</copyright>
+	<copyright>2007 - 2017 Manuel Kaspar and Theophilix</copyright>
 	<authorEmail>webmaster@eventtableedit.com</authorEmail>
 	<authorUrl>http://www.eventtableedit.com</authorUrl>
 	<version>4.5.4</version>
