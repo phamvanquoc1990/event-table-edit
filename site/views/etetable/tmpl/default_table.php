@@ -19,7 +19,9 @@ defined('_JEXEC') or die;
     border: medium none;
     color: #000;
 }
-
+ .tablesaw tr td:last-child, .tablesaw-sortable tr th:last-child {
+     display: none;
+ }
 .tablesaw-sortable th.tablesaw-sortable-head button {
     font-weight: bold;
     padding-bottom: 0.7em !important;
