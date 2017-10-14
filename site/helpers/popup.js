@@ -586,9 +586,9 @@ BuildPopupWindow.prototype.sendData = function() {
 	data: post,
 	onComplete: function (response) {
 		var data = response.split("|");
-		var numCol = jQuery('#etetable-table thead th').length;
+        var numCol = jQuery('#timestamp-head').parent().children().index(jQuery('#timestamp-head'));
 		self.editedCell.innerHTML = data[0];
-		jQuery('#etetable-row_'+(self.rowId-1)+'_'+(numCol-1))[0].innerHTML =  data[1];
+		jQuery('#etetable-row_'+(self.rowId-1)+'_'+(numCol)).html(data[1]);
 		addAnchorEvent(null, self.editedCell);
 		self.removePopup();
 		removeLoad();

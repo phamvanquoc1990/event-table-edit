@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
     border: medium none;
     color: #000;
 }
- .tablesaw tr td:last-child, .tablesaw-sortable tr th:last-child {
+ #timestamp-head {
      display: none;
  }
 .tablesaw-sortable th.tablesaw-sortable-head button {
@@ -152,3 +152,9 @@ if($this->item->switcher == 1){
 	} ?>
 	</tbody>
 </table>
+<script>
+    jQuery(document).ready(function () {
+        var numCol = jQuery('#timestamp-head').parent().children().index(jQuery('#timestamp-head'));
+        jQuery('#etetable-table td:nth-child('+(numCol+1)+')').hide();
+    })
+</script>
