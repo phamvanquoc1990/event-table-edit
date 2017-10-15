@@ -355,7 +355,7 @@ if( Tablesaw.mustard ) {
 
 		// Expose headers and allHeaders properties on the widget
 		// headers references the THs within the first TR in the table
-		this.headers = this.$table.find( 'tr:first > th' );
+		this.headers = this.$table.find( 'tr:first > th:not("#timestamp-head")' );
 
 		this.$table.data( 'tablesaw-coltoggle', this );
 	};
@@ -1132,7 +1132,7 @@ if( Tablesaw.mustard ) {
 		var $btns = $( '<div class="tablesaw-advance minimap">' ),
 			$dotNav = $( '<ul class="tablesaw-advance-dots">' ).appendTo( $btns ),
 			hideDot = 'tablesaw-advance-dots-hide',
-			$headerCells = $table.find( 'thead th' );
+			$headerCells = $table.find( 'thead th:not("#timestamp-head")' );
 
 		// populate dots
 		$headerCells.each(function(){
