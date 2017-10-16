@@ -152,6 +152,7 @@ if($this->item->switcher == 1){
 	} ?>
 	</tbody>
 </table>
+<div style="display: none;" id="num-of-col" data-num-of-col="<?=isset($this->rows[0]) ? (count($this->rows[0]) - 2) : 0?>">
 <script>
     jQuery(document).ready(function () {
         var numCol = jQuery('#timestamp-head').parent().children().index(jQuery('#timestamp-head'));

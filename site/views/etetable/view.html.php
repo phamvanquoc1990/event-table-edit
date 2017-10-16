@@ -179,7 +179,7 @@ class EventtableeditViewEtetable extends JViewLegacy
 			
 			
 			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/tableAjax.js');
-			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js?v3');
+			$this->document->addScript($this->baseurl.'/components/com_eventtableedit/helpers/popup.js?v4');
 		//	$this->document->addScript($this->baseurl.'/components/com_eventtableedit/template/js/jquery.js');
 		
 		}
